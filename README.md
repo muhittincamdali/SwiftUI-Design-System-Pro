@@ -14,7 +14,7 @@
 
 **World's Most Comprehensive SwiftUI Design System - 200+ Reusable Components**
 
-[🎨 Demo](#demo) • [🚀 Quick Start](#quick-start) • [📚 Documentation](#documentation) • [🤝 Contributing](#contributing) • [📄 License](#license)
+[🚀 Quick Start](#quick-start) • [📚 Documentation](#documentation) • [🤝 Contributing](#contributing) • [📄 License](#license)
 
 </div>
 
@@ -120,15 +120,7 @@ struct ContentView: View {
 
 ---
 
-## 📱 Demo
 
-<div align="center">
-
-![Design System Demo](https://via.placeholder.com/800x400/007AFF/FFFFFF?text=Design+System+Demo+GIF)
-
-**🎬 [Watch Live Demo](https://muhittincamdali.github.io/SwiftUI-Design-System-Pro)**
-
-</div>
 
 ---
 
@@ -400,12 +392,12 @@ class DSButtonUITests: XCTestCase {
 ## 📚 Documentation
 
 ### 📖 Comprehensive Documentation
-- [🚀 Getting Started](Documentation/GettingStarted.md)
-- [🎨 Component Guide](Documentation/Components.md)
-- [🌙 Theme System](Documentation/Themes.md)
-- [♿ Accessibility](Documentation/Accessibility.md)
-- [⚡ Performance](Documentation/Performance.md)
-- [🧪 Testing](Documentation/Testing.md)
+- [🚀 Getting Started](Documentation/GettingStarted/README.md)
+- [🎨 Component Guide](Documentation/Components/README.md)
+- [🌙 Theme System](Documentation/Themes/README.md)
+- [♿ Accessibility](Documentation/Accessibility/README.md)
+- [⚡ Performance](Documentation/Performance/README.md)
+- [🧪 Testing](Documentation/Testing/README.md)
 
 ---
 
