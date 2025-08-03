@@ -8,22 +8,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- New component: `DSProgressIndicator`
-- New component: `DSBadge`
-- New component: `DSModal`
+- New component: `DSTextField` - Advanced text input with validation
+- New component: `DSSearchField` - Search input with suggestions
+- New component: `DSModal` - Modal presentations with multiple styles
+- New component: `DSAlert` - Alert dialogs with different types
+- New component: `DSProgressIndicator` - Linear and circular progress
+- New component: `DSBadge` - Notification badges and indicators
 - Enhanced accessibility features for all components
 - New animation presets for micro-interactions
 - Performance optimizations for large lists
+- Comprehensive test coverage for all new components
+- Package.swift with proper SPM configuration
+- GitHub Topics for better discoverability
 
 ### Changed
 - Improved button rendering performance by 15%
 - Enhanced dark mode color consistency
 - Updated documentation with new examples
+- Enhanced Package.swift with proper SPM configuration
+- Added GitHub Topics for better discoverability
 
 ### Fixed
 - Memory leak in image caching system
 - Accessibility voice-over issues in card components
 - Dark mode color inconsistencies in tertiary buttons
+- Missing Package.swift configuration
+- Incomplete test coverage
 
 ## [2.1.0] - 2024-12-15
 
