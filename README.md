@@ -9,12 +9,22 @@
 
 [![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen?style=for-the-badge)](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro)
 [![Test Coverage](https://img.shields.io/badge/Test%20Coverage-100%25-brightgreen?style=for-the-badge)](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro)
-[![Version](https://img.shields.io/badge/Version-1.0.0-blue?style=for-the-badge)](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro)
+[![Version](https://img.shields.io/badge/Version-2.1.0-blue?style=for-the-badge)](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro)
 
 **World's Most Comprehensive SwiftUI Design System - 200+ Reusable Components**
 
 [🚀 Quick Start](#quick-start) • [📚 Documentation](#documentation) • [🤝 Contributing](#contributing) • [📄 License](#license)
+
+</div>
+
+---
+
+## 🏷️ Topics
+
+<div align="center">
+
+`swift` `swiftui` `ios` `design-system` `ui-components` `accessibility` `dark-mode` `animation` `performance` `testing` `spm` `xcode` `mobile-development` `ui-ux` `ios-development` `swift-package-manager` `component-library` `design-tokens` `theme-system` `responsive-design`
 
 </div>
 
