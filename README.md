@@ -450,31 +450,11 @@ class DSButtonUITests: XCTestCase {
 
 ## 🙏 Acknowledgments
 
-<div align="center">
-
-**Special thanks to the amazing iOS development community!**
-
-</div>
-
-### 🌟 Community Contributors
-- **SwiftUI Community**: For continuous innovation and feedback
-- **iOS Developers**: For valuable insights and suggestions
-- **Open Source Contributors**: For making this project better
-- **Design System Enthusiasts**: For pushing the boundaries of UI/UX
-
-### 🛠️ Technologies & Libraries
-- **SwiftUI**: Apple's declarative UI framework
-- **Swift Collections**: High-performance data structures
-- **Swift Algorithms**: Efficient algorithms and data processing
-- **Xcode**: Apple's integrated development environment
-
-### 📚 Learning Resources
-- **Apple Developer Documentation**: Official SwiftUI guides
-- **WWDC Sessions**: Latest iOS development insights
-- **SwiftUI Community**: Best practices and tutorials
-- **Design System Resources**: Industry standards and patterns
-
----
+- Apple for the excellent SwiftUI framework
+- The Swift community for inspiration and feedback
+- All contributors who help improve this design system
+- Design system best practices
+- UI/UX design principles
 
 ## 📄 License
 
