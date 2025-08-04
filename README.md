@@ -130,10 +130,6 @@ struct ContentView: View {
 
 ---
 
-
-
----
-
 ## 🎨 Design System Architecture
 
 ### 🎨 Color System
@@ -430,6 +426,56 @@ class DSButtonUITests: XCTestCase {
 
 ---
 
+## 📞 Support
+
+<div align="center">
+
+**Need help? We're here to support you!**
+
+</div>
+
+### 🆘 Support Channels
+- **Issues**: [GitHub Issues](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/discussions)
+- **Documentation**: [Documentation](Documentation/README.md)
+- **Examples**: [Examples](Examples/README.md)
+
+### 📋 Common Issues
+- **Installation Problems**: Check [Quick Start](#quick-start) guide
+- **Component Usage**: Review [Component Examples](#-component-examples)
+- **Theme Issues**: See [Theme System](#-theme-system) documentation
+- **Performance**: Read [Performance Optimizations](#-performance-optimizations)
+
+---
+
+## 🙏 Acknowledgments
+
+<div align="center">
+
+**Special thanks to the amazing iOS development community!**
+
+</div>
+
+### 🌟 Community Contributors
+- **SwiftUI Community**: For continuous innovation and feedback
+- **iOS Developers**: For valuable insights and suggestions
+- **Open Source Contributors**: For making this project better
+- **Design System Enthusiasts**: For pushing the boundaries of UI/UX
+
+### 🛠️ Technologies & Libraries
+- **SwiftUI**: Apple's declarative UI framework
+- **Swift Collections**: High-performance data structures
+- **Swift Algorithms**: Efficient algorithms and data processing
+- **Xcode**: Apple's integrated development environment
+
+### 📚 Learning Resources
+- **Apple Developer Documentation**: Official SwiftUI guides
+- **WWDC Sessions**: Latest iOS development insights
+- **SwiftUI Community**: Best practices and tutorials
+- **Design System Resources**: Industry standards and patterns
+
+---
+
 ## 📄 License
 
 This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
@@ -461,8 +507,10 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 
 <div align="center">
 
-**⭐ Don't forget to star this project if you like it!**
+**⭐ Star this repository if it helped you build amazing iOS apps!**
 
 **🎨 World's Most Comprehensive SwiftUI Design System**
+
+**Built with ❤️ for the iOS community**
 
 </div> 
