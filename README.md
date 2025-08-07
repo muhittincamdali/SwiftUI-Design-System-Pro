@@ -164,11 +164,7 @@ struct AppTypography {
     static let secondaryFont = Font.system(.caption, design: .rounded)
     
     // Text styles
-    static let displayLarge = Font.system(.largeTitle, design: .default, weight: .bold)
-    static let displayMedium = Font.system(.title, design: .default, weight: .semibold)
-    static let displaySmall = Font.system(.title2, design: .default, weight: .medium)
     
-    static let headlineLarge = Font.system(.title3, design: .default, weight: .semibold)
     static let headlineMedium = Font.system(.headline, design: .default, weight: .medium)
     static let headlineSmall = Font.system(.subheadline, design: .default, weight: .medium)
     
@@ -238,12 +234,10 @@ struct SpacingExample: View {
 ```swift
 // Primary button
 struct PrimaryButton: View {
-    let title: String
     let action: () -> Void
     
     var body: some View {
         Button(action: action) {
-            Text(title)
                 .font(AppTypography.labelLarge)
                 .foregroundColor(.white)
                 .padding(.horizontal, AppSpacing.lg)
@@ -257,12 +251,10 @@ struct PrimaryButton: View {
 
 // Secondary button
 struct SecondaryButton: View {
-    let title: String
     let action: () -> Void
     
     var body: some View {
         Button(action: action) {
-            Text(title)
                 .font(AppTypography.labelLarge)
                 .foregroundColor(AppColors.primary)
                 .padding(.horizontal, AppSpacing.lg)
@@ -281,11 +273,9 @@ struct SecondaryButton: View {
 struct ButtonExample: View {
     var body: some View {
         VStack(spacing: AppSpacing.md) {
-            PrimaryButton(title: "Primary Action") {
                 print("Primary button tapped")
             }
             
-            SecondaryButton(title: "Secondary Action") {
                 print("Secondary button tapped")
             }
         }
@@ -337,7 +327,6 @@ struct CardExample: View {
         VStack(spacing: AppSpacing.lg) {
             Card {
                 VStack(alignment: .leading, spacing: AppSpacing.md) {
-                    Text("Card Title")
                         .font(AppTypography.headlineMedium)
                     
                     Text("This is a basic card component with some content.")
@@ -418,7 +407,6 @@ struct FormExample: View {
                 icon: "lock"
             )
             
-            PrimaryButton(title: "Sign In") {
                 print("Sign in tapped")
             }
         }
@@ -493,11 +481,9 @@ struct ContentView: View {
                     
                     // Buttons
                     VStack(spacing: AppSpacing.md) {
-                        PrimaryButton(title: "Primary Action") {
                             print("Primary action")
                         }
                         
-                        SecondaryButton(title: "Secondary Action") {
                             print("Secondary action")
                         }
                     }
@@ -527,7 +513,6 @@ struct ContentView: View {
 
 ```bash
 # Clone the repository
-git clone https://github.com/muhittincamdali/SwiftUI-Design-System-Pro.git
 
 # Navigate to project directory
 cd SwiftUI-Design-System-Pro
@@ -545,7 +530,6 @@ Add the framework to your project:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/muhittincamdali/SwiftUI-Design-System-Pro.git", from: "1.0.0")
 ]
 ```
 
@@ -562,7 +546,6 @@ struct AppDesignSystem {
         DesignTokenManager.shared.configure()
         
         // Set up component library
-        ComponentLibrary.shared.configure()
         
         // Set up accessibility
         AccessibilityManager.shared.configure()
@@ -603,7 +586,6 @@ struct SimpleComponentExample: View {
                     .font(AppTypography.bodyMedium)
             }
             
-            PrimaryButton(title: "Click Me") {
                 print("Button tapped")
             }
         }
@@ -644,13 +626,11 @@ struct ComplexLayoutExample: View {
                                     .foregroundColor(AppColors.textSecondary)
                                 
                                 HStack {
-                                    SecondaryButton(title: "Action 1") {
                                         print("Action 1 for card \(index + 1)")
                                     }
                                     
                                     Spacer()
                                     
-                                    PrimaryButton(title: "Action 2") {
                                         print("Action 2 for card \(index + 1)")
                                     }
                                 }
@@ -698,7 +678,6 @@ struct ComponentConfig {
 }
 
 // Apply configuration
-ComponentLibrary.shared.configure(with: ComponentConfig.self)
 ```
 
 ---
@@ -789,16 +768,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-[![GitHub stars](https://img.shields.io/github/stars/muhittincamdali/SwiftUI-Design-System-Pro?style=social)](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/muhittincamdali/SwiftUI-Design-System-Pro?style=social)](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/network)
-[![GitHub issues](https://img.shields.io/github/issues/muhittincamdali/SwiftUI-Design-System-Pro)](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/issues)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/muhittincamdali/SwiftUI-Design-System-Pro)](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/pulls)
-[![GitHub contributors](https://img.shields.io/github/contributors/muhittincamdali/SwiftUI-Design-System-Pro)](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/graphs/contributors)
-[![GitHub last commit](https://img.shields.io/github/last-commit/muhittincamdali/SwiftUI-Design-System-Pro)](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/commits/master)
 
 </div>
 
 ## 🌟 Stargazers
 
-[![Stargazers repo roster for @muhittincamdali/SwiftUI-Design-System-Pro](https://reporoster.com/stars/muhittincamdali/SwiftUI-Design-System-Pro)](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/stargazers)
 
