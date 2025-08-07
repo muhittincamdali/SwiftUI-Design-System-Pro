@@ -1,0 +1,54 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Swift files
+[*.swift]
+indent_style = space
+indent_size = 4
+max_line_length = 120
+
+# Markdown files
+[*.md]
+indent_style = space
+indent_size = 2
+max_line_length = 80
+
+# YAML files
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+# JSON files
+[*.json]
+indent_style = space
+indent_size = 2
+
+# Package.swift
+[Package.swift]
+indent_style = space
+indent_size = 4
+
+# Configuration files
+[*.{plist,xml}]
+indent_style = space
+indent_size = 2
+
+# Scripts
+[*.{sh,bash,zsh}]
+indent_style = space
+indent_size = 2
+
+# Documentation
+[*.{txt,rst}]
+indent_style = space
+indent_size = 2
+max_line_length = 80
