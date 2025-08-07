@@ -4,7 +4,7 @@
 
 **🌟 Want to contribute to this project?**
 
-[📋 Code of Conduct](CODE_OF_CONDUCT.md) • [🐛 Bug Report](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/issues) • [💡 Feature Request](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/issues)
+[📋 Code of Conduct](CODE_OF_CONDUCT.md) • [🐛 Bug Report](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/issues/new?template=bug_report.md) • [💡 Feature Request](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/issues/new?template=feature_request.md)
 
 </div>
 
