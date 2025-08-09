@@ -1,5 +1,29 @@
 # 🔒 Security Guide
 
+<!-- TOC START -->
+## Table of Contents
+- [🔒 Security Guide](#-security-guide)
+- [📋 Table of Contents](#-table-of-contents)
+- [🎯 Overview](#-overview)
+  - [Key Security Areas](#key-security-areas)
+- [🔒 Security Features](#-security-features)
+  - [1. Authentication System](#1-authentication-system)
+  - [2. Data Encryption](#2-data-encryption)
+  - [3. Network Security](#3-network-security)
+- [🛡️ Security Components](#-security-components)
+  - [1. Secure Text Field](#1-secure-text-field)
+  - [2. Biometric Authentication](#2-biometric-authentication)
+  - [3. Security Alert](#3-security-alert)
+- [⚙️ Configuration](#-configuration)
+  - [1. Security Configuration](#1-security-configuration)
+  - [2. Security Manager](#2-security-manager)
+- [🎯 Usage Examples](#-usage-examples)
+  - [1. Secure Login Form](#1-secure-login-form)
+  - [2. Secure Data Display](#2-secure-data-display)
+  - [3. Network Security Example](#3-network-security-example)
+<!-- TOC END -->
+
+
 **SwiftUI Design System Pro** - Complete Security Guide
 
 ## 📋 Table of Contents

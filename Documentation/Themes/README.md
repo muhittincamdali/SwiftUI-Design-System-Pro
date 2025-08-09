@@ -1,5 +1,50 @@
 # 🌙 Theme System
 
+<!-- TOC START -->
+## Table of Contents
+- [🌙 Theme System](#-theme-system)
+- [🎨 Color System](#-color-system)
+  - [Primary Colors](#primary-colors)
+  - [Semantic Colors](#semantic-colors)
+- [🌙 Dark/Light Mode](#-darklight-mode)
+  - [Theme Manager](#theme-manager)
+  - [Theme Colors](#theme-colors)
+- [🎨 Custom Themes](#-custom-themes)
+  - [Creating Custom Themes](#creating-custom-themes)
+  - [Brand Themes](#brand-themes)
+- [🎭 Animation System](#-animation-system)
+  - [Animation Presets](#animation-presets)
+  - [Custom Animations](#custom-animations)
+- [📏 Spacing System](#-spacing-system)
+  - [Spacing Tokens](#spacing-tokens)
+  - [Usage](#usage)
+- [🎨 Typography System](#-typography-system)
+  - [Font Sizes](#font-sizes)
+  - [Font Weights](#font-weights)
+- [🎯 Component Theming](#-component-theming)
+  - [Button Themes](#button-themes)
+  - [Card Themes](#card-themes)
+- [🌙 Dark Mode Support](#-dark-mode-support)
+  - [Automatic Switching](#automatic-switching)
+  - [Manual Control](#manual-control)
+- [🎨 Brand Integration](#-brand-integration)
+  - [Brand Colors](#brand-colors)
+  - [Brand Theme](#brand-theme)
+- [🎭 Animation Themes](#-animation-themes)
+  - [Micro-interactions](#micro-interactions)
+  - [Page Transitions](#page-transitions)
+- [📱 Responsive Theming](#-responsive-theming)
+  - [Device-Specific Themes](#device-specific-themes)
+- [🎨 Theme Customization](#-theme-customization)
+  - [Environment Values](#environment-values)
+  - [Theme Modifiers](#theme-modifiers)
+- [🧪 Theme Testing](#-theme-testing)
+  - [Unit Tests](#unit-tests)
+  - [UI Tests](#ui-tests)
+- [📚 Next Steps](#-next-steps)
+<!-- TOC END -->
+
+
 The SwiftUI Design System Pro includes a comprehensive theme system that supports dark/light modes, custom themes, and brand integration.
 
 ## 🎨 Color System

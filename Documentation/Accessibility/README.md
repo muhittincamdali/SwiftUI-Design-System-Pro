@@ -1,5 +1,58 @@
 # ♿ Accessibility Guide
 
+<!-- TOC START -->
+## Table of Contents
+- [♿ Accessibility Guide](#-accessibility-guide)
+- [🎯 VoiceOver Support](#-voiceover-support)
+  - [Basic VoiceOver](#basic-voiceover)
+  - [Advanced VoiceOver](#advanced-voiceover)
+- [📱 Dynamic Type](#-dynamic-type)
+  - [Font Scaling](#font-scaling)
+  - [Component Scaling](#component-scaling)
+- [🎨 High Contrast](#-high-contrast)
+  - [High Contrast Support](#high-contrast-support)
+  - [Color Contrast](#color-contrast)
+- [🎭 Reduced Motion](#-reduced-motion)
+  - [Animation Control](#animation-control)
+  - [Motion Sensitivity](#motion-sensitivity)
+- [🎯 Focus Management](#-focus-management)
+  - [Focus Navigation](#focus-navigation)
+  - [Focus Order](#focus-order)
+- [📊 Screen Reader Support](#-screen-reader-support)
+  - [Descriptive Labels](#descriptive-labels)
+  - [Status Updates](#status-updates)
+- [🎨 Color Blindness Support](#-color-blindness-support)
+  - [Color-Independent Design](#color-independent-design)
+  - [Semantic Colors](#semantic-colors)
+- [📱 Touch Targets](#-touch-targets)
+  - [Minimum Touch Area](#minimum-touch-area)
+  - [Touch Feedback](#touch-feedback)
+- [🎯 Semantic Structure](#-semantic-structure)
+  - [Headings](#headings)
+  - [Lists](#lists)
+  - [Groups](#groups)
+- [🎭 Custom Actions](#-custom-actions)
+  - [Custom Accessibility Actions](#custom-accessibility-actions)
+  - [Gesture Recognition](#gesture-recognition)
+- [📊 Testing Accessibility](#-testing-accessibility)
+  - [Unit Tests](#unit-tests)
+  - [UI Tests](#ui-tests)
+  - [Accessibility Inspector](#accessibility-inspector)
+- [🎨 Best Practices](#-best-practices)
+  - [Descriptive Labels](#descriptive-labels)
+  - [Context Awareness](#context-awareness)
+  - [Error Handling](#error-handling)
+- [📱 Platform-Specific](#-platform-specific)
+  - [iOS Accessibility](#ios-accessibility)
+  - [macOS Accessibility](#macos-accessibility)
+  - [watchOS Accessibility](#watchos-accessibility)
+- [🎯 Compliance](#-compliance)
+  - [WCAG 2.1 Compliance](#wcag-21-compliance)
+  - [Section 508 Compliance](#section-508-compliance)
+- [📚 Next Steps](#-next-steps)
+<!-- TOC END -->
+
+
 Comprehensive accessibility guide for SwiftUI Design System Pro, ensuring all components are accessible to users with disabilities.
 
 ## 🎯 VoiceOver Support

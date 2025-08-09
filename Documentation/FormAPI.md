@@ -1,5 +1,36 @@
 # 📝 Form API
 
+<!-- TOC START -->
+## Table of Contents
+- [📝 Form API](#-form-api)
+- [📋 Table of Contents](#-table-of-contents)
+- [🎯 Overview](#-overview)
+  - [Key Features](#key-features)
+- [📝 Form Components](#-form-components)
+  - [Text Field](#text-field)
+  - [Text Area](#text-area)
+  - [Toggle](#toggle)
+  - [Picker](#picker)
+  - [Date Picker](#date-picker)
+  - [Slider](#slider)
+- [✅ Validation](#-validation)
+  - [Validation Types](#validation-types)
+  - [Predefined Validations](#predefined-validations)
+  - [Validation Usage](#validation-usage)
+- [⚙️ Configuration](#-configuration)
+  - [Form Configuration](#form-configuration)
+  - [Custom Form Style](#custom-form-style)
+- [♿ Accessibility](#-accessibility)
+  - [VoiceOver Support](#voiceover-support)
+  - [Custom Accessibility](#custom-accessibility)
+  - [Form Accessibility](#form-accessibility)
+- [🎯 Usage Examples](#-usage-examples)
+  - [Registration Form](#registration-form)
+  - [Settings Form](#settings-form)
+  - [Contact Form](#contact-form)
+<!-- TOC END -->
+
+
 **SwiftUI Design System Pro** - Complete Form API Documentation
 
 ## 📋 Table of Contents

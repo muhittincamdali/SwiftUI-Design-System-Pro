@@ -1,5 +1,34 @@
 # 🚀 Getting Started
 
+<!-- TOC START -->
+## Table of Contents
+- [🚀 Getting Started](#-getting-started)
+- [📋 Requirements](#-requirements)
+  - [Development Environment](#development-environment)
+  - [Device Support](#device-support)
+- [⚡ Quick Setup](#-quick-setup)
+  - [1. 🍴 Clone the Repository](#1-clone-the-repository)
+- [Clone the repository](#clone-the-repository)
+- [Navigate to project directory](#navigate-to-project-directory)
+  - [2. 📦 Install Dependencies](#2-install-dependencies)
+- [Open in Xcode](#open-in-xcode)
+  - [3. 🎯 Basic Implementation](#3-basic-implementation)
+- [🎨 Component Usage](#-component-usage)
+  - [Buttons](#buttons)
+  - [Cards](#cards)
+  - [Form Components](#form-components)
+- [🌙 Dark/Light Mode](#-darklight-mode)
+- [♿ Accessibility](#-accessibility)
+- [⚡ Performance](#-performance)
+- [🧪 Testing](#-testing)
+  - [Unit Tests](#unit-tests)
+  - [UI Tests](#ui-tests)
+- [📚 Next Steps](#-next-steps)
+- [🤝 Contributing](#-contributing)
+- [📞 Support](#-support)
+<!-- TOC END -->
+
+
 Welcome to the SwiftUI Design System Pro! This guide will help you get started with our comprehensive design system in just 5 minutes.
 
 ## 📋 Requirements

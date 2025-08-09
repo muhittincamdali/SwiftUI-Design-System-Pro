@@ -1,5 +1,49 @@
 # 🧩 Components API
 
+<!-- TOC START -->
+## Table of Contents
+- [🧩 Components API](#-components-api)
+- [📋 Table of Contents](#-table-of-contents)
+- [🎯 Overview](#-overview)
+  - [Component Categories](#component-categories)
+- [🔘 Buttons](#-buttons)
+  - [Primary Button](#primary-button)
+  - [Secondary Button](#secondary-button)
+  - [Tertiary Button](#tertiary-button)
+  - [Icon Button](#icon-button)
+- [🃏 Cards](#-cards)
+  - [Basic Card](#basic-card)
+  - [Elevated Card](#elevated-card)
+  - [Interactive Card](#interactive-card)
+- [📝 Forms](#-forms)
+  - [Text Field](#text-field)
+  - [Text Area](#text-area)
+  - [Form Validation](#form-validation)
+- [🧭 Navigation](#-navigation)
+  - [Navigation Bar](#navigation-bar)
+  - [Tab Bar](#tab-bar)
+  - [Breadcrumbs](#breadcrumbs)
+- [📱 Modals](#-modals)
+  - [Alert Dialog](#alert-dialog)
+  - [Sheet](#sheet)
+  - [Popover](#popover)
+- [📋 Lists](#-lists)
+  - [List Item](#list-item)
+  - [Sectioned List](#sectioned-list)
+- [📊 Charts](#-charts)
+  - [Line Chart](#line-chart)
+  - [Bar Chart](#bar-chart)
+  - [Pie Chart](#pie-chart)
+- [💬 Feedback](#-feedback)
+  - [Toast](#toast)
+  - [Progress Indicator](#progress-indicator)
+  - [Loading Spinner](#loading-spinner)
+- [🎯 Usage Examples](#-usage-examples)
+  - [Complete Form Example](#complete-form-example)
+  - [Dashboard Example](#dashboard-example)
+<!-- TOC END -->
+
+
 **SwiftUI Design System Pro** - Complete Components API Documentation
 
 ## 📋 Table of Contents

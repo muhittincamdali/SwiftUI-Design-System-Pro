@@ -3,6 +3,16 @@
 
 # VoiceOverGuide
 
+<!-- TOC START -->
+## Table of Contents
+- [VoiceOverGuide](#voiceoverguide)
+- [Overview](#overview)
+- [API](#api)
+- [Usage](#usage)
+- [Notes](#notes)
+<!-- TOC END -->
+
+
 ## Overview
 Explain the purpose and context.
 

@@ -1,5 +1,30 @@
 # ⚡ Performance Guide
 
+<!-- TOC START -->
+## Table of Contents
+- [⚡ Performance Guide](#-performance-guide)
+- [📋 Table of Contents](#-table-of-contents)
+- [🎯 Overview](#-overview)
+  - [Key Performance Areas](#key-performance-areas)
+- [⚡ Performance Best Practices](#-performance-best-practices)
+  - [1. View Optimization](#1-view-optimization)
+  - [2. Memory Management](#2-memory-management)
+  - [3. Animation Optimization](#3-animation-optimization)
+- [🔧 Optimization Techniques](#-optimization-techniques)
+  - [1. View Modifiers Optimization](#1-view-modifiers-optimization)
+  - [2. Data Loading Optimization](#2-data-loading-optimization)
+  - [3. Image Optimization](#3-image-optimization)
+  - [4. Animation Performance](#4-animation-performance)
+- [📊 Performance Monitoring](#-performance-monitoring)
+  - [1. Performance Metrics](#1-performance-metrics)
+  - [2. Performance Debugging](#2-performance-debugging)
+- [🎯 Usage Examples](#-usage-examples)
+  - [Optimized List View](#optimized-list-view)
+  - [Optimized Dashboard](#optimized-dashboard)
+  - [Optimized Image Gallery](#optimized-image-gallery)
+<!-- TOC END -->
+
+
 **SwiftUI Design System Pro** - Complete Performance Optimization Guide
 
 ## 📋 Table of Contents
