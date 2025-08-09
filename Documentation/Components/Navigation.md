@@ -1,5 +1,52 @@
 # Navigation Components
 
+<!-- TOC START -->
+## Table of Contents
+- [Navigation Components](#navigation-components)
+- [Overview](#overview)
+- [Navigation Bar](#navigation-bar)
+  - [Basic Usage](#basic-usage)
+  - [Advanced Configuration](#advanced-configuration)
+  - [Navigation Button](#navigation-button)
+    - [Properties](#properties)
+  - [Background Styles](#background-styles)
+    - [Default Style](#default-style)
+    - [Blurred Style](#blurred-style)
+    - [Custom Style](#custom-style)
+  - [Title Styles](#title-styles)
+    - [Default Style](#default-style)
+    - [Large Style](#large-style)
+    - [Custom Style](#custom-style)
+- [Tab Bar](#tab-bar)
+  - [Basic Usage](#basic-usage)
+  - [Tab Items](#tab-items)
+    - [Properties](#properties)
+  - [Tab Bar Styles](#tab-bar-styles)
+    - [Default Style](#default-style)
+    - [Custom Style](#custom-style)
+  - [Tab Item Styles](#tab-item-styles)
+    - [Default Style](#default-style)
+    - [Custom Style](#custom-style)
+  - [Badge Styles](#badge-styles)
+    - [Default Badge](#default-badge)
+    - [Custom Badge](#custom-badge)
+- [Search Components](#search-components)
+  - [Search Field](#search-field)
+- [Best Practices](#best-practices)
+  - [Accessibility](#accessibility)
+  - [Performance](#performance)
+  - [Design Guidelines](#design-guidelines)
+- [Examples](#examples)
+  - [Complete Navigation Setup](#complete-navigation-setup)
+  - [Custom Navigation Bar](#custom-navigation-bar)
+  - [Custom Tab Bar](#custom-tab-bar)
+- [Troubleshooting](#troubleshooting)
+  - [Common Issues](#common-issues)
+  - [Debugging Tips](#debugging-tips)
+- [Related Components](#related-components)
+<!-- TOC END -->
+
+
 The Design System Pro provides comprehensive navigation components that follow iOS design guidelines and offer extensive customization options.
 
 ## Overview

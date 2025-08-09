@@ -1,5 +1,52 @@
 # 🎨 Design Tokens API
 
+<!-- TOC START -->
+## Table of Contents
+- [🎨 Design Tokens API](#-design-tokens-api)
+- [📋 Table of Contents](#-table-of-contents)
+- [🎨 Color System](#-color-system)
+  - [Primary Colors](#primary-colors)
+  - [Semantic Colors](#semantic-colors)
+  - [Text Colors](#text-colors)
+  - [Background Colors](#background-colors)
+  - [Border Colors](#border-colors)
+- [📝 Typography System](#-typography-system)
+  - [Display Typography](#display-typography)
+  - [Headline Typography](#headline-typography)
+  - [Title Typography](#title-typography)
+  - [Body Typography](#body-typography)
+  - [Label Typography](#label-typography)
+- [📏 Spacing System](#-spacing-system)
+  - [Spacing Scale](#spacing-scale)
+  - [Layout Spacing](#layout-spacing)
+- [🌙 Dark Mode Support](#-dark-mode-support)
+  - [Automatic Dark Mode](#automatic-dark-mode)
+  - [Manual Dark Mode Control](#manual-dark-mode-control)
+- [♿ Accessibility](#-accessibility)
+  - [Dynamic Type Support](#dynamic-type-support)
+  - [High Contrast Support](#high-contrast-support)
+  - [Reduce Motion Support](#reduce-motion-support)
+- [🎯 Usage Examples](#-usage-examples)
+  - [Basic Color Usage](#basic-color-usage)
+  - [Typography Usage](#typography-usage)
+  - [Spacing Usage](#spacing-usage)
+  - [Complete Component Example](#complete-component-example)
+- [🔧 Advanced Usage](#-advanced-usage)
+  - [Custom Color Creation](#custom-color-creation)
+  - [Custom Typography Creation](#custom-typography-creation)
+  - [Custom Spacing Creation](#custom-spacing-creation)
+- [📚 Best Practices](#-best-practices)
+  - [1. Always Use Design Tokens](#1-always-use-design-tokens)
+  - [2. Respect Dark Mode](#2-respect-dark-mode)
+  - [3. Use Semantic Colors](#3-use-semantic-colors)
+  - [4. Maintain Consistency](#4-maintain-consistency)
+- [🚀 Performance Tips](#-performance-tips)
+  - [1. Cache Design Tokens](#1-cache-design-tokens)
+  - [2. Use Lazy Loading](#2-use-lazy-loading)
+  - [3. Optimize Color Usage](#3-optimize-color-usage)
+<!-- TOC END -->
+
+
 **SwiftUI Design System Pro** - Complete Design Tokens API Documentation
 
 ## 📋 Table of Contents

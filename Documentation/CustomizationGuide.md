@@ -1,5 +1,31 @@
 # 🎨 Customization Guide
 
+<!-- TOC START -->
+## Table of Contents
+- [🎨 Customization Guide](#-customization-guide)
+- [📋 Table of Contents](#-table-of-contents)
+- [🎯 Overview](#-overview)
+  - [Key Customization Areas](#key-customization-areas)
+- [🎨 Theme Customization](#-theme-customization)
+  - [1. Color System Customization](#1-color-system-customization)
+  - [2. Typography Customization](#2-typography-customization)
+  - [3. Spacing Customization](#3-spacing-customization)
+- [🔧 Component Customization](#-component-customization)
+  - [1. Button Customization](#1-button-customization)
+  - [2. Card Customization](#2-card-customization)
+  - [3. Form Customization](#3-form-customization)
+- [📱 Layout Customization](#-layout-customization)
+  - [1. Grid System Customization](#1-grid-system-customization)
+  - [2. Responsive Layout Customization](#2-responsive-layout-customization)
+- [⚙️ Advanced Customization](#-advanced-customization)
+  - [1. Custom Components](#1-custom-components)
+  - [2. Theme System](#2-theme-system)
+  - [3. Animation Customization](#3-animation-customization)
+- [🎯 Usage Examples](#-usage-examples)
+  - [Complete Custom Theme Example](#complete-custom-theme-example)
+<!-- TOC END -->
+
+
 **SwiftUI Design System Pro** - Complete Customization Guide
 
 ## 📋 Table of Contents

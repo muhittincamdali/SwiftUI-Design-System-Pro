@@ -1,5 +1,42 @@
 # 🧪 Testing Guide
 
+<!-- TOC START -->
+## Table of Contents
+- [🧪 Testing Guide](#-testing-guide)
+- [📊 Test Coverage](#-test-coverage)
+  - [Coverage Targets](#coverage-targets)
+- [🧪 Unit Testing](#-unit-testing)
+  - [Button Tests](#button-tests)
+  - [Card Tests](#card-tests)
+- [🎨 UI Testing](#-ui-testing)
+  - [Button UI Tests](#button-ui-tests)
+  - [Card UI Tests](#card-ui-tests)
+- [⚡ Performance Testing](#-performance-testing)
+  - [Performance Tests](#performance-tests)
+  - [Benchmark Tests](#benchmark-tests)
+- [♿ Accessibility Testing](#-accessibility-testing)
+  - [Accessibility Tests](#accessibility-tests)
+- [🎨 Visual Testing](#-visual-testing)
+  - [Snapshot Tests](#snapshot-tests)
+- [🔧 Integration Testing](#-integration-testing)
+  - [Component Integration](#component-integration)
+- [🧪 Test Utilities](#-test-utilities)
+  - [Mock Components](#mock-components)
+  - [Test Helpers](#test-helpers)
+- [📊 Test Reporting](#-test-reporting)
+  - [Test Results](#test-results)
+  - [Coverage Report](#coverage-report)
+- [🎯 Test Automation](#-test-automation)
+  - [CI/CD Integration](#cicd-integration)
+  - [Test Commands](#test-commands)
+- [Run all tests](#run-all-tests)
+- [Run specific test](#run-specific-test)
+- [Run with coverage](#run-with-coverage)
+- [Run performance tests](#run-performance-tests)
+- [📚 Next Steps](#-next-steps)
+<!-- TOC END -->
+
+
 Comprehensive testing guide for SwiftUI Design System Pro, ensuring quality and reliability across all components.
 
 ## 📊 Test Coverage

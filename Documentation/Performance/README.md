@@ -1,5 +1,46 @@
 # ⚡ Performance Guide
 
+<!-- TOC START -->
+## Table of Contents
+- [⚡ Performance Guide](#-performance-guide)
+- [📊 Performance Metrics](#-performance-metrics)
+  - [Key Performance Indicators](#key-performance-indicators)
+- [🎨 Animation Performance](#-animation-performance)
+  - [Smooth Animations](#smooth-animations)
+  - [Performance Optimized Animations](#performance-optimized-animations)
+- [🧹 Memory Management](#-memory-management)
+  - [Lazy Loading](#lazy-loading)
+  - [Image Optimization](#image-optimization)
+  - [Memory Cleanup](#memory-cleanup)
+- [📱 UI Performance](#-ui-performance)
+  - [Efficient Rendering](#efficient-rendering)
+  - [Background Processing](#background-processing)
+- [🔧 Optimization Techniques](#-optimization-techniques)
+  - [View Modifiers](#view-modifiers)
+  - [Conditional Rendering](#conditional-rendering)
+- [📊 Performance Monitoring](#-performance-monitoring)
+  - [Frame Rate Monitoring](#frame-rate-monitoring)
+  - [Memory Monitoring](#memory-monitoring)
+- [🧪 Performance Testing](#-performance-testing)
+  - [Unit Tests](#unit-tests)
+  - [UI Tests](#ui-tests)
+- [🎯 Best Practices](#-best-practices)
+  - [Efficient List Rendering](#efficient-list-rendering)
+  - [Image Caching](#image-caching)
+  - [Background Processing](#background-processing)
+- [📊 Performance Metrics](#-performance-metrics)
+  - [Benchmarking](#benchmarking)
+  - [Performance Reports](#performance-reports)
+- [🎨 Animation Optimization](#-animation-optimization)
+  - [Efficient Animations](#efficient-animations)
+  - [Reduced Motion](#reduced-motion)
+- [📱 Device Optimization](#-device-optimization)
+  - [Device-Specific Optimizations](#device-specific-optimizations)
+  - [Battery Optimization](#battery-optimization)
+- [📚 Next Steps](#-next-steps)
+<!-- TOC END -->
+
+
 Comprehensive performance optimization guide for SwiftUI Design System Pro, ensuring smooth animations and efficient rendering.
 
 ## 📊 Performance Metrics

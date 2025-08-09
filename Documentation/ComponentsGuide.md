@@ -1,5 +1,32 @@
 # 🧩 Components Guide
 
+<!-- TOC START -->
+## Table of Contents
+- [🧩 Components Guide](#-components-guide)
+- [📋 Table of Contents](#-table-of-contents)
+- [🎯 Overview](#-overview)
+  - [Key Component Areas](#key-component-areas)
+- [🧩 Component Categories](#-component-categories)
+  - [1. Interactive Components](#1-interactive-components)
+  - [2. Layout Components](#2-layout-components)
+  - [3. Feedback Components](#3-feedback-components)
+  - [4. Data Components](#4-data-components)
+  - [5. Navigation Components](#5-navigation-components)
+- [🎨 Component Usage](#-component-usage)
+  - [1. Basic Component Usage](#1-basic-component-usage)
+  - [2. Component Customization](#2-component-customization)
+  - [3. Component Composition](#3-component-composition)
+- [⚙️ Configuration](#-configuration)
+  - [1. Component Configuration](#1-component-configuration)
+  - [2. Component Registry](#2-component-registry)
+  - [3. Component Manager](#3-component-manager)
+- [🎯 Usage Examples](#-usage-examples)
+  - [1. Component Showcase](#1-component-showcase)
+  - [2. Dashboard with Components](#2-dashboard-with-components)
+  - [3. Form with Components](#3-form-with-components)
+<!-- TOC END -->
+
+
 **SwiftUI Design System Pro** - Complete Components Guide
 
 ## 📋 Table of Contents

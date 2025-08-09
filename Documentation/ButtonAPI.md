@@ -1,5 +1,39 @@
 # 🔘 Button API
 
+<!-- TOC START -->
+## Table of Contents
+- [🔘 Button API](#-button-api)
+- [📋 Table of Contents](#-table-of-contents)
+- [🎯 Overview](#-overview)
+  - [Key Features](#key-features)
+- [🔘 Button Types](#-button-types)
+  - [Primary Button](#primary-button)
+  - [Secondary Button](#secondary-button)
+  - [Tertiary Button](#tertiary-button)
+  - [Icon Button](#icon-button)
+- [🎨 Button Styles](#-button-styles)
+  - [Button Size](#button-size)
+  - [Icon Button Size](#icon-button-size)
+- [⚙️ Configuration](#-configuration)
+  - [Custom Button Style](#custom-button-style)
+  - [Button Configuration](#button-configuration)
+- [♿ Accessibility](#-accessibility)
+  - [VoiceOver Support](#voiceover-support)
+  - [Custom Accessibility Labels](#custom-accessibility-labels)
+  - [Accessibility Traits](#accessibility-traits)
+  - [Dynamic Type Support](#dynamic-type-support)
+- [🎯 Usage Examples](#-usage-examples)
+  - [Form Buttons](#form-buttons)
+  - [Action Buttons](#action-buttons)
+  - [Navigation Buttons](#navigation-buttons)
+  - [Loading States](#loading-states)
+  - [Button Groups](#button-groups)
+- [🔧 Advanced Usage](#-advanced-usage)
+  - [Custom Button with Animation](#custom-button-with-animation)
+  - [Button with Haptic Feedback](#button-with-haptic-feedback)
+<!-- TOC END -->
+
+
 **SwiftUI Design System Pro** - Complete Button API Documentation
 
 ## 📋 Table of Contents
