@@ -31,6 +31,12 @@
 
 ---
 
+## 🌟 Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=muhittincamdali/SwiftUI-Design-System-Pro&type=Date)](https://star-history.com/#muhittincamdali/SwiftUI-Design-System-Pro&Date)
+
+---
+
 ## 📋 Table of Contents
 
 - [🚀 Overview](#-overview)
