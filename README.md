@@ -803,4 +803,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🌟 Stargazers
 
-[![Stargazers repo roster for @muhittincamdali/SwiftUI-Design-System-Pro](https://starchart.cc/muhittincamdali/SwiftUI-Design-System-Pro.svg)](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/stargazers)
