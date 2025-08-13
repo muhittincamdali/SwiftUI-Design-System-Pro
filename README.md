@@ -1,5 +1,5 @@
 # 🎨 SwiftUI Design System Pro
-[![CI](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/actions/workflows/ci.yml)
+[![CI](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/actions/workflows/ci.yml/badge.svg)](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/actions/workflows/ci.yml)
 
 
 
@@ -19,7 +19,6 @@
 ![Responsive](https://img.shields.io/badge/Responsive-Adaptive-673AB7?style=for-the-badge)
 ![Architecture](https://img.shields.io/badge/Architecture-Clean-FF5722?style=for-the-badge)
 ![Swift Package Manager](https://img.shields.io/badge/SPM-Dependencies-FF6B35?style=for-the-badge)
-![CocoaPods](https://img.shields.io/badge/CocoaPods-Supported-E91E63?style=for-the-badge)
 
 **🏆 Professional SwiftUI Design System**
 
