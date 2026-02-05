@@ -1,352 +1,460 @@
+// DSCard.swift
+// DesignSystemPro
+//
+// Production-grade card component with variants,
+// interactive states, and flexible content layouts.
+
 import SwiftUI
 
-/**
- * DSCard - Design System Card Component
- * 
- * A versatile card component for displaying content in a structured layout.
- * Supports various card types and customization options.
- * 
- * - Parameters:
- *   - title: Card title
- *   - subtitle: Card subtitle (optional)
- *   - image: Card image (optional)
- *   - action: Card tap action (optional)
- * 
- * - Returns: SwiftUI View
- * 
- * - Example:
- * ```swift
- * DSCard(
- *     title: "Welcome",
- *     subtitle: "Start building amazing apps",
- *     image: "star.fill"
- * )
- * ```
- */
-public struct DSCard: View {
-    public let title: String
-    public let subtitle: String?
-    public let image: String?
-    public let action: (() -> Void)?
+// MARK: - Card Variant
+
+public enum DSCardVariant: String, CaseIterable, Sendable {
+    case elevated    // Shadow elevation
+    case outlined    // Border only
+    case filled      // Solid background
+    case ghost       // Minimal styling
+}
+
+// MARK: - Card Size
+
+public enum DSCardSize: String, CaseIterable, Sendable {
+    case sm  // Compact padding
+    case md  // Default padding
+    case lg  // Spacious padding
     
+    var padding: EdgeInsets {
+        switch self {
+        case .sm: return EdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 12)
+        case .md: return EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
+        case .lg: return EdgeInsets(top: 24, leading: 24, bottom: 24, trailing: 24)
+        }
+    }
+    
+    var radius: CGFloat {
+        switch self {
+        case .sm: return BorderTokens.Radius.lg
+        case .md: return BorderTokens.Component.card
+        case .lg: return BorderTokens.Component.cardLarge
+        }
+    }
+}
+
+// MARK: - DSCard
+
+public struct DSCard<Content: View>: View {
     @Environment(\.colorScheme) private var colorScheme
+    
+    private let variant: DSCardVariant
+    private let size: DSCardSize
+    private let isInteractive: Bool
+    private let action: (() -> Void)?
+    private let content: Content
+    
+    @State private var isHovered = false
+    @State private var isPressed = false
+    
+    public init(
+        variant: DSCardVariant = .elevated,
+        size: DSCardSize = .md,
+        isInteractive: Bool = false,
+        action: (() -> Void)? = nil,
+        @ViewBuilder content: () -> Content
+    ) {
+        self.variant = variant
+        self.size = size
+        self.isInteractive = isInteractive || action != nil
+        self.action = action
+        self.content = content()
+    }
+    
+    public var body: some View {
+        Group {
+            if let action = action {
+                Button(action: action) {
+                    cardContent
+                }
+                .buttonStyle(CardButtonStyle(isPressed: $isPressed))
+            } else {
+                cardContent
+            }
+        }
+        .onHover { hovering in
+            if isInteractive {
+                withAnimation(AnimationTokens.Micro.hover.swiftUIAnimation) {
+                    isHovered = hovering
+                }
+            }
+        }
+    }
+    
+    private var cardContent: some View {
+        content
+            .padding(size.padding)
+            .background(backgroundColor)
+            .clipShape(RoundedRectangle(cornerRadius: size.radius, style: .continuous))
+            .overlay(borderOverlay)
+            .dsShadow(shadow)
+            .scaleEffect(isPressed ? 0.98 : 1)
+    }
+    
+    // MARK: - Computed Properties
+    
+    private var backgroundColor: Color {
+        switch variant {
+        case .elevated, .outlined:
+            return ColorTokens.Background.elevated.resolved(for: colorScheme)
+        case .filled:
+            return ColorTokens.Background.secondary.resolved(for: colorScheme)
+        case .ghost:
+            return isHovered
+                ? ColorTokens.Interactive.hover.resolved(for: colorScheme)
+                : Color.clear
+        }
+    }
+    
+    @ViewBuilder
+    private var borderOverlay: some View {
+        if variant == .outlined {
+            RoundedRectangle(cornerRadius: size.radius, style: .continuous)
+                .strokeBorder(ColorTokens.Border.primary.resolved(for: colorScheme), lineWidth: BorderTokens.Width.thin)
+        } else {
+            EmptyView()
+        }
+    }
+    
+    private var shadow: MultiLayerShadow {
+        guard variant == .elevated else { return ShadowTokens.none }
+        if isPressed {
+            return ShadowTokens.xs
+        }
+        return isHovered ? ShadowTokens.cardHover : ShadowTokens.card
+    }
+}
+
+// MARK: - Card Button Style
+
+private struct CardButtonStyle: ButtonStyle {
+    @Binding var isPressed: Bool
+    
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .onChange(of: configuration.isPressed) { _, newValue in
+                withAnimation(AnimationTokens.Micro.buttonPress.swiftUIAnimation) {
+                    isPressed = newValue
+                }
+            }
+    }
+}
+
+// MARK: - Card Header
+
+public struct DSCardHeader: View {
+    @Environment(\.colorScheme) private var colorScheme
+    
+    private let title: String
+    private let subtitle: String?
+    private let leadingIcon: Image?
+    private let trailingContent: AnyView?
     
     public init(
         title: String,
         subtitle: String? = nil,
-        image: String? = nil,
-        action: (() -> Void)? = nil
+        leadingIcon: Image? = nil,
+        trailingContent: AnyView? = nil
     ) {
         self.title = title
         self.subtitle = subtitle
-        self.image = image
-        self.action = action
+        self.leadingIcon = leadingIcon
+        self.trailingContent = trailingContent
     }
     
     public var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            // Image
-            if let image = image {
-                HStack {
-                    Image(systemName: image)
-                        .font(.title2)
-                        .foregroundColor(.blue)
-                    Spacer()
-                }
+        HStack(alignment: .center, spacing: SpacingScale.md.rawValue) {
+            if let icon = leadingIcon {
+                icon
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 24, height: 24)
+                    .foregroundColor(ColorTokens.Accent.primary.resolved(for: colorScheme))
             }
             
-            // Content
-            VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading, spacing: 2) {
                 Text(title)
-                    .font(.headline)
-                    .fontWeight(.semibold)
-                    .foregroundColor(colorScheme == .dark ? .white : .black)
+                    .dsTypography(TypographyTokens.Heading.h4)
+                    .foregroundColor(ColorTokens.Foreground.primary.resolved(for: colorScheme))
                 
                 if let subtitle = subtitle {
                     Text(subtitle)
-                        .font(.subheadline)
-                        .foregroundColor(colorScheme == .dark ? .gray : .secondary)
-                        .lineLimit(2)
+                        .dsTypography(TypographyTokens.Body.small)
+                        .foregroundColor(ColorTokens.Foreground.secondary.resolved(for: colorScheme))
                 }
-            }
-        }
-        .padding(16)
-        .background(colorScheme == .dark ? Color(.systemGray6) : Color(.systemBackground))
-        .cornerRadius(12)
-        .overlay(
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(colorScheme == .dark ? Color(.systemGray4) : Color(.systemGray5), lineWidth: 1)
-        )
-        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
-        .onTapGesture {
-            action?()
-        }
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(title), \(subtitle ?? "")")
-        .accessibilityHint(action != nil ? "Double tap to activate" : nil)
-    }
-}
-
-// MARK: - Product Card
-public struct DSProductCard: View {
-    public let title: String
-    public let price: String
-    public let image: String
-    public let rating: Double
-    public let action: () -> Void
-    
-    @Environment(\.colorScheme) private var colorScheme
-    
-    public init(
-        title: String,
-        price: String,
-        image: String,
-        rating: Double,
-        action: @escaping () -> Void
-    ) {
-        self.title = title
-        self.price = price
-        self.image = image
-        self.rating = rating
-        self.action = action
-    }
-    
-    public var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            // Product Image
-            Image(systemName: image)
-                .font(.largeTitle)
-                .foregroundColor(.blue)
-                .frame(maxWidth: .infinity)
-                .frame(height: 120)
-                .background(colorScheme == .dark ? Color(.systemGray6) : Color(.systemGray6))
-                .cornerRadius(8)
-            
-            // Product Info
-            VStack(alignment: .leading, spacing: 8) {
-                Text(title)
-                    .font(.headline)
-                    .fontWeight(.semibold)
-                    .foregroundColor(colorScheme == .dark ? .white : .black)
-                    .lineLimit(2)
-                
-                HStack {
-                    Text(price)
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .foregroundColor(.blue)
-                    
-                    Spacer()
-                    
-                    HStack(spacing: 4) {
-                        Image(systemName: "star.fill")
-                            .font(.caption)
-                            .foregroundColor(.yellow)
-                        Text(String(format: "%.1f", rating))
-                            .font(.caption)
-                            .foregroundColor(colorScheme == .dark ? .gray : .secondary)
-                    }
-                }
-            }
-        }
-        .padding(16)
-        .background(colorScheme == .dark ? Color(.systemGray6) : Color(.systemBackground))
-        .cornerRadius(12)
-        .overlay(
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(colorScheme == .dark ? Color(.systemGray4) : Color(.systemGray5), lineWidth: 1)
-        )
-        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
-        .onTapGesture {
-            action()
-        }
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(title), \(price), Rating: \(rating)")
-        .accessibilityHint("Double tap to view product")
-    }
-}
-
-// MARK: - Profile Card
-public struct DSProfileCard: View {
-    public let name: String
-    public let role: String
-    public let avatar: String
-    public let action: () -> Void
-    
-    @Environment(\.colorScheme) private var colorScheme
-    
-    public init(
-        name: String,
-        role: String,
-        avatar: String,
-        action: @escaping () -> Void
-    ) {
-        self.name = name
-        self.role = role
-        self.avatar = avatar
-        self.action = action
-    }
-    
-    public var body: some View {
-        HStack(spacing: 12) {
-            // Avatar
-            Image(systemName: avatar)
-                .font(.title)
-                .foregroundColor(.blue)
-                .frame(width: 50, height: 50)
-                .background(colorScheme == .dark ? Color(.systemGray5) : Color(.systemGray6))
-                .clipShape(Circle())
-            
-            // Profile Info
-            VStack(alignment: .leading, spacing: 4) {
-                Text(name)
-                    .font(.headline)
-                    .fontWeight(.semibold)
-                    .foregroundColor(colorScheme == .dark ? .white : .black)
-                
-                Text(role)
-                    .font(.subheadline)
-                    .foregroundColor(colorScheme == .dark ? .gray : .secondary)
             }
             
             Spacer()
             
-            Image(systemName: "chevron.right")
-                .font(.caption)
-                .foregroundColor(colorScheme == .dark ? .gray : .secondary)
+            if let trailing = trailingContent {
+                trailing
+            }
         }
-        .padding(16)
-        .background(colorScheme == .dark ? Color(.systemGray6) : Color(.systemBackground))
-        .cornerRadius(12)
-        .overlay(
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(colorScheme == .dark ? Color(.systemGray4) : Color(.systemGray5), lineWidth: 1)
-        )
-        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
-        .onTapGesture {
-            action()
-        }
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(name), \(role)")
-        .accessibilityHint("Double tap to view profile")
     }
 }
 
-// MARK: - Stats Card
-public struct DSStatsCard: View {
-    public let title: String
-    public let value: String
-    public let change: String
-    public let trend: TrendDirection
+// MARK: - Card Footer
+
+public struct DSCardFooter<Content: View>: View {
+    let content: Content
     
+    public init(@ViewBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    public var body: some View {
+        VStack(spacing: 0) {
+            Divider()
+                .padding(.horizontal, -16)
+                .padding(.bottom, SpacingScale.md.rawValue)
+            
+            HStack {
+                content
+            }
+        }
+    }
+}
+
+// MARK: - Media Card
+
+public struct DSMediaCard<Content: View>: View {
     @Environment(\.colorScheme) private var colorScheme
     
-    public enum TrendDirection {
-        case up
-        case down
-        case neutral
+    private let image: Image
+    private let aspectRatio: CGFloat
+    private let variant: DSCardVariant
+    private let content: Content
+    
+    public init(
+        image: Image,
+        aspectRatio: CGFloat = 16/9,
+        variant: DSCardVariant = .elevated,
+        @ViewBuilder content: () -> Content
+    ) {
+        self.image = image
+        self.aspectRatio = aspectRatio
+        self.variant = variant
+        self.content = content()
     }
+    
+    public var body: some View {
+        VStack(spacing: 0) {
+            image
+                .resizable()
+                .aspectRatio(aspectRatio, contentMode: .fill)
+                .clipped()
+            
+            VStack(alignment: .leading, spacing: SpacingScale.sm.rawValue) {
+                content
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(InsetTokens.card)
+        }
+        .background(ColorTokens.Background.elevated.resolved(for: colorScheme))
+        .clipShape(RoundedRectangle(cornerRadius: BorderTokens.Component.card, style: .continuous))
+        .dsShadow(variant == .elevated ? ShadowTokens.card : ShadowTokens.none)
+        .overlay(
+            RoundedRectangle(cornerRadius: BorderTokens.Component.card, style: .continuous)
+                .strokeBorder(
+                    variant == .outlined
+                        ? ColorTokens.Border.primary.resolved(for: colorScheme)
+                        : Color.clear,
+                    lineWidth: BorderTokens.Width.thin
+                )
+        )
+    }
+}
+
+// MARK: - Stat Card
+
+public struct DSStatCard: View {
+    @Environment(\.colorScheme) private var colorScheme
+    
+    private let title: String
+    private let value: String
+    private let change: String?
+    private let isPositive: Bool
+    private let icon: Image?
     
     public init(
         title: String,
         value: String,
-        change: String,
-        trend: TrendDirection
+        change: String? = nil,
+        isPositive: Bool = true,
+        icon: Image? = nil
     ) {
         self.title = title
         self.value = value
         self.change = change
-        self.trend = trend
+        self.isPositive = isPositive
+        self.icon = icon
     }
     
     public var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text(title)
-                .font(.subheadline)
-                .foregroundColor(colorScheme == .dark ? .gray : .secondary)
-            
-            HStack {
+        DSCard(variant: .elevated, size: .md) {
+            VStack(alignment: .leading, spacing: SpacingScale.sm.rawValue) {
+                HStack {
+                    Text(title)
+                        .dsTypography(TypographyTokens.UI.label)
+                        .foregroundColor(ColorTokens.Foreground.secondary.resolved(for: colorScheme))
+                    
+                    Spacer()
+                    
+                    if let icon = icon {
+                        icon
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 20, height: 20)
+                            .foregroundColor(ColorTokens.Foreground.tertiary.resolved(for: colorScheme))
+                    }
+                }
+                
                 Text(value)
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .foregroundColor(colorScheme == .dark ? .white : .black)
+                    .dsTypography(TypographyTokens.Display.small)
+                    .foregroundColor(ColorTokens.Foreground.primary.resolved(for: colorScheme))
                 
-                Spacer()
-                
-                HStack(spacing: 4) {
-                    Image(systemName: trendIcon)
-                        .font(.caption)
-                        .foregroundColor(trendColor)
-                    Text(change)
-                        .font(.caption)
-                        .foregroundColor(trendColor)
+                if let change = change {
+                    HStack(spacing: 4) {
+                        Image(systemName: isPositive ? "arrow.up.right" : "arrow.down.right")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 12, height: 12)
+                        
+                        Text(change)
+                            .dsTypography(TypographyTokens.Body.small)
+                    }
+                    .foregroundColor(
+                        isPositive
+                            ? ColorTokens.Status.success.resolved(for: colorScheme)
+                            : ColorTokens.Status.error.resolved(for: colorScheme)
+                    )
                 }
             }
-        }
-        .padding(16)
-        .background(colorScheme == .dark ? Color(.systemGray6) : Color(.systemBackground))
-        .cornerRadius(12)
-        .overlay(
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(colorScheme == .dark ? Color(.systemGray4) : Color(.systemGray5), lineWidth: 1)
-        )
-        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(title): \(value), \(change)")
-    }
-    
-    private var trendIcon: String {
-        switch trend {
-        case .up: return "arrow.up"
-        case .down: return "arrow.down"
-        case .neutral: return "minus"
-        }
-    }
-    
-    private var trendColor: Color {
-        switch trend {
-        case .up: return .green
-        case .down: return .red
-        case .neutral: return colorScheme == .dark ? .gray : .secondary
         }
     }
 }
 
-// MARK: - Previews
-struct DSCard_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack(spacing: 20) {
-            DSCard(
-                title: "Welcome",
-                subtitle: "Start building amazing apps",
-                image: "star.fill"
-            )
-            
-            DSProductCard(
-                title: "iPhone 15 Pro",
-                price: "$999",
-                image: "iphone",
-                rating: 4.5
-            ) {
-                print("Product tapped")
-            }
-            
-            DSProfileCard(
-                name: "John Doe",
-                role: "iOS Developer",
-                avatar: "person.circle.fill"
-            ) {
-                print("Profile tapped")
-            }
-            
-            DSStatsCard(
-                title: "Revenue",
-                value: "$50,000",
-                change: "+12%",
-                trend: .up
-            )
-        }
-        .padding()
-        .previewLayout(.sizeThatFits)
+// MARK: - List Card
+
+public struct DSListCard<Content: View>: View {
+    @Environment(\.colorScheme) private var colorScheme
+    
+    private let title: String
+    private let content: Content
+    
+    public init(
+        title: String,
+        @ViewBuilder content: () -> Content
+    ) {
+        self.title = title
+        self.content = content()
     }
-} 
+    
+    public var body: some View {
+        DSCard(variant: .elevated, size: .md) {
+            VStack(alignment: .leading, spacing: SpacingScale.md.rawValue) {
+                Text(title)
+                    .dsTypography(TypographyTokens.Heading.h4)
+                    .foregroundColor(ColorTokens.Foreground.primary.resolved(for: colorScheme))
+                
+                content
+            }
+        }
+    }
+}
+
+// MARK: - Card List Item
+
+public struct DSCardListItem: View {
+    @Environment(\.colorScheme) private var colorScheme
+    
+    private let title: String
+    private let subtitle: String?
+    private let leadingIcon: Image?
+    private let trailing: String?
+    private let action: (() -> Void)?
+    
+    @State private var isHovered = false
+    
+    public init(
+        title: String,
+        subtitle: String? = nil,
+        leadingIcon: Image? = nil,
+        trailing: String? = nil,
+        action: (() -> Void)? = nil
+    ) {
+        self.title = title
+        self.subtitle = subtitle
+        self.leadingIcon = leadingIcon
+        self.trailing = trailing
+        self.action = action
+    }
+    
+    public var body: some View {
+        let content = HStack(spacing: SpacingScale.md.rawValue) {
+            if let icon = leadingIcon {
+                icon
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 20, height: 20)
+                    .foregroundColor(ColorTokens.Foreground.secondary.resolved(for: colorScheme))
+            }
+            
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .dsTypography(TypographyTokens.Body.medium)
+                    .foregroundColor(ColorTokens.Foreground.primary.resolved(for: colorScheme))
+                
+                if let subtitle = subtitle {
+                    Text(subtitle)
+                        .dsTypography(TypographyTokens.Body.small)
+                        .foregroundColor(ColorTokens.Foreground.secondary.resolved(for: colorScheme))
+                }
+            }
+            
+            Spacer()
+            
+            if let trailing = trailing {
+                Text(trailing)
+                    .dsTypography(TypographyTokens.Body.small)
+                    .foregroundColor(ColorTokens.Foreground.tertiary.resolved(for: colorScheme))
+            }
+            
+            if action != nil {
+                Image(systemName: "chevron.right")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 12, height: 12)
+                    .foregroundColor(ColorTokens.Foreground.tertiary.resolved(for: colorScheme))
+            }
+        }
+        .padding(.vertical, SpacingScale.md.rawValue)
+        .padding(.horizontal, SpacingScale.sm.rawValue)
+        .background(
+            isHovered
+                ? ColorTokens.Interactive.hover.resolved(for: colorScheme)
+                : Color.clear
+        )
+        .cornerRadius(BorderTokens.Radius.md)
+        .onHover { hovering in
+            withAnimation(AnimationTokens.Micro.hover.swiftUIAnimation) {
+                isHovered = hovering
+            }
+        }
+        
+        if let action = action {
+            Button(action: action) {
+                content
+            }
+            .buttonStyle(.plain)
+        } else {
+            content
+        }
+    }
+}

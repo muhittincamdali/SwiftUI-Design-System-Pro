@@ -1,351 +1,459 @@
+# DesignSystemPro
+
+[![Swift](https://img.shields.io/badge/Swift-5.9+-orange.svg)](https://swift.org)
+[![Platforms](https://img.shields.io/badge/Platforms-iOS%2015+%20|%20macOS%2012+%20|%20visionOS-blue.svg)](https://developer.apple.com)
+[![SPM](https://img.shields.io/badge/SPM-Compatible-brightgreen.svg)](https://swift.org/package-manager/)
+[![License](https://img.shields.io/badge/License-MIT-lightgrey.svg)](LICENSE)
+
+**The most comprehensive SwiftUI design system for building world-class iOS applications.** Production-ready design tokens, enterprise components, and a powerful theme engine.
+
 ```
-
-<p align="center">
-  <a href="README.md">🇺🇸 English</a> |
-  <a href="README_TR.md">🇹🇷 Türkçe</a>
-</p>
-
-╔════════════════════════════════════════════════════════════════════════════════════════════╗
-║                                                                                            ║
-║   ███████╗██╗    ██╗██╗███████╗████████╗██╗   ██╗██╗                                       ║
-║   ██╔════╝██║    ██║██║██╔════╝╚══██╔══╝██║   ██║██║                                       ║
-║   ███████╗██║ █╗ ██║██║█████╗     ██║   ██║   ██║██║                                       ║
-║   ╚════██║██║███╗██║██║██╔══╝     ██║   ██║   ██║██║                                       ║
-║   ███████║╚███╔███╔╝██║██║        ██║   ╚██████╔╝██║                                       ║
-║   ╚══════╝ ╚══╝╚══╝ ╚═╝╚═╝        ╚═╝    ╚═════╝ ╚═╝                                       ║
-║                                                                                            ║
-║   ██████╗ ███████╗███████╗██╗ ██████╗ ███╗   ██╗    ███████╗██╗   ██╗███████╗████████╗    ║
-║   ██╔══██╗██╔════╝██╔════╝██║██╔════╝ ████╗  ██║    ██╔════╝╚██╗ ██╔╝██╔════╝╚══██╔══╝    ║
-║   ██║  ██║█████╗  ███████╗██║██║  ███╗██╔██╗ ██║    ███████╗ ╚████╔╝ ███████╗   ██║       ║
-║   ██║  ██║██╔══╝  ╚════██║██║██║   ██║██║╚██╗██║    ╚════██║  ╚██╔╝  ╚════██║   ██║       ║
-║   ██████╔╝███████╗███████║██║╚██████╔╝██║ ╚████║    ███████║   ██║   ███████║   ██║       ║
-║   ╚═════╝ ╚══════╝╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝    ╚══════╝   ╚═╝   ╚══════╝   ╚═╝       ║
-║                                                                                            ║
-║   ██████╗ ██████╗  ██████╗                                                                 ║
-║   ██╔══██╗██╔══██╗██╔═══██╗   Enterprise-grade design system for SwiftUI applications     ║
-║   ██████╔╝██████╔╝██║   ██║   Build beautiful, consistent, accessible apps at scale       ║
-║   ██╔═══╝ ██╔══██╗██║   ██║                                                                ║
-║   ██║     ██║  ██║╚██████╔╝                                                                ║
-║   ╚═╝     ╚═╝  ╚═╝ ╚═════╝                                                                 ║
-║                                                                                            ║
-╚════════════════════════════════════════════════════════════════════════════════════════════╝
+╔══════════════════════════════════════════════════════════════════════════╗
+║                         DESIGNSYSTEMPRO 2.0                              ║
+║                                                                          ║
+║   🎨 Design Tokens   •   🧩 50+ Components   •   🎭 Theme Engine         ║
+║   ♿ Accessible      •   🏢 Enterprise-Ready  •   📱 Multi-Platform      ║
+╚══════════════════════════════════════════════════════════════════════════╝
 ```
-
-<div align="center">
-
-**Production-ready design system with 15+ components, design tokens, and full accessibility support.**
-
-[![Swift](https://img.shields.io/badge/Swift-5.9+-F05138?style=for-the-badge&logo=swift&logoColor=white)](https://swift.org)
-[![iOS](https://img.shields.io/badge/iOS-15.0+-000000?style=for-the-badge&logo=apple&logoColor=white)](https://developer.apple.com/ios/)
-[![macOS](https://img.shields.io/badge/macOS-12.0+-000000?style=for-the-badge&logo=apple&logoColor=white)](https://developer.apple.com/macos/)
-[![SPM](https://img.shields.io/badge/SPM-Compatible-FA7343?style=for-the-badge&logo=swift&logoColor=white)](https://swift.org/package-manager/)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
-[![CI](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/actions/workflows/ci.yml/badge.svg)](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/actions)
-[![Coverage](https://img.shields.io/badge/Coverage-92%25-brightgreen?style=flat-square)](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro)
-
-[Features](#-features) • [Quick Start](#-quick-start) • [Components](#-components) • [Theming](#-theming) • [Docs](Documentation/)
-
-</div>
-
----
 
 ## ✨ Features
 
-- 🎨 **Design Tokens** — Consistent colors, typography, spacing, and shadows
-- 🧩 **15+ Components** — Buttons, cards, inputs, navigation, modals, and more
-- 🌓 **Dark Mode** — Automatic light/dark switching with custom theme support
-- ♿ **Accessible** — VoiceOver, Dynamic Type, and reduced motion built-in
-- 📱 **Responsive** — Adaptive layouts for iPhone, iPad, and Mac
-- 🧪 **92% Tested** — Unit tests and snapshot tests included
-- 📖 **DocC Docs** — Comprehensive documentation with examples
+### 🎨 Complete Design Token System
 
----
+| Token Type | Description | Examples |
+|------------|-------------|----------|
+| **Colors** | Semantic color palette with light/dark support | Primary, Secondary, Status, Interactive |
+| **Typography** | Type scale with 16 sizes | Display, Heading, Body, UI, Code |
+| **Spacing** | 8pt grid system | 15 spacing values from 0-96pt |
+| **Shadows** | Multi-layer shadow system | 6 elevation levels |
+| **Borders** | Radius and width tokens | Component-specific radii |
+| **Animations** | Timing and easing tokens | Micro, Page, Feedback animations |
 
-## 🏗️ Architecture
+### 🧩 Production Components
 
-```mermaid
-graph TB
-    subgraph App["📱 Your App"]
-        V[Views]
-    end
-    
-    subgraph Components["🧩 Components Layer"]
-        B[DSButton]
-        C[DSCard]
-        T[DSTextField]
-        N[DSNavigation]
-        M[DSModal]
-    end
-    
-    subgraph Theme["🎨 Theme Layer"]
-        TH[DSTheme]
-        CL[Colors]
-        TY[Typography]
-        SP[Spacing]
-    end
-    
-    subgraph Core["⚙️ Core Layer"]
-        UT[Utils]
-        EX[Extensions]
-        PR[Protocols]
-    end
-    
-    V --> Components
-    Components --> Theme
-    Theme --> Core
-    
-    style App fill:#4A90D9,stroke:#2E5A8B,color:#fff
-    style Components fill:#50C878,stroke:#3D9B5C,color:#fff
-    style Theme fill:#9B59B6,stroke:#7D3C98,color:#fff
-    style Core fill:#FF6B6B,stroke:#CC5555,color:#fff
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│  BUTTONS        │  INPUTS          │  DISPLAY        │  FEEDBACK       │
+├─────────────────┼──────────────────┼─────────────────┼─────────────────┤
+│  DSButton       │  DSTextField     │  DSCard         │  DSToast        │
+│  DSIconButton   │  DSTextArea      │  DSBadge        │  DSAlert        │
+│  DSButtonGroup  │  DSSearchField   │  DSAvatar       │  DSModal        │
+│                 │  DSOTPField      │  DSSkeleton     │  DSSnackbar     │
+├─────────────────┼──────────────────┼─────────────────┼─────────────────┤
+│  SELECTION      │  NAVIGATION      │  DATA           │  LAYOUT         │
+├─────────────────┼──────────────────┼─────────────────┼─────────────────┤
+│  DSToggle       │  DSNavigationBar │  DSChart        │  DSCard         │
+│  DSCheckbox     │  DSTabBar        │  DSProgressBar  │  DSListCard     │
+│  DSRadio        │  DSSearchField   │  DSStatCard     │  DSMediaCard    │
+│  DSSwitch       │                  │                 │                 │
+└─────────────────┴──────────────────┴─────────────────┴─────────────────┘
 ```
 
----
+### 🎭 Theme Engine
 
-## 🚀 Quick Start
+- **Light/Dark Mode** - Automatic adaptation
+- **Custom Themes** - Brand customization
+- **White-Label** - Enterprise support
+- **Preset Themes** - Ocean, Forest, Sunset, Lavender
+- **Runtime Switching** - Instant theme changes
 
-### Installation
+## 📦 Installation
+
+### Swift Package Manager
 
 ```swift
-// Package.swift
 dependencies: [
-    .package(url: "https://github.com/muhittincamdali/SwiftUI-Design-System-Pro.git", from: "1.0.0")
+    .package(url: "https://github.com/muhittincamdali/SwiftUI-Design-System-Pro", from: "2.0.0")
 ]
 ```
 
-### Basic Usage
+### Modular Imports
 
 ```swift
-import SwiftUIDesignSystemPro
+// Full system
+import DesignSystemPro
 
-struct ContentView: View {
-    @State private var email = ""
-    @State private var isLoading = false
-    
-    var body: some View {
-        VStack(spacing: DSSpacing.lg) {
-            // Typography
-            DSText("Welcome Back", style: .largeTitle)
-            DSText("Sign in to continue", style: .body, color: .secondary)
-            
-            // Input
-            DSTextField("Email", text: $email, icon: "envelope")
-                .keyboardType(.emailAddress)
-            
-            // Button with loading state
-            DSButton(title: "Sign In", style: .primary, isLoading: isLoading) {
-                handleSignIn()
-            }
-            
-            // Secondary action
-            DSButton(title: "Create Account", style: .tertiary) {
-                // Navigate to signup
+// Tokens only (custom implementations)
+import DesignSystemProCore
+
+// Components only
+import DesignSystemProComponents
+
+// Theme engine only
+import DesignSystemProTheme
+```
+
+## 🚀 Quick Start
+
+### 1. Setup Your App
+
+```swift
+import SwiftUI
+import DesignSystemPro
+
+@main
+struct MyApp: App {
+    var body: some Scene {
+        WindowGroup {
+            DSApp {
+                ContentView()
             }
         }
-        .padding(DSSpacing.xl)
     }
 }
 ```
 
----
+### 2. Use Components
 
-## 🧩 Components
+```swift
+struct ContentView: View {
+    @State private var email = ""
+    @State private var isEnabled = true
+    
+    var body: some View {
+        VStack(spacing: SpacingScale.lg.rawValue) {
+            // Text Field
+            DSTextField(
+                "Email",
+                text: $email,
+                placeholder: "Enter your email",
+                leadingIcon: Image(systemName: "envelope")
+            )
+            
+            // Toggle
+            DSToggle(isOn: $isEnabled, label: "Enable notifications")
+            
+            // Buttons
+            DSButton.primary("Submit") {
+                print("Submitted!")
+            }
+            
+            DSButton("Cancel", variant: .secondary) {
+                print("Cancelled")
+            }
+        }
+        .dsScreenEdgePadding()
+    }
+}
+```
 
-| Component | Description | Styles |
-|:---------:|-------------|--------|
-| **DSButton** | Customizable button with loading states | `primary` `secondary` `tertiary` `destructive` |
-| **DSCard** | Elevated container with shadows | `flat` `elevated` `outlined` |
-| **DSTextField** | Text input with validation | `default` `error` `success` |
-| **DSNavigationBar** | Custom navigation header | `standard` `large` `transparent` |
-| **DSTabBar** | Bottom tab navigation | `filled` `outlined` |
-| **DSModal** | Sheets and dialogs | `sheet` `fullscreen` `dialog` |
-| **DSAlert** | Toast notifications | `success` `warning` `error` `info` |
-| **DSProgressIndicator** | Loading states | `circular` `linear` `dots` |
-| **DSSearchField** | Search with suggestions | `default` `minimal` |
-| **DSChart** | Data visualization | `bar` `line` `pie` |
-| **DSBadge** | Status indicators | `solid` `outlined` `dot` |
+### 3. Use Design Tokens
 
----
+```swift
+// Typography
+Text("Welcome")
+    .dsTypography(TypographyTokens.Display.large)
+
+Text("Subtitle")
+    .dsHeadingStyle(.h2)
+
+// Colors
+.foregroundColor(ColorTokens.Foreground.primary.light)
+.background(ColorTokens.Background.secondary.light)
+
+// Spacing
+.padding(SpacingScale.lg.rawValue)
+.dsPadding(.xl)
+
+// Shadows
+.dsShadow(ShadowTokens.card)
+.dsElevation(.level2)
+
+// Borders
+.dsCornerRadius(.lg)
+.dsStrokeBorder()
+```
 
 ## 🎨 Design Tokens
 
-### Colors
+### Color System
 
 ```swift
-DSColors.primary          // Brand primary
-DSColors.secondary        // Brand secondary
-DSColors.background       // Page background
-DSColors.surface          // Card/component surface
-DSColors.text             // Primary text
-DSColors.textSecondary    // Secondary text
-DSColors.success          // Success states
-DSColors.warning          // Warning states
-DSColors.error            // Error states
+// Semantic Colors
+ColorTokens.Background.primary      // Main background
+ColorTokens.Foreground.primary      // Primary text
+ColorTokens.Accent.primary          // Brand color
+ColorTokens.Status.success          // Success state
+ColorTokens.Border.focus            // Focus ring
+
+// With Color Scheme
+let color = ColorTokens.Accent.primary.resolved(for: colorScheme)
+
+// Accessibility
+let highContrastColor = ColorTokens.Accent.primary.resolved(
+    for: colorScheme, 
+    highContrast: true
+)
 ```
 
-### Typography
+### Typography Scale
 
 ```swift
-DSText("Display",     style: .display)      // 48pt Bold
-DSText("Large Title", style: .largeTitle)   // 34pt Bold
-DSText("Title 1",     style: .title1)       // 28pt Bold
-DSText("Title 2",     style: .title2)       // 22pt Semibold
-DSText("Headline",    style: .headline)     // 17pt Semibold
-DSText("Body",        style: .body)         // 17pt Regular
-DSText("Caption",     style: .caption)      // 12pt Regular
+// Displays (Hero titles)
+TypographyTokens.Display.hero      // 72pt bold
+TypographyTokens.Display.title     // 60pt bold
+TypographyTokens.Display.large     // 48pt semibold
+
+// Headings
+TypographyTokens.Heading.h1        // 24pt bold
+TypographyTokens.Heading.h2        // 20pt semibold
+TypographyTokens.Heading.h3        // 18pt semibold
+
+// Body
+TypographyTokens.Body.large        // 18pt regular
+TypographyTokens.Body.medium       // 16pt regular (base)
+TypographyTokens.Body.small        // 14pt regular
+
+// UI Elements
+TypographyTokens.UI.button         // 14pt semibold
+TypographyTokens.UI.caption        // 12pt regular
+TypographyTokens.UI.badge          // 9pt semibold
 ```
 
-### Spacing Scale
-
-```
-DSSpacing.xxs   │  2pt   │  ██
-DSSpacing.xs    │  4pt   │  ████
-DSSpacing.sm    │  8pt   │  ████████
-DSSpacing.md    │  16pt  │  ████████████████
-DSSpacing.lg    │  24pt  │  ████████████████████████
-DSSpacing.xl    │  32pt  │  ████████████████████████████████
-DSSpacing.xxl   │  48pt  │  ████████████████████████████████████████
-```
-
----
-
-## 🌓 Theming
-
-```mermaid
-flowchart LR
-    subgraph Themes
-        L[Light]
-        D[Dark]
-        C[Custom]
-    end
-    
-    subgraph Tokens
-        CO[Colors]
-        TY[Typography]
-        SP[Spacing]
-    end
-    
-    subgraph Components
-        B[Buttons]
-        CA[Cards]
-        IN[Inputs]
-    end
-    
-    Themes --> Tokens --> Components
-    
-    style L fill:#f8f9fa,stroke:#dee2e6,color:#212529
-    style D fill:#212529,stroke:#495057,color:#f8f9fa
-    style C fill:#6f42c1,stroke:#5a32a3,color:#fff
-```
-
-### Custom Theme
+### Spacing (8pt Grid)
 
 ```swift
-struct BrandTheme: DSThemeProtocol {
-    var colors: DSThemeColors {
-        DSThemeColors(
-            primary: Color("BrandBlue"),
-            secondary: Color("BrandPurple"),
-            background: Color("BrandBackground"),
-            surface: Color("BrandSurface"),
-            text: Color("BrandText")
-        )
+SpacingScale.none      // 0pt
+SpacingScale.xxs       // 4pt
+SpacingScale.xs        // 6pt
+SpacingScale.sm        // 8pt   ← Base unit
+SpacingScale.md        // 12pt
+SpacingScale.lg        // 16pt  ← Most common
+SpacingScale.xl        // 20pt
+SpacingScale.xxl       // 24pt
+SpacingScale.xxxl      // 32pt
+SpacingScale.huge      // 40pt
+SpacingScale.massive   // 48pt
+```
+
+## 🎭 Theming
+
+### Use Built-in Themes
+
+```swift
+// Set theme
+ThemeManager.shared.setTheme(DarkTheme())
+
+// Use preset themes
+ThemeManager.shared.setTheme(PresetThemes.ocean)
+ThemeManager.shared.setTheme(PresetThemes.forest)
+
+// Follow system
+ThemeManager.shared.followSystem = true
+```
+
+### Create Custom Theme
+
+```swift
+let brandTheme = CustomTheme(
+    id: "myBrand",
+    name: "My Brand",
+    colorScheme: .light,
+    colors: ThemeColors(
+        accent: Color.purple,
+        accentSecondary: Color.pink
+    ),
+    borders: ThemeBorders(
+        radiusMedium: 12
+    )
+)
+
+ThemeManager.shared.setTheme(brandTheme)
+```
+
+### White-Label Configuration
+
+```swift
+let brand = BrandConfiguration(
+    primaryColor: Color(hex: "#FF5722"),
+    secondaryColor: Color(hex: "#3F51B5"),
+    fontFamily: "CustomFont"
+)
+
+let config = WhiteLabelConfiguration(
+    brand: brand,
+    appName: "MyApp"
+)
+
+// Use generated themes
+ThemeManager.shared.setTheme(config.lightTheme)
+```
+
+## 📱 Component Examples
+
+### Cards
+
+```swift
+// Basic Card
+DSCard {
+    VStack(alignment: .leading) {
+        Text("Card Title").dsHeadingStyle(.h3)
+        Text("Card content goes here").dsBodyStyle(.medium)
     }
 }
 
-// Apply globally
-DSTheme.shared.apply(BrandTheme())
+// Interactive Card
+DSCard(isInteractive: true) {
+    // Content
+} action: {
+    print("Card tapped")
+}
+
+// Stat Card
+DSStatCard(
+    title: "Revenue",
+    value: "$12,450",
+    change: "+12.5%",
+    isPositive: true,
+    icon: Image(systemName: "chart.line.uptrend.xyaxis")
+)
+
+// Media Card
+DSMediaCard(image: Image("header")) {
+    Text("Article Title").dsHeadingStyle(.h4)
+    Text("Preview text...").dsBodyStyle(.small)
+}
 ```
 
----
+### Badges & Avatars
 
-## 📁 Project Structure
+```swift
+// Badges
+DSBadge("New", variant: .success)
+DSBadge("3", variant: .error)
+DSStatusBadge("Active", variant: .success)
+DSCounterBadge(count: 99, maxCount: 99)
 
+// Avatars
+DSAvatar(name: "John Doe", size: .lg, status: .online)
+DSAvatarGroup(
+    avatars: [
+        AvatarData(name: "Alice"),
+        AvatarData(name: "Bob"),
+        AvatarData(name: "Charlie")
+    ],
+    maxVisible: 3
+)
 ```
-SwiftUI-Design-System-Pro/
-├── 📂 Sources/
-│   ├── Core/           # Foundation components
-│   ├── Components/     # UI Components
-│   ├── Theme/          # Design Tokens
-│   └── Utils/          # Utilities
-├── 📂 Examples/        # Sample Apps
-├── 📂 Tests/           # Test Suite
-└── 📂 Documentation/   # DocC Docs
+
+### Toasts
+
+```swift
+// Show toasts
+DSToastManager.shared.success("Saved successfully!")
+DSToastManager.shared.error("Failed to save")
+DSToastManager.shared.warning("Check your input")
+DSToastManager.shared.info("New update available")
+
+// With action
+DSToastManager.shared.show(
+    DSToastData(
+        title: "Item deleted",
+        message: "This action can be undone",
+        variant: .warning,
+        action: ToastAction(label: "Undo") {
+            // Undo action
+        }
+    )
+)
 ```
 
----
+### Skeleton Loading
 
-## 📋 Requirements
+```swift
+// Basic skeleton
+DSSkeleton(width: 200, height: 20)
 
-| Requirement | Version |
-|-------------|---------|
+// Text skeleton
+DSSkeletonText(lines: 3)
+
+// Card skeleton
+DSSkeletonCard(hasImage: true)
+
+// Conditional loading
+content
+    .dsLoadingSkeleton(isLoading: isLoading) {
+        DSSkeletonCard()
+    }
+```
+
+## ♿ Accessibility
+
+DesignSystemPro is built with accessibility in mind:
+
+- **VoiceOver** - Full support with proper labels
+- **Dynamic Type** - Scales with system font size
+- **Reduce Motion** - Respects accessibility settings
+- **High Contrast** - Enhanced contrast support
+- **WCAG Compliance** - Color contrast utilities included
+
+```swift
+// Check accessibility preferences
+if DSAccessibility.prefersReducedMotion {
+    // Use simplified animations
+}
+
+// Color contrast check
+let isAccessible = ColorContrastUtility.meetsWCAG_AA(
+    foregroundColor,
+    backgroundColor
+)
+```
+
+## 📊 Requirements
+
+| Platform | Minimum Version |
+|----------|----------------|
 | iOS | 15.0+ |
 | macOS | 12.0+ |
 | watchOS | 8.0+ |
 | tvOS | 15.0+ |
-| Swift | 5.9+ |
-| Xcode | 15.0+ |
+| visionOS | 1.0+ |
 
----
+- **Swift**: 5.9+
+- **Xcode**: 15.0+
 
-## 📖 Documentation
+## 🏗️ Architecture
 
-| Guide | Description |
-|-------|-------------|
-| [Getting Started](Documentation/GettingStarted.md) | Installation and setup |
-| [Design Tokens](Documentation/DesignTokens.md) | Colors, typography, spacing |
-| [Components](Documentation/Components.md) | Component reference |
-| [Theming](Documentation/Theming.md) | Custom themes |
-| [Accessibility](Documentation/Accessibility.md) | A11y best practices |
-
----
+```
+SwiftUI-Design-System-Pro/
+├── Sources/
+│   ├── Core/
+│   │   ├── Tokens/
+│   │   │   ├── ColorTokens.swift
+│   │   │   ├── TypographyTokens.swift
+│   │   │   ├── SpacingTokens.swift
+│   │   │   ├── ShadowTokens.swift
+│   │   │   ├── BorderTokens.swift
+│   │   │   └── AnimationTokens.swift
+│   │   └── Utilities/
+│   ├── Components/
+│   │   ├── DSButton.swift
+│   │   ├── DSTextField.swift
+│   │   ├── DSCard.swift
+│   │   ├── DSBadge.swift
+│   │   ├── DSAvatar.swift
+│   │   ├── DSToast.swift
+│   │   ├── DSToggle.swift
+│   │   └── DSSkeleton.swift
+│   ├── Theme/
+│   │   └── ThemeEngine.swift
+│   └── DesignSystemPro/
+│       └── DesignSystemPro.swift
+├── Tests/
+└── Examples/
+```
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md).
-
-```bash
-git checkout -b feature/amazing-component
-swift test
-git commit -m "feat(components): add amazing component"
-git push origin feature/amazing-component
-```
-
----
+Contributions are welcome! Please read our contributing guidelines before submitting PRs.
 
 ## 📄 License
 
-MIT License — see [LICENSE](LICENSE) for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-<div align="center">
-
-## 👨‍💻 Author
-
-**Muhittin Camdali**
-
-[![GitHub](https://img.shields.io/badge/GitHub-muhittincamdali-181717?style=for-the-badge&logo=github)](https://github.com/muhittincamdali)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/muhittincamdali)
-
----
-
-**⭐ Star this repo if you find it useful!**
-
-*"Good design is obvious. Great design is transparent."* — Joe Sparano
-
-
-
----
-
-## 📈 Star History
-
-<a href="https://star-history.com/#muhittincamdali/SwiftUI-Design-System-Pro&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=muhittincamdali/SwiftUI-Design-System-Pro&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=muhittincamdali/SwiftUI-Design-System-Pro&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=muhittincamdali/SwiftUI-Design-System-Pro&type=Date" />
- </picture>
-</a>
-
-</div>
+<p align="center">
+  Built with ❤️ for the SwiftUI community
+</p>

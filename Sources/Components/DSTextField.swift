@@ -1,216 +1,487 @@
+// DSTextField.swift
+// DesignSystemPro
+//
+// Production-grade text input component with validation,
+// states, and full accessibility support.
+
 import SwiftUI
+import Combine
+
+// MARK: - Input State
+
+public enum DSInputState: Sendable {
+    case `default`
+    case focused
+    case valid
+    case error(String)
+    case disabled
+}
+
+// MARK: - Input Size
+
+public enum DSInputSize: String, CaseIterable, Sendable {
+    case sm  // 36pt height
+    case md  // 44pt height - Default
+    case lg  // 52pt height
+    
+    var height: CGFloat {
+        switch self {
+        case .sm: return 36
+        case .md: return 44
+        case .lg: return 52
+        }
+    }
+    
+    var typography: TypographyToken {
+        switch self {
+        case .sm: return TypographyTokens.Body.small
+        case .md: return TypographyTokens.Body.medium
+        case .lg: return TypographyTokens.Body.large
+        }
+    }
+    
+    var padding: EdgeInsets {
+        switch self {
+        case .sm: return EdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12)
+        case .md: return EdgeInsets(top: 10, leading: 14, bottom: 10, trailing: 14)
+        case .lg: return EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16)
+        }
+    }
+}
+
+// MARK: - DSTextField
 
 public struct DSTextField: View {
-    public let placeholder: String
-    @Binding public var text: String
-    public let validation: DSValidationType?
-    public let style: DSTextFieldStyle
-    public let size: DSTextFieldSize
-    public let isSecure: Bool
-    public let keyboardType: UIKeyboardType
-    public let returnKeyType: UIReturnKeyType
-    public let onCommit: (() -> Void)?
-    public let onEditingChanged: ((Bool) -> Void)?
+    @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.isEnabled) private var isEnabled
     
-    @State private var isEditing = false
-    @State private var isValid = true
-    @State private var errorMessage = ""
+    @Binding private var text: String
     @FocusState private var isFocused: Bool
     
+    private let label: String
+    private let placeholder: String
+    private let helperText: String?
+    private let size: DSInputSize
+    private let leadingIcon: Image?
+    private let trailingIcon: Image?
+    private let state: DSInputState
+    private let isSecure: Bool
+    private let onSubmit: (() -> Void)?
+    
+    @State private var isSecureTextHidden = true
+    
     public init(
-        placeholder: String,
+        _ label: String = "",
         text: Binding<String>,
-        validation: DSValidationType? = nil,
-        style: DSTextFieldStyle = .primary,
-        size: DSTextFieldSize = .medium,
+        placeholder: String = "",
+        helperText: String? = nil,
+        size: DSInputSize = .md,
+        leadingIcon: Image? = nil,
+        trailingIcon: Image? = nil,
+        state: DSInputState = .default,
         isSecure: Bool = false,
-        keyboardType: UIKeyboardType = .default,
-        returnKeyType: UIReturnKeyType = .done,
-        onCommit: (() -> Void)? = nil,
-        onEditingChanged: ((Bool) -> Void)? = nil
+        onSubmit: (() -> Void)? = nil
     ) {
-        self.placeholder = placeholder
+        self.label = label
         self._text = text
-        self.validation = validation
-        self.style = style
+        self.placeholder = placeholder
+        self.helperText = helperText
         self.size = size
+        self.leadingIcon = leadingIcon
+        self.trailingIcon = trailingIcon
+        self.state = state
         self.isSecure = isSecure
-        self.keyboardType = keyboardType
-        self.returnKeyType = returnKeyType
-        self.onCommit = onCommit
-        self.onEditingChanged = onEditingChanged
+        self.onSubmit = onSubmit
     }
     
     public var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Group {
+        VStack(alignment: .leading, spacing: SpacingTokens.Form.labelGap) {
+            // Label
+            if !label.isEmpty {
+                Text(label)
+                    .dsTypography(TypographyTokens.UI.label)
+                    .foregroundColor(labelColor)
+            }
+            
+            // Input Container
+            HStack(spacing: SpacingScale.sm.rawValue) {
+                // Leading Icon
+                if let icon = leadingIcon {
+                    icon
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(iconColor)
+                }
+                
+                // Text Input
+                Group {
+                    if isSecure && isSecureTextHidden {
+                        SecureField(placeholder, text: $text)
+                            .onSubmit { onSubmit?() }
+                    } else {
+                        TextField(placeholder, text: $text)
+                            .onSubmit { onSubmit?() }
+                    }
+                }
+                .dsTypography(size.typography)
+                .foregroundColor(textColor)
+                .focused($isFocused)
+                .textFieldStyle(.plain)
+                
+                // Trailing Icon / Secure Toggle / Clear Button
                 if isSecure {
-                    SecureField(placeholder, text: $text)
-                        .textFieldStyle(.plain)
-                        .focused($isFocused)
-                        .onSubmit { onCommit?() }
-                        .onChange(of: isFocused) { newValue in
-                            isEditing = newValue
-                            onEditingChanged?(newValue)
-                            validateInput()
-                        }
-                } else {
-                    TextField(placeholder, text: $text)
-                        .textFieldStyle(.plain)
-                        .focused($isFocused)
-                        .keyboardType(keyboardType)
-                        .submitLabel(returnKeyType.submitLabel)
-                        .onSubmit { onCommit?() }
-                        .onChange(of: isFocused) { newValue in
-                            isEditing = newValue
-                            onEditingChanged?(newValue)
-                            validateInput()
-                        }
+                    Button(action: { isSecureTextHidden.toggle() }) {
+                        Image(systemName: isSecureTextHidden ? "eye.slash" : "eye")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 20, height: 20)
+                            .foregroundColor(iconColor)
+                    }
+                    .buttonStyle(.plain)
+                } else if !text.isEmpty && isFocused {
+                    Button(action: { text = "" }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 18, height: 18)
+                            .foregroundColor(ColorTokens.Foreground.tertiary.resolved(for: colorScheme))
+                    }
+                    .buttonStyle(.plain)
+                } else if let icon = trailingIcon {
+                    icon
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(iconColor)
                 }
             }
+            .padding(size.padding)
             .frame(height: size.height)
-            .background(style.backgroundColor(for: colorScheme))
-            .cornerRadius(style.cornerRadius)
+            .background(backgroundColor)
             .overlay(
-                RoundedRectangle(cornerRadius: style.cornerRadius)
-                    .stroke(isEditing ? style.focusedBorderColor : style.borderColor, lineWidth: isEditing ? 2 : 1)
+                RoundedRectangle(cornerRadius: BorderTokens.Component.input, style: .continuous)
+                    .strokeBorder(borderColor, lineWidth: borderWidth)
             )
-            .animation(.easeInOut(duration: 0.2), value: isEditing)
+            .clipShape(RoundedRectangle(cornerRadius: BorderTokens.Component.input, style: .continuous))
+            .dsShadow(focusShadow)
             
-            if !isValid && !errorMessage.isEmpty {
-                Text(errorMessage)
-                    .font(.caption)
-                    .foregroundColor(.red)
-                    .transition(.opacity.combined(with: .move(edge: .top)))
+            // Helper Text / Error Message
+            if let helper = effectiveHelperText {
+                Text(helper)
+                    .dsTypography(TypographyTokens.UI.caption)
+                    .foregroundColor(helperTextColor)
             }
         }
-        .onChange(of: text) { _ in validateInput() }
+        .opacity(isEnabled ? 1 : 0.6)
+        .animation(AnimationTokens.Micro.focus.swiftUIAnimation, value: isFocused)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(label.isEmpty ? placeholder : label)
     }
     
-    @Environment(\.colorScheme) private var colorScheme
+    // MARK: - Computed Properties
     
-    private func validateInput() {
-        guard let validation = validation else {
-            isValid = true
-            errorMessage = ""
-            return
+    private var effectiveState: DSInputState {
+        if !isEnabled { return .disabled }
+        if isFocused && !hasError { return .focused }
+        return state
+    }
+    
+    private var hasError: Bool {
+        if case .error = state { return true }
+        return false
+    }
+    
+    private var effectiveHelperText: String? {
+        if case .error(let message) = state {
+            return message
         }
-        
-        let validationResult = validation.validate(text)
-        isValid = validationResult.isValid
-        errorMessage = validationResult.errorMessage
+        return helperText
+    }
+    
+    private var labelColor: Color {
+        if hasError {
+            return ColorTokens.Status.error.resolved(for: colorScheme)
+        }
+        return ColorTokens.Foreground.secondary.resolved(for: colorScheme)
+    }
+    
+    private var textColor: Color {
+        ColorTokens.Foreground.primary.resolved(for: colorScheme)
+    }
+    
+    private var iconColor: Color {
+        if isFocused {
+            return ColorTokens.Accent.primary.resolved(for: colorScheme)
+        }
+        return ColorTokens.Foreground.tertiary.resolved(for: colorScheme)
+    }
+    
+    private var backgroundColor: Color {
+        ColorTokens.Background.primary.resolved(for: colorScheme)
+    }
+    
+    private var borderColor: Color {
+        switch effectiveState {
+        case .focused:
+            return ColorTokens.Border.focus.resolved(for: colorScheme)
+        case .valid:
+            return ColorTokens.Status.success.resolved(for: colorScheme)
+        case .error:
+            return ColorTokens.Status.error.resolved(for: colorScheme)
+        case .disabled:
+            return ColorTokens.Border.primary.resolved(for: colorScheme).opacity(0.5)
+        default:
+            return ColorTokens.Border.primary.resolved(for: colorScheme)
+        }
+    }
+    
+    private var borderWidth: CGFloat {
+        switch effectiveState {
+        case .focused, .valid, .error:
+            return BorderTokens.Width.medium
+        default:
+            return BorderTokens.Width.thin
+        }
+    }
+    
+    private var focusShadow: MultiLayerShadow {
+        guard isFocused else { return ShadowTokens.none }
+        if hasError {
+            return ShadowTokens.inputError
+        }
+        return ShadowTokens.inputFocus
+    }
+    
+    private var helperTextColor: Color {
+        if hasError {
+            return ColorTokens.Status.error.resolved(for: colorScheme)
+        }
+        return ColorTokens.Foreground.tertiary.resolved(for: colorScheme)
     }
 }
 
-public struct DSTextFieldStyle {
-    public let backgroundColor: (ColorScheme) -> Color
-    public let borderColor: Color
-    public let focusedBorderColor: Color
-    public let cornerRadius: CGFloat
+// MARK: - TextArea
+
+public struct DSTextArea: View {
+    @Environment(\.colorScheme) private var colorScheme
+    @FocusState private var isFocused: Bool
+    
+    @Binding private var text: String
+    private let label: String
+    private let placeholder: String
+    private let helperText: String?
+    private let minHeight: CGFloat
+    private let maxHeight: CGFloat
+    private let state: DSInputState
     
     public init(
-        backgroundColor: @escaping (ColorScheme) -> Color,
-        borderColor: Color,
-        focusedBorderColor: Color,
-        cornerRadius: CGFloat
+        _ label: String = "",
+        text: Binding<String>,
+        placeholder: String = "",
+        helperText: String? = nil,
+        minHeight: CGFloat = 100,
+        maxHeight: CGFloat = 300,
+        state: DSInputState = .default
     ) {
-        self.backgroundColor = backgroundColor
-        self.borderColor = borderColor
-        self.focusedBorderColor = focusedBorderColor
-        self.cornerRadius = cornerRadius
+        self.label = label
+        self._text = text
+        self.placeholder = placeholder
+        self.helperText = helperText
+        self.minHeight = minHeight
+        self.maxHeight = maxHeight
+        self.state = state
     }
     
-    public static let primary = DSTextFieldStyle(
-        backgroundColor: { colorScheme in
-            colorScheme == .dark ? Color(.systemGray6) : .white
-        },
-        borderColor: Color(.systemGray4),
-        focusedBorderColor: .blue,
-        cornerRadius: 8
-    )
-    
-    public static let secondary = DSTextFieldStyle(
-        backgroundColor: { colorScheme in
-            colorScheme == .dark ? Color(.systemGray5) : Color(.systemGray6)
-        },
-        borderColor: Color(.systemGray3),
-        focusedBorderColor: .green,
-        cornerRadius: 12
-    )
-}
-
-public enum DSTextFieldSize {
-    case small, medium, large
-    
-    public var height: CGFloat {
-        switch self {
-        case .small: return 36
-        case .medium: return 44
-        case .large: return 52
+    public var body: some View {
+        VStack(alignment: .leading, spacing: SpacingTokens.Form.labelGap) {
+            if !label.isEmpty {
+                Text(label)
+                    .dsTypography(TypographyTokens.UI.label)
+                    .foregroundColor(ColorTokens.Foreground.secondary.resolved(for: colorScheme))
+            }
+            
+            ZStack(alignment: .topLeading) {
+                if text.isEmpty {
+                    Text(placeholder)
+                        .dsTypography(TypographyTokens.Body.medium)
+                        .foregroundColor(ColorTokens.Foreground.placeholder.resolved(for: colorScheme))
+                        .padding(.horizontal, 4)
+                        .padding(.vertical, 8)
+                }
+                
+                TextEditor(text: $text)
+                    .dsTypography(TypographyTokens.Body.medium)
+                    .foregroundColor(ColorTokens.Foreground.primary.resolved(for: colorScheme))
+                    .scrollContentBackground(.hidden)
+                    .focused($isFocused)
+            }
+            .padding(InsetTokens.inputField)
+            .frame(minHeight: minHeight, maxHeight: maxHeight)
+            .background(ColorTokens.Background.primary.resolved(for: colorScheme))
+            .overlay(
+                RoundedRectangle(cornerRadius: BorderTokens.Component.input, style: .continuous)
+                    .strokeBorder(
+                        isFocused
+                            ? ColorTokens.Border.focus.resolved(for: colorScheme)
+                            : ColorTokens.Border.primary.resolved(for: colorScheme),
+                        lineWidth: isFocused ? BorderTokens.Width.medium : BorderTokens.Width.thin
+                    )
+            )
+            .clipShape(RoundedRectangle(cornerRadius: BorderTokens.Component.input, style: .continuous))
+            
+            if let helper = helperText {
+                Text(helper)
+                    .dsTypography(TypographyTokens.UI.caption)
+                    .foregroundColor(ColorTokens.Foreground.tertiary.resolved(for: colorScheme))
+            }
         }
     }
 }
 
-public enum DSValidationType {
-    case email, phone, password, custom((String) -> DSValidationResult)
+// MARK: - Search Field
+
+public struct DSSearchField: View {
+    @Environment(\.colorScheme) private var colorScheme
+    @FocusState private var isFocused: Bool
     
-    public func validate(_ text: String) -> DSValidationResult {
-        switch self {
-        case .email: return validateEmail(text)
-        case .phone: return validatePhone(text)
-        case .password: return validatePassword(text)
-        case .custom(let validator): return validator(text)
+    @Binding private var text: String
+    private let placeholder: String
+    private let onSubmit: (() -> Void)?
+    
+    public init(
+        text: Binding<String>,
+        placeholder: String = "Search...",
+        onSubmit: (() -> Void)? = nil
+    ) {
+        self._text = text
+        self.placeholder = placeholder
+        self.onSubmit = onSubmit
+    }
+    
+    public var body: some View {
+        HStack(spacing: SpacingScale.sm.rawValue) {
+            Image(systemName: "magnifyingglass")
+                .foregroundColor(
+                    isFocused
+                        ? ColorTokens.Accent.primary.resolved(for: colorScheme)
+                        : ColorTokens.Foreground.tertiary.resolved(for: colorScheme)
+                )
+            
+            TextField(placeholder, text: $text)
+                .dsTypography(TypographyTokens.Body.medium)
+                .foregroundColor(ColorTokens.Foreground.primary.resolved(for: colorScheme))
+                .focused($isFocused)
+                .textFieldStyle(.plain)
+                .onSubmit { onSubmit?() }
+            
+            if !text.isEmpty {
+                Button(action: { text = "" }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(ColorTokens.Foreground.tertiary.resolved(for: colorScheme))
+                }
+                .buttonStyle(.plain)
+            }
         }
-    }
-    
-    private func validateEmail(_ text: String) -> DSValidationResult {
-        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
-        let isValid = emailPredicate.evaluate(with: text)
-        return DSValidationResult(isValid: isValid, errorMessage: isValid ? "" : "Please enter a valid email address")
-    }
-    
-    private func validatePhone(_ text: String) -> DSValidationResult {
-        let phoneRegex = "^[+]?[0-9]{10,15}$"
-        let phonePredicate = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
-        let isValid = phonePredicate.evaluate(with: text)
-        return DSValidationResult(isValid: isValid, errorMessage: isValid ? "" : "Please enter a valid phone number")
-    }
-    
-    private func validatePassword(_ text: String) -> DSValidationResult {
-        let hasMinLength = text.count >= 8
-        let hasUppercase = text.range(of: "[A-Z]", options: .regularExpression) != nil
-        let hasLowercase = text.range(of: "[a-z]", options: .regularExpression) != nil
-        let hasNumber = text.range(of: "[0-9]", options: .regularExpression) != nil
-        let isValid = hasMinLength && hasUppercase && hasLowercase && hasNumber
-        return DSValidationResult(isValid: isValid, errorMessage: isValid ? "" : "Password must be at least 8 characters with uppercase, lowercase, and number")
+        .padding(.horizontal, SpacingScale.md.rawValue)
+        .padding(.vertical, SpacingScale.sm.rawValue)
+        .background(ColorTokens.Background.secondary.resolved(for: colorScheme))
+        .clipShape(Capsule())
+        .overlay(
+            Capsule()
+                .strokeBorder(
+                    isFocused
+                        ? ColorTokens.Border.focus.resolved(for: colorScheme)
+                        : Color.clear,
+                    lineWidth: BorderTokens.Width.thin
+                )
+        )
+        .animation(AnimationTokens.Micro.focus.swiftUIAnimation, value: isFocused)
     }
 }
 
-public struct DSValidationResult {
-    public let isValid: Bool
-    public let errorMessage: String
+// MARK: - OTP Input
+
+public struct DSOTPField: View {
+    @Environment(\.colorScheme) private var colorScheme
+    @FocusState private var focusedIndex: Int?
     
-    public init(isValid: Bool, errorMessage: String) {
-        self.isValid = isValid
-        self.errorMessage = errorMessage
+    @Binding private var code: String
+    private let length: Int
+    private let onComplete: ((String) -> Void)?
+    
+    public init(
+        code: Binding<String>,
+        length: Int = 6,
+        onComplete: ((String) -> Void)? = nil
+    ) {
+        self._code = code
+        self.length = length
+        self.onComplete = onComplete
+    }
+    
+    public var body: some View {
+        HStack(spacing: SpacingScale.sm.rawValue) {
+            ForEach(0..<length, id: \.self) { index in
+                OTPDigitBox(
+                    digit: digit(at: index),
+                    isFocused: focusedIndex == index,
+                    colorScheme: colorScheme
+                )
+                .onTapGesture {
+                    focusedIndex = min(code.count, length - 1)
+                }
+            }
+        }
+        .background(
+            TextField("", text: $code)
+                .keyboardType(.numberPad)
+                .textContentType(.oneTimeCode)
+                .focused($focusedIndex, equals: 0)
+                .opacity(0)
+                .onChange(of: code) { _, newValue in
+                    let filtered = String(newValue.prefix(length).filter { $0.isNumber })
+                    if filtered != newValue {
+                        code = filtered
+                    }
+                    if filtered.count == length {
+                        onComplete?(filtered)
+                    }
+                }
+        )
+        .onAppear {
+            focusedIndex = 0
+        }
+    }
+    
+    private func digit(at index: Int) -> String {
+        guard index < code.count else { return "" }
+        let startIndex = code.index(code.startIndex, offsetBy: index)
+        return String(code[startIndex])
     }
 }
 
-extension UIReturnKeyType {
-    var submitLabel: SubmitLabel {
-        switch self {
-        case .done: return .done
-        case .go: return .go
-        case .next: return .next
-        case .search: return .search
-        case .send: return .send
-        case .join: return .join
-        case .route: return .route
-        case .emergencyCall: return .emergencyCall
-        case .continue: return .continue
-        case .default: return .done
-        @unknown default: return .done
-        }
+private struct OTPDigitBox: View {
+    let digit: String
+    let isFocused: Bool
+    let colorScheme: ColorScheme
+    
+    var body: some View {
+        Text(digit.isEmpty ? " " : digit)
+            .dsTypography(TypographyTokens.Heading.h2)
+            .foregroundColor(ColorTokens.Foreground.primary.resolved(for: colorScheme))
+            .frame(width: 48, height: 56)
+            .background(ColorTokens.Background.primary.resolved(for: colorScheme))
+            .overlay(
+                RoundedRectangle(cornerRadius: BorderTokens.Radius.md, style: .continuous)
+                    .strokeBorder(
+                        isFocused
+                            ? ColorTokens.Border.focus.resolved(for: colorScheme)
+                            : ColorTokens.Border.primary.resolved(for: colorScheme),
+                        lineWidth: isFocused ? BorderTokens.Width.medium : BorderTokens.Width.thin
+                    )
+            )
+            .clipShape(RoundedRectangle(cornerRadius: BorderTokens.Radius.md, style: .continuous))
+            .dsShadow(isFocused ? ShadowTokens.inputFocus : ShadowTokens.none)
     }
-} 
+}
