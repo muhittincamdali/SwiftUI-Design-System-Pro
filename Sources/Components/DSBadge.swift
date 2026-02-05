@@ -1,184 +1,404 @@
+// DSBadge.swift
+// DesignSystemPro
+//
+// Production-grade badge component with multiple variants,
+// sizes, and dot indicators.
+
 import SwiftUI
 
+// MARK: - Badge Variant
+
+public enum DSBadgeVariant: String, CaseIterable, Sendable {
+    case primary     // Accent color
+    case secondary   // Neutral/gray
+    case success     // Green
+    case warning     // Amber/yellow
+    case error       // Red
+    case info        // Blue
+    case outline     // Bordered
+}
+
+// MARK: - Badge Size
+
+public enum DSBadgeSize: String, CaseIterable, Sendable {
+    case xs  // Extra small
+    case sm  // Small
+    case md  // Medium (default)
+    case lg  // Large
+    
+    var height: CGFloat {
+        switch self {
+        case .xs: return 16
+        case .sm: return 20
+        case .md: return 24
+        case .lg: return 28
+        }
+    }
+    
+    var horizontalPadding: CGFloat {
+        switch self {
+        case .xs: return 4
+        case .sm: return 6
+        case .md: return 8
+        case .lg: return 10
+        }
+    }
+    
+    var typography: TypographyToken {
+        switch self {
+        case .xs: return TypographyToken(scale: .micro, weight: .semibold)
+        case .sm: return TypographyTokens.UI.badge
+        case .md: return TypographyTokens.UI.labelSmall
+        case .lg: return TypographyTokens.UI.label
+        }
+    }
+    
+    var iconSize: CGFloat {
+        switch self {
+        case .xs: return 10
+        case .sm: return 12
+        case .md: return 14
+        case .lg: return 16
+        }
+    }
+}
+
+// MARK: - DSBadge
+
 public struct DSBadge: View {
-    public let text: String?
-    public let number: Int?
-    public let style: DSBadgeStyle
-    public let size: DSBadgeSize
-    public let showDot: Bool
+    @Environment(\.colorScheme) private var colorScheme
+    
+    private let label: String
+    private let variant: DSBadgeVariant
+    private let size: DSBadgeSize
+    private let leadingIcon: Image?
+    private let trailingIcon: Image?
+    private let isPill: Bool
     
     public init(
-        text: String? = nil,
-        number: Int? = nil,
-        style: DSBadgeStyle = .primary,
-        size: DSBadgeSize = .medium,
-        showDot: Bool = false
+        _ label: String,
+        variant: DSBadgeVariant = .primary,
+        size: DSBadgeSize = .md,
+        leadingIcon: Image? = nil,
+        trailingIcon: Image? = nil,
+        isPill: Bool = true
     ) {
-        self.text = text
-        self.number = number
-        self.style = style
+        self.label = label
+        self.variant = variant
         self.size = size
-        self.showDot = showDot
+        self.leadingIcon = leadingIcon
+        self.trailingIcon = trailingIcon
+        self.isPill = isPill
     }
     
     public var body: some View {
         HStack(spacing: 4) {
-            if showDot {
-                Circle()
-                    .fill(style.backgroundColor)
-                    .frame(width: size.dotSize, height: size.dotSize)
+            if let icon = leadingIcon {
+                icon
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: size.iconSize, height: size.iconSize)
             }
             
-            if let text = text {
-                Text(text)
-                    .font(size.font)
-                    .fontWeight(size.fontWeight)
-                    .foregroundColor(style.textColor)
-            } else if let number = number {
-                Text("\(number)")
-                    .font(size.font)
-                    .fontWeight(size.fontWeight)
-                    .foregroundColor(style.textColor)
+            Text(label)
+                .dsTypography(size.typography)
+            
+            if let icon = trailingIcon {
+                icon
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: size.iconSize, height: size.iconSize)
             }
         }
+        .foregroundColor(foregroundColor)
         .padding(.horizontal, size.horizontalPadding)
-        .padding(.vertical, size.verticalPadding)
-        .background(style.backgroundColor)
-        .cornerRadius(size.cornerRadius)
-        .overlay(
-            RoundedRectangle(cornerRadius: size.cornerRadius)
-                .stroke(style.borderColor, lineWidth: style.borderWidth)
-        )
-        .scaleEffect(showDot && (text == nil && number == nil) ? 1.0 : 1.0)
-        .animation(.easeInOut(duration: 0.2), value: showDot)
+        .frame(height: size.height)
+        .background(backgroundColor)
+        .clipShape(badgeShape)
+        .overlay(borderOverlay)
     }
-}
-
-public enum DSBadgeStyle {
-    case primary
-    case secondary
-    case success
-    case warning
-    case error
-    case info
-    case custom(DSBadgeStyleConfiguration)
     
-    public var backgroundColor: Color {
-        switch self {
-        case .primary: return .blue
-        case .secondary: return Color(.systemGray4)
-        case .success: return .green
-        case .warning: return .orange
-        case .error: return .red
-        case .info: return .cyan
-        case .custom(let config): return config.backgroundColor
+    // MARK: - Computed Properties
+    
+    private var foregroundColor: Color {
+        switch variant {
+        case .primary:
+            return ColorTokens.Foreground.onAccent.resolved(for: colorScheme)
+        case .secondary:
+            return ColorTokens.Foreground.primary.resolved(for: colorScheme)
+        case .success:
+            return colorScheme == .dark ? PrimitiveColors.Green.green900 : .white
+        case .warning:
+            return PrimitiveColors.Amber.amber900
+        case .error:
+            return colorScheme == .dark ? PrimitiveColors.Red.red900 : .white
+        case .info:
+            return colorScheme == .dark ? PrimitiveColors.Blue.blue900 : .white
+        case .outline:
+            return ColorTokens.Foreground.primary.resolved(for: colorScheme)
         }
     }
     
-    public var textColor: Color {
-        switch self {
-        case .primary: return .white
-        case .secondary: return .primary
-        case .success: return .white
-        case .warning: return .white
-        case .error: return .white
-        case .info: return .white
-        case .custom(let config): return config.textColor
+    private var backgroundColor: Color {
+        switch variant {
+        case .primary:
+            return ColorTokens.Accent.primary.resolved(for: colorScheme)
+        case .secondary:
+            return ColorTokens.Background.tertiary.resolved(for: colorScheme)
+        case .success:
+            return ColorTokens.Status.success.resolved(for: colorScheme)
+        case .warning:
+            return ColorTokens.Status.warning.resolved(for: colorScheme)
+        case .error:
+            return ColorTokens.Status.error.resolved(for: colorScheme)
+        case .info:
+            return ColorTokens.Status.info.resolved(for: colorScheme)
+        case .outline:
+            return .clear
         }
     }
     
-    public var borderColor: Color {
-        switch self {
-        case .primary: return .clear
-        case .secondary: return Color(.systemGray3)
-        case .success: return .clear
-        case .warning: return .clear
-        case .error: return .clear
-        case .info: return .clear
-        case .custom(let config): return config.borderColor
+    private var badgeShape: some Shape {
+        if isPill {
+            return AnyShape(Capsule())
+        } else {
+            return AnyShape(RoundedRectangle(cornerRadius: BorderTokens.Component.badge, style: .continuous))
         }
     }
     
-    public var borderWidth: CGFloat {
-        switch self {
-        case .primary: return 0
-        case .secondary: return 1
-        case .success: return 0
-        case .warning: return 0
-        case .error: return 0
-        case .info: return 0
-        case .custom(let config): return config.borderWidth
+    @ViewBuilder
+    private var borderOverlay: some View {
+        if variant == .outline {
+            badgeShape
+                .stroke(ColorTokens.Border.primary.resolved(for: colorScheme), lineWidth: BorderTokens.Width.thin)
+        } else {
+            EmptyView()
         }
     }
 }
 
-public struct DSBadgeStyleConfiguration {
-    public let backgroundColor: Color
-    public let textColor: Color
-    public let borderColor: Color
-    public let borderWidth: CGFloat
+// MARK: - AnyShape Helper
+
+private struct AnyShape: Shape {
+    private let pathBuilder: (CGRect) -> Path
+    
+    init<S: Shape>(_ shape: S) {
+        pathBuilder = { rect in
+            shape.path(in: rect)
+        }
+    }
+    
+    func path(in rect: CGRect) -> Path {
+        pathBuilder(rect)
+    }
+}
+
+// MARK: - Dot Badge
+
+public struct DSDotBadge: View {
+    @Environment(\.colorScheme) private var colorScheme
+    
+    private let variant: DSBadgeVariant
+    private let size: CGFloat
+    private let isPulsing: Bool
     
     public init(
-        backgroundColor: Color,
-        textColor: Color,
-        borderColor: Color = .clear,
-        borderWidth: CGFloat = 0
+        variant: DSBadgeVariant = .error,
+        size: CGFloat = 8,
+        isPulsing: Bool = false
     ) {
-        self.backgroundColor = backgroundColor
-        self.textColor = textColor
-        self.borderColor = borderColor
-        self.borderWidth = borderWidth
+        self.variant = variant
+        self.size = size
+        self.isPulsing = isPulsing
+    }
+    
+    public var body: some View {
+        Circle()
+            .fill(dotColor)
+            .frame(width: size, height: size)
+            .modifier(PulseModifier(isPulsing: isPulsing, color: dotColor))
+    }
+    
+    private var dotColor: Color {
+        switch variant {
+        case .primary: return ColorTokens.Accent.primary.resolved(for: colorScheme)
+        case .secondary: return ColorTokens.Foreground.tertiary.resolved(for: colorScheme)
+        case .success: return ColorTokens.Status.success.resolved(for: colorScheme)
+        case .warning: return ColorTokens.Status.warning.resolved(for: colorScheme)
+        case .error: return ColorTokens.Status.error.resolved(for: colorScheme)
+        case .info: return ColorTokens.Status.info.resolved(for: colorScheme)
+        case .outline: return ColorTokens.Border.primary.resolved(for: colorScheme)
+        }
     }
 }
 
-public enum DSBadgeSize {
-    case small, medium, large
+private struct PulseModifier: ViewModifier {
+    let isPulsing: Bool
+    let color: Color
     
-    public var font: Font {
-        switch self {
-        case .small: return .caption2
-        case .medium: return .caption
-        case .large: return .footnote
+    @State private var isAnimating = false
+    
+    func body(content: Content) -> some View {
+        ZStack {
+            if isPulsing {
+                Circle()
+                    .fill(color.opacity(0.4))
+                    .scaleEffect(isAnimating ? 2 : 1)
+                    .opacity(isAnimating ? 0 : 0.5)
+            }
+            content
+        }
+        .onAppear {
+            if isPulsing {
+                withAnimation(Animation.easeOut(duration: 1).repeatForever(autoreverses: false)) {
+                    isAnimating = true
+                }
+            }
+        }
+    }
+}
+
+// MARK: - Counter Badge
+
+public struct DSCounterBadge: View {
+    private let count: Int
+    private let maxCount: Int
+    private let variant: DSBadgeVariant
+    private let size: DSBadgeSize
+    
+    public init(
+        count: Int,
+        maxCount: Int = 99,
+        variant: DSBadgeVariant = .error,
+        size: DSBadgeSize = .sm
+    ) {
+        self.count = count
+        self.maxCount = maxCount
+        self.variant = variant
+        self.size = size
+    }
+    
+    public var body: some View {
+        if count > 0 {
+            DSBadge(
+                displayText,
+                variant: variant,
+                size: size
+            )
         }
     }
     
-    public var fontWeight: Font.Weight {
-        switch self {
-        case .small: return .medium
-        case .medium: return .semibold
-        case .large: return .bold
+    private var displayText: String {
+        count > maxCount ? "\(maxCount)+" : "\(count)"
+    }
+}
+
+// MARK: - Status Badge
+
+public struct DSStatusBadge: View {
+    @Environment(\.colorScheme) private var colorScheme
+    
+    private let status: String
+    private let variant: DSBadgeVariant
+    private let size: DSBadgeSize
+    
+    public init(
+        _ status: String,
+        variant: DSBadgeVariant,
+        size: DSBadgeSize = .sm
+    ) {
+        self.status = status
+        self.variant = variant
+        self.size = size
+    }
+    
+    public var body: some View {
+        HStack(spacing: 6) {
+            Circle()
+                .fill(statusColor)
+                .frame(width: 8, height: 8)
+            
+            Text(status)
+                .dsTypography(size.typography)
+                .foregroundColor(foregroundColor)
+        }
+        .padding(.horizontal, size.horizontalPadding + 2)
+        .frame(height: size.height)
+        .background(backgroundColor.opacity(0.15))
+        .clipShape(Capsule())
+    }
+    
+    private var statusColor: Color {
+        switch variant {
+        case .success: return ColorTokens.Status.success.resolved(for: colorScheme)
+        case .warning: return ColorTokens.Status.warning.resolved(for: colorScheme)
+        case .error: return ColorTokens.Status.error.resolved(for: colorScheme)
+        case .info, .primary: return ColorTokens.Status.info.resolved(for: colorScheme)
+        default: return ColorTokens.Foreground.tertiary.resolved(for: colorScheme)
         }
     }
     
-    public var horizontalPadding: CGFloat {
-        switch self {
-        case .small: return 6
-        case .medium: return 8
-        case .large: return 12
+    private var foregroundColor: Color {
+        switch variant {
+        case .success: return PrimitiveColors.Green.green700
+        case .warning: return PrimitiveColors.Amber.amber700
+        case .error: return PrimitiveColors.Red.red700
+        case .info, .primary: return PrimitiveColors.Blue.blue700
+        default: return ColorTokens.Foreground.secondary.resolved(for: colorScheme)
         }
     }
     
-    public var verticalPadding: CGFloat {
-        switch self {
-        case .small: return 2
-        case .medium: return 4
-        case .large: return 6
+    private var backgroundColor: Color {
+        switch variant {
+        case .success: return ColorTokens.Status.success.resolved(for: colorScheme)
+        case .warning: return ColorTokens.Status.warning.resolved(for: colorScheme)
+        case .error: return ColorTokens.Status.error.resolved(for: colorScheme)
+        case .info, .primary: return ColorTokens.Status.info.resolved(for: colorScheme)
+        default: return ColorTokens.Background.tertiary.resolved(for: colorScheme)
         }
+    }
+}
+
+// MARK: - Tag
+
+public struct DSTag: View {
+    @Environment(\.colorScheme) private var colorScheme
+    
+    private let label: String
+    private let onRemove: (() -> Void)?
+    
+    public init(
+        _ label: String,
+        onRemove: (() -> Void)? = nil
+    ) {
+        self.label = label
+        self.onRemove = onRemove
     }
     
-    public var cornerRadius: CGFloat {
-        switch self {
-        case .small: return 8
-        case .medium: return 10
-        case .large: return 12
+    public var body: some View {
+        HStack(spacing: 4) {
+            Text(label)
+                .dsTypography(TypographyTokens.UI.labelSmall)
+                .foregroundColor(ColorTokens.Foreground.primary.resolved(for: colorScheme))
+            
+            if let onRemove = onRemove {
+                Button(action: onRemove) {
+                    Image(systemName: "xmark")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 10, height: 10)
+                        .foregroundColor(ColorTokens.Foreground.secondary.resolved(for: colorScheme))
+                }
+                .buttonStyle(.plain)
+            }
         }
+        .padding(.horizontal, 10)
+        .padding(.vertical, 6)
+        .background(ColorTokens.Background.secondary.resolved(for: colorScheme))
+        .clipShape(RoundedRectangle(cornerRadius: BorderTokens.Component.tag, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: BorderTokens.Component.tag, style: .continuous)
+                .stroke(ColorTokens.Border.primary.resolved(for: colorScheme), lineWidth: BorderTokens.Width.hairline)
+        )
     }
-    
-    public var dotSize: CGFloat {
-        switch self {
-        case .small: return 6
-        case .medium: return 8
-        case .large: return 10
-        }
-    }
-} 
+}

@@ -12,18 +12,22 @@ let package = Package(
         .tvOS(.v15)
     ],
     products: [
+        // Complete design system
         .library(
             name: "DesignSystemPro",
             targets: ["DesignSystemPro"]
         ),
+        // Core tokens only (for custom implementations)
         .library(
             name: "DesignSystemProCore",
             targets: ["DesignSystemProCore"]
         ),
+        // Components only (requires Core)
         .library(
             name: "DesignSystemProComponents",
             targets: ["DesignSystemProComponents"]
         ),
+        // Theme engine only (requires Core)
         .library(
             name: "DesignSystemProTheme",
             targets: ["DesignSystemProTheme"]
@@ -34,6 +38,7 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-algorithms", from: "1.0.0")
     ],
     targets: [
+        // Main target - exports everything
         .target(
             name: "DesignSystemPro",
             dependencies: [
@@ -43,6 +48,8 @@ let package = Package(
             ],
             path: "Sources/DesignSystemPro"
         ),
+        
+        // Core tokens and utilities
         .target(
             name: "DesignSystemProCore",
             dependencies: [
@@ -51,30 +58,40 @@ let package = Package(
             ],
             path: "Sources/Core"
         ),
+        
+        // UI Components
         .target(
             name: "DesignSystemProComponents",
             dependencies: ["DesignSystemProCore"],
             path: "Sources/Components"
         ),
+        
+        // Theme engine
         .target(
             name: "DesignSystemProTheme",
             dependencies: ["DesignSystemProCore"],
             path: "Sources/Theme"
         ),
+        
+        // Unit Tests
         .testTarget(
             name: "DesignSystemProTests",
             dependencies: ["DesignSystemPro"],
             path: "Tests/UnitTests"
         ),
+        
+        // UI Tests
         .testTarget(
             name: "DesignSystemProUITests",
             dependencies: ["DesignSystemPro"],
             path: "Tests/UITests"
         ),
+        
+        // Performance Tests
         .testTarget(
             name: "DesignSystemProPerformanceTests",
             dependencies: ["DesignSystemPro"],
             path: "Tests/PerformanceTests"
         )
     ]
-) 
+)
