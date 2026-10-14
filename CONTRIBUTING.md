@@ -1,56 +1,39 @@
 # Contributing
 
-Thanks for your interest in contributing! Here's how to get started.
+Bug reports and pull requests are welcome.
 
-## Getting Started
+## Development setup
 
-1. Fork the repository
-2. Clone your fork: `git clone https://github.com/YOUR_USERNAME/REPO_NAME.git`
-3. Create a branch: `git checkout -b feature/your-feature`
-4. Make your changes
-5. Push to your fork: `git push origin feature/your-feature`
-6. Open a Pull Request
-
-## Development Setup
+Requirements: an Xcode version with a Swift 6 toolchain (the package uses
+swift-tools-version 6.0). Local development uses Xcode 27; CI uses the
+default Xcode of the GitHub `macos-26` runner.
 
 ```bash
-# Clone the repo
-git clone https://github.com/muhittincamdali/REPO_NAME.git
-cd REPO_NAME
-
-# Open in Xcode
-open Package.swift
+git clone https://github.com/muhittincamdali/SwiftUI-Design-System-Pro.git
+cd SwiftUI-Design-System-Pro
+swift build
+swift test
 ```
 
-## Code Style
+To run the tests on an iOS simulator:
 
-- Follow Swift API Design Guidelines
-- Use SwiftLint (config included)
-- Write descriptive commit messages
-- Add documentation for public APIs
+```bash
+xcodebuild test -scheme SwiftUI-Design-System-Pro \
+  -destination 'platform=iOS Simulator,name=<simulator name>'
+```
 
-## Commit Messages
+If you change how a component looks, regenerate the README screenshots with
+`scripts/render-screenshots.sh` and commit the updated files in `docs/images`.
 
-Use conventional commits:
-- `feat:` new feature
-- `fix:` bug fix
-- `docs:` documentation
-- `refactor:` code refactor
-- `test:` tests
+## Pull requests
 
-Example: `feat: add dark mode support`
+1. Create a branch from `main`.
+2. Add or update tests for behaviour changes (`Tests/DesignSystemProTests`).
+3. Make sure `swift test` passes; CI also builds for iOS, tvOS, watchOS and visionOS.
+4. Use [Conventional Commits](https://www.conventionalcommits.org/) for commit
+   messages (`feat:`, `fix:`, `docs:`, `test:`, `ci:`, `chore:`).
+5. Add a line to the `Unreleased` section of `CHANGELOG.md`.
 
-## Pull Request Process
+## Code of conduct
 
-1. Update README if needed
-2. Add tests for new features
-3. Ensure CI passes
-4. Request review from maintainers
-
-## Code of Conduct
-
-Be respectful and constructive. We're all here to build great software together.
-
-## Questions?
-
-Open an issue or reach out!
+This project follows the [Code of Conduct](CODE_OF_CONDUCT.md).

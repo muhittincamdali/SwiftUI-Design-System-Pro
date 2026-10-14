@@ -12,10 +12,9 @@ Brief description of the changes.
 - Change 2
 
 ## Testing
-- [ ] Unit tests pass
-- [ ] UI tests pass (if applicable)
-- [ ] Tested on iOS Simulator
-- [ ] Tested on physical device
+- [ ] `swift test` passes
+- [ ] Tested on an iOS simulator (UI changes)
+- [ ] Screenshots regenerated with `scripts/render-screenshots.sh` (visual changes)
 
 ## Checklist
 - [ ] Code follows project style guidelines
