@@ -1,490 +1,308 @@
+<!-- brand:start -->
+
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/banner-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/banner-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/banner-light.svg" alt="SwiftUI Design System Pro: Design tokens, a theme engine and SwiftUI components for iOS, macOS, tvOS, watchOS and visionOS."></picture></p>
+
+<!-- lang-selector:start -->
+<p align="center"><a href="README.md">English</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.ja.md">日本語</a> · <a href="README.ko.md">한국어</a> · <a href="README.es.md">Español</a> · <a href="README.de.md">Deutsch</a> · <a href="README.fr.md">Français</a> · <a href="README.pt-BR.md">Português (Brasil)</a> · <a href="README.ru.md">Русский</a></p>
+<!-- lang-selector:end -->
+
 <p align="center">
-  <img src="https://img.shields.io/badge/Swift-6.0-FA7343?style=for-the-badge&logo=swift&logoColor=white" alt="Swift 6.0"/>
-  <img src="https://img.shields.io/badge/Platform-iOS%20|%20macOS%20|%20visionOS-007AFF?style=for-the-badge&logo=apple&logoColor=white" alt="Platform"/>
-  <img src="https://img.shields.io/badge/Standard-Unified%20Core-5856D6?style=for-the-badge" alt="Standard"/>
+<a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/actions/workflows/ci.yml"><img src="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/actions/workflows/ci.yml/badge.svg" alt="CI status"></a>
+<a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/releases"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-version-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-version-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-version-light.svg" alt="Latest version: v2.0.0"></picture></a>
+<a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/blob/main/Package.swift"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-platforms-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-platforms-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-platforms-light.svg" alt="Supported platforms: iOS 17+ · macOS 14+ · watchOS 10+ · tvOS 17+ · visionOS 1+"></picture></a>
+<a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/blob/main/Package.swift"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-language-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-language-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-language-light.svg" alt="Language version: Swift 6.0+"></picture></a>
+<a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/blob/main/LICENSE"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-license-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-license-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-license-light.svg" alt="License: MIT"></picture></a>
 </p>
 
----
+<p align="center">
+<a href="#quick-start"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/button-start-en-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/button-start-en-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/button-start-en-light.svg" alt="Get started"></picture></a>
+<a href="https://muhittincamdali.github.io/SwiftUI-Design-System-Pro/documentation/designsystempro/"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/button-docs-en-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/button-docs-en-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/button-docs-en-light.svg" alt="Documentation"></picture></a>
+<a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/tree/main/Examples"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/button-examples-en-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/button-examples-en-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/button-examples-en-light.svg" alt="Examples"></picture></a>
+</p>
 
-> **🛡️ PART OF THE 2026 UNIFIED CORE**
-> This repository is a verified component of 'The Endless March' initiative. Purified for Swift 6, zero-dependency, and engineered for maximum hardware saturation.
-> 
-> *Flagship Engines:* [SwiftNetwork](https://github.com/muhittincamdali/SwiftNetwork) | [SwiftAI](https://github.com/muhittincamdali/SwiftAI) | [LiquidGlassKit](https://github.com/muhittincamdali/LiquidGlassKit)
+<!-- brand:end -->
 
----
+DesignSystemPro is a Swift package for SwiftUI apps that want one consistent look without building it
+from scratch. It has design tokens (colors, typography, spacing, borders, shadows, motion), a theme
+engine with light, dark, preset and brand themes, and about 40 component views built on the tokens: buttons,
+text fields, toggles, cards, badges, avatars, toasts and skeleton loaders. Every component resolves its
+colors for light and dark mode, and text styled with the typography tokens follows Dynamic Type.
 
-# DesignSystemPro
+## Highlights
 
-[![Swift](https://img.shields.io/badge/Swift-5.9+-orange.svg)](https://swift.org)
-[![Platforms](https://img.shields.io/badge/Platforms-iOS%2015+%20|%20macOS%2012+%20|%20visionOS-blue.svg)](https://developer.apple.com)
-[![SPM](https://img.shields.io/badge/SPM-Compatible-brightgreen.svg)](https://swift.org/package-manager/)
-[![License](https://img.shields.io/badge/License-MIT-lightgrey.svg)](LICENSE)
+- **Light and dark mode** — every color token has a light, a dark and a high-contrast value, and the
+  components pick the right one from the environment.
+- **Dynamic Type** — `dsTypography(_:)` scales the type styles with the user's text size setting.
+- **Themes for your own views** — `ThemeManager` follows the system or applies a preset or a theme
+  generated from your brand colors; read it with `@Environment(\.dsTheme)`.
+- **Contrast checks** — `ColorContrastUtility` computes WCAG contrast ratios; the tests check body text
+  and filled-button labels against WCAG AA in both color schemes.
+- **Tested rendering** — a test renders every component group in light and dark mode and compares it
+  with stored reference fingerprints, so a color or layout change fails CI.
+- **Five platforms** — iOS, macOS, tvOS, watchOS and visionOS from one package with no runtime dependencies.
 
-**The most comprehensive SwiftUI design system for building world-class iOS applications.** Production-ready design tokens, enterprise components, and a powerful theme engine.
+## Quick start
 
+**1. Add the package**
+
+In Xcode, choose **File › Add Package Dependencies…** and enter the repository URL:
+
+```text
+https://github.com/muhittincamdali/SwiftUI-Design-System-Pro.git
 ```
-╔══════════════════════════════════════════════════════════════════════════╗
-║                         DESIGNSYSTEMPRO 2.0                              ║
-║                                                                          ║
-║   🎨 Design Tokens   •   🧩 50+ Components   •   🎭 Theme Engine         ║
-║   ♿ Accessible      •   🏢 Enterprise-Ready  •   📱 Multi-Platform      ║
-╚══════════════════════════════════════════════════════════════════════════╝
-```
 
-## 🚀 Killer Feature: The 2026 Standard
-This repository has been upgraded to the absolute global #1 standard in its category.
+Leave **Dependency Rule** at **Up to Next Major Version**, starting at 2.0.0, and click **Add Package**.
+In the next window, choose your app target next to **DesignSystemPro** and click **Add Package** again.
 
-## ✨ Features
+**2. Import the module**
 
-### 🌉 Figma-to-Code Bridge (The 2026 Standard)
-Automatically translate your Figma Design Tokens (JSON) into strictly-typed, `@MainActor`-isolated Swift code. Zero-friction handoffs from designer to developer.
+Add this line at the top of the Swift file where you use the components:
 
 ```swift
-// Automatically generated by FigmaBridge
+import DesignSystemPro
+```
+
+**3. Use it**
+
+Replace the contents of `ContentView.swift` in a new SwiftUI app project with the code below and run
+the app (**Product › Run**, ⌘R). You see a heading, a green "Ready" badge, a toggle and a full-width
+button that switches the toggle.
+
+```swift
+import DesignSystemPro
 import SwiftUI
 
-public struct GeneratedTokens: Sendable {
-    @MainActor public static let brandPrimary = Color(hex: "#007AFF")
-    @MainActor public static let surfaceElevated = Color(hex: "#1C1C1E")
+struct ContentView: View {
+    @State private var notificationsOn = true
+
+    var body: some View {
+        VStack(spacing: SpacingTokens.Content.comfortable) {
+            Text("Hello, DesignSystemPro")
+                .dsTypography(TypographyTokens.Heading.h2)
+
+            DSStatusBadge("Ready", variant: .success)
+
+            DSToggle(isOn: $notificationsOn, label: "Notifications")
+
+            DSButton("Continue", isFullWidth: true) {
+                notificationsOn.toggle()
+            }
+        }
+        .padding(SpacingTokens.Layout.screenEdge)
+    }
 }
 ```
 
-### 🎨 Complete Design Token System
+The same file is in the example app:
+[Examples/DesignSystemProDemo/Sources/ContentView.swift](Examples/DesignSystemProDemo/Sources/ContentView.swift).
 
-| Token Type | Description | Examples |
-|------------|-------------|----------|
-| **Colors** | Semantic color palette with light/dark support | Primary, Secondary, Status, Interactive |
-| **Typography** | Type scale with 16 sizes | Display, Heading, Body, UI, Code |
-| **Spacing** | 8pt grid system | 15 spacing values from 0-96pt |
-| **Shadows** | Multi-layer shadow system | 6 elevation levels |
-| **Borders** | Radius and width tokens | Component-specific radii |
-| **Animations** | Timing and easing tokens | Micro, Page, Feedback animations |
-
-### 🧩 Production Components
-
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│  BUTTONS        │  INPUTS          │  DISPLAY        │  FEEDBACK       │
-├─────────────────┼──────────────────┼─────────────────┼─────────────────┤
-│  DSButton       │  DSTextField     │  DSCard         │  DSToast        │
-│  DSIconButton   │  DSTextArea      │  DSBadge        │  DSAlert        │
-│  DSButtonGroup  │  DSSearchField   │  DSAvatar       │  DSModal        │
-│                 │  DSOTPField      │  DSSkeleton     │  DSSnackbar     │
-├─────────────────┼──────────────────┼─────────────────┼─────────────────┤
-│  SELECTION      │  NAVIGATION      │  DATA           │  LAYOUT         │
-├─────────────────┼──────────────────┼─────────────────┼─────────────────┤
-│  DSToggle       │  DSNavigationBar │  DSChart        │  DSCard         │
-│  DSCheckbox     │  DSTabBar        │  DSProgressBar  │  DSListCard     │
-│  DSRadio        │  DSSearchField   │  DSStatCard     │  DSMediaCard    │
-│  DSSwitch       │                  │                 │                 │
-└─────────────────┴──────────────────┴─────────────────┴─────────────────┘
-```
-
-### 🎭 Theme Engine
-
-- **Light/Dark Mode** - Automatic adaptation
-- **Custom Themes** - Brand customization
-- **White-Label** - Enterprise support
-- **Preset Themes** - Ocean, Forest, Sunset, Lavender
-- **Runtime Switching** - Instant theme changes
-
-## 📦 Installation
+## Installation
 
 ### Swift Package Manager
 
+In Xcode, choose **File › Add Package Dependencies…** and enter the repository URL:
+
+```text
+https://github.com/muhittincamdali/SwiftUI-Design-System-Pro.git
+```
+
+Or add it to the `dependencies` in your `Package.swift`:
+
 ```swift
 dependencies: [
-    .package(url: "https://github.com/muhittincamdali/SwiftUI-Design-System-Pro", from: "2.0.0")
+    .package(url: "https://github.com/muhittincamdali/SwiftUI-Design-System-Pro.git", from: "2.0.0")
+],
+targets: [
+    .target(name: "YourApp", dependencies: [
+        .product(name: "DesignSystemPro", package: "SwiftUI-Design-System-Pro")
+    ])
 ]
 ```
 
-### Modular Imports
+Versions before 2.0.0 have the older 1.x API that this README does not describe.
+
+## Usage
+
+### Install the theme provider and the toast overlay
+
+Wrap the root view in `DSApp`. It puts the active theme into the environment and adds the overlay that
+shows toasts:
 
 ```swift
-// Full system
 import DesignSystemPro
-
-// Tokens only (custom implementations)
-import DesignSystemProCore
-
-// Components only
-import DesignSystemProComponents
-
-// Theme engine only
-import DesignSystemProTheme
-```
-
-## 🚀 Quick Start
-
-### 1. Setup Your App
-
-```swift
 import SwiftUI
-import DesignSystemPro
 
 @main
 struct MyApp: App {
     var body: some Scene {
         WindowGroup {
-            DSApp {
-                ContentView()
-            }
+            DSApp { ContentView() }
         }
     }
 }
 ```
 
-### 2. Use Components
+### Build a screen from components
+
+Components take plain values and bindings; spacing and type come from the tokens. This is the sign-in
+screen of the example app:
 
 ```swift
-struct ContentView: View {
+struct SignInView: View {
     @State private var email = ""
-    @State private var isEnabled = true
-    
+    @State private var isSubmitting = false
+
     var body: some View {
-        VStack(spacing: SpacingScale.lg.rawValue) {
-            // Text Field
-            DSTextField(
-                "Email",
-                text: $email,
-                placeholder: "Enter your email",
-                leadingIcon: Image(systemName: "envelope")
-            )
-            
-            // Toggle
-            DSToggle(isOn: $isEnabled, label: "Enable notifications")
-            
-            // Buttons
-            DSButton.primary("Submit") {
-                print("Submitted!")
+        VStack(spacing: SpacingTokens.Content.comfortable) {
+            Text("Welcome back").dsTypography(TypographyTokens.Heading.h2)
+
+            DSTextField("Email", text: $email, placeholder: "you@example.com")
+
+            DSButton("Sign in", isFullWidth: true) {
+                isSubmitting = true
+                DSToastManager.shared.success("Signed in")
             }
-            
-            DSButton("Cancel", variant: .secondary) {
-                print("Cancelled")
+            .loading(isSubmitting)
+
+            HStack {
+                DSAvatar(name: "Ada Lovelace", status: .online)
+                DSStatusBadge("Verified", variant: .success)
             }
         }
-        .dsScreenEdgePadding()
+        .padding(SpacingTokens.Layout.screenEdge)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .dsBackgroundColor(ColorTokens.Background.primary)
     }
 }
 ```
 
-### 3. Use Design Tokens
+### Choose a theme
+
+`ThemeManager` follows the system light and dark setting until you set a theme:
 
 ```swift
-// Typography
-Text("Welcome")
-    .dsTypography(TypographyTokens.Display.large)
+// Follow the system light/dark setting (the default) ...
+DesignSystemPro.configure()
 
-Text("Subtitle")
-    .dsHeadingStyle(.h2)
-
-// Colors
-.foregroundColor(ColorTokens.Foreground.primary.light)
-.background(ColorTokens.Background.secondary.light)
-
-// Spacing
-.padding(SpacingScale.lg.rawValue)
-.dsPadding(.xl)
-
-// Shadows
-.dsShadow(ShadowTokens.card)
-.dsElevation(.level2)
-
-// Borders
-.dsCornerRadius(.lg)
-.dsStrokeBorder()
-```
-
-## 🎨 Design Tokens
-
-### Color System
-
-```swift
-// Semantic Colors
-ColorTokens.Background.primary      // Main background
-ColorTokens.Foreground.primary      // Primary text
-ColorTokens.Accent.primary          // Brand color
-ColorTokens.Status.success          // Success state
-ColorTokens.Border.focus            // Focus ring
-
-// With Color Scheme
-let color = ColorTokens.Accent.primary.resolved(for: colorScheme)
-
-// Accessibility
-let highContrastColor = ColorTokens.Accent.primary.resolved(
-    for: colorScheme, 
-    highContrast: true
-)
-```
-
-### Typography Scale
-
-```swift
-// Displays (Hero titles)
-TypographyTokens.Display.hero      // 72pt bold
-TypographyTokens.Display.title     // 60pt bold
-TypographyTokens.Display.large     // 48pt semibold
-
-// Headings
-TypographyTokens.Heading.h1        // 24pt bold
-TypographyTokens.Heading.h2        // 20pt semibold
-TypographyTokens.Heading.h3        // 18pt semibold
-
-// Body
-TypographyTokens.Body.large        // 18pt regular
-TypographyTokens.Body.medium       // 16pt regular (base)
-TypographyTokens.Body.small        // 14pt regular
-
-// UI Elements
-TypographyTokens.UI.button         // 14pt semibold
-TypographyTokens.UI.caption        // 12pt regular
-TypographyTokens.UI.badge          // 9pt semibold
-```
-
-### Spacing (8pt Grid)
-
-```swift
-SpacingScale.none      // 0pt
-SpacingScale.xxs       // 4pt
-SpacingScale.xs        // 6pt
-SpacingScale.sm        // 8pt   ← Base unit
-SpacingScale.md        // 12pt
-SpacingScale.lg        // 16pt  ← Most common
-SpacingScale.xl        // 20pt
-SpacingScale.xxl       // 24pt
-SpacingScale.xxxl      // 32pt
-SpacingScale.huge      // 40pt
-SpacingScale.massive   // 48pt
-```
-
-## 🎭 Theming
-
-### Use Built-in Themes
-
-```swift
-// Set theme
-ThemeManager.shared.setTheme(DarkTheme())
-
-// Use preset themes
+// ... or force a preset or a generated brand theme.
 ThemeManager.shared.setTheme(PresetThemes.ocean)
-ThemeManager.shared.setTheme(PresetThemes.forest)
 
-// Follow system
-ThemeManager.shared.followSystem = true
+let brand = BrandConfiguration(primaryColor: .purple, secondaryColor: .pink, borderRadius: 12)
+ThemeManager.shared.setTheme(WhiteLabelConfiguration(brand: brand, appName: "Acme").darkTheme)
 ```
 
-### Create Custom Theme
+Your own views read the active theme with `@Environment(\.dsTheme)`. The built-in components use the
+color tokens directly and are not restyled by the theme.
+
+### Check contrast
 
 ```swift
-let brandTheme = CustomTheme(
-    id: "myBrand",
-    name: "My Brand",
-    colorScheme: .light,
-    colors: ThemeColors(
-        accent: Color.purple,
-        accentSecondary: Color.pink
-    ),
-    borders: ThemeBorders(
-        radiusMedium: 12
-    )
-)
-
-ThemeManager.shared.setTheme(brandTheme)
+let ratio = ColorContrastUtility.contrastRatio(.white, Color(hex: "#2563EB")) // about 5.2
+let passes = ColorContrastUtility.meetsWCAG_AA(.white, Color(hex: "#2563EB")) // true
 ```
 
-### White-Label Configuration
+Every Swift snippet in this README (except the `Package.swift` excerpt) is compiled and run by
+[Tests/DesignSystemProTests/ReadmeExamples.swift](Tests/DesignSystemProTests/ReadmeExamples.swift).
 
-```swift
-let brand = BrandConfiguration(
-    primaryColor: Color(hex: "#FF5722"),
-    secondaryColor: Color(hex: "#3F51B5"),
-    fontFamily: "CustomFont"
-)
+## Demo
 
-let config = WhiteLabelConfiguration(
-    brand: brand,
-    appName: "MyApp"
-)
+The example app in [Examples/DesignSystemProDemo](Examples/DesignSystemProDemo) runs on iOS and macOS
+and has a screen for the quick start, the sign-in form, every component family and the themes. Open
+`Examples/DesignSystemProDemo/DesignSystemProDemo.xcodeproj`, choose an iPhone simulator and press
+⌘R. [Examples/README.md](Examples/README.md) describes each screen.
 
-// Use generated themes
-ThemeManager.shared.setTheme(config.lightTheme)
+| Light                                                                                                                  | Dark                                                                                                                 |
+| ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| <img src="docs/images/demo-components-light.png" alt="Components screen of the example app in light mode" width="300"> | <img src="docs/images/demo-components-dark.png" alt="Components screen of the example app in dark mode" width="300"> |
+| ![Buttons, light](docs/images/buttons-light.png)                                                                       | ![Buttons, dark](docs/images/buttons-dark.png)                                                                       |
+| ![Badges and avatars, light](docs/images/badges-light.png)                                                             | ![Badges and avatars, dark](docs/images/badges-dark.png)                                                             |
+
+The component images are rendered from the gallery in the test target with SwiftUI's `ImageRenderer`
+(`scripts/render-screenshots.sh`). More: [cards](docs/images/cards-light.png),
+[selection controls](docs/images/selection-light.png),
+[toasts and skeletons](docs/images/feedback-dark.png).
+
+## Documentation
+
+Reference documentation and articles:
+
+- [DesignSystemPro documentation](https://muhittincamdali.github.io/SwiftUI-Design-System-Pro/documentation/designsystempro/)
+  on GitHub Pages: every public type, grouped by tokens, theming and component family.
+- The DocC catalog is in
+  [Sources/DesignSystemPro/DesignSystemPro.docc](Sources/DesignSystemPro/DesignSystemPro.docc). Build
+  it locally with `swift package generate-documentation --target DesignSystemPro`.
+
+## Guides
+
+- [Getting Started](https://muhittincamdali.github.io/SwiftUI-Design-System-Pro/documentation/designsystempro/gettingstarted):
+  add the package, wrap the root view, use the first components.
+- [Building a Form](https://muhittincamdali.github.io/SwiftUI-Design-System-Pro/documentation/designsystempro/buildingaform):
+  validation, a loading button and a toast in one screen.
+- [Using Design Tokens](https://muhittincamdali.github.io/SwiftUI-Design-System-Pro/documentation/designsystempro/usingdesigntokens):
+  colors, typography, spacing and motion.
+- [Theming](https://muhittincamdali.github.io/SwiftUI-Design-System-Pro/documentation/designsystempro/theming):
+  presets, brand themes and the theme manager.
+
+## Requirements
+
+| Platform  | Minimum version       |
+| --------- | --------------------- |
+| iOS       | 17                    |
+| macOS     | 14                    |
+| watchOS   | 10                    |
+| tvOS      | 17                    |
+| visionOS  | 1                     |
+| Toolchain | Swift 6.0 · Xcode 26+ |
+
+CI builds with Xcode 26.6; development uses Xcode 27. `DSTextArea` is not available on tvOS and watchOS
+(it uses `TextEditor`).
+
+## Architecture
+
+```text
+Sources/DesignSystemPro
+├── Tokens/      ColorTokens, TypographyTokens, SpacingTokens, BorderTokens, ShadowTokens, AnimationTokens
+├── Theme/       DSTheme, ThemeManager, DSThemeProvider, presets, brand/white-label generation
+├── Components/  Buttons, text input, selection, cards, badges, avatars, toasts, skeletons
+└── DesignSystemPro.swift   configure() and DSApp
 ```
 
-## 📱 Component Examples
+| Family     | Views                                                                                                             |
+| ---------- | ----------------------------------------------------------------------------------------------------------------- |
+| Buttons    | `DSButton` (6 variants, 5 sizes, icons, loading state), `DSIconButton`, `DSButtonGroup`                           |
+| Text input | `DSTextField` (validation states, secure entry), `DSTextArea`, `DSSearchField`, `DSOTPField`                      |
+| Selection  | `DSToggle`, `DSSwitch`, `DSCheckbox`, `DSCheckboxGroup`, `DSRadio`, `DSRadioGroup`                                |
+| Content    | `DSCard`, `DSCardHeader`, `DSCardFooter`, `DSStatCard`, `DSMediaCard`, `DSListCard`, `DSCardListItem`             |
+| Badges     | `DSBadge`, `DSCounterBadge`, `DSDotBadge`, `DSStatusBadge`, `DSTag`                                               |
+| Avatars    | `DSAvatar` (image, initials or placeholder, status dot), `DSAvatarGroup`, `DSBorderedAvatar`, `DSAvatarWithBadge` |
+| Feedback   | `DSToastManager` with `DSToastContainer`/`DSToastView`, `DSSnackbar`                                              |
+| Loading    | `DSSkeleton` and text, avatar, card, list, table and profile skeletons; `DSConditionalSkeleton`                   |
 
-### Cards
+- Components are built from the tokens and do not read the theme. Tokens are plain `Sendable` value
+  types.
+- `ThemeManager` and `DSToastManager` are `@MainActor` `@Observable` classes with shared instances and
+  public initializers, so they can be injected (`DSThemeProvider(themeManager:)`,
+  `DSToastContainer(manager:)`) and tested.
+- Tests (`swift test`) use Swift Testing: token math, contrast, theme resolution, the toast queue and
+  timers, component helpers, the documentation snippets, reference fingerprints of every component group
+  in light and dark mode, and views hosted in AppKit for the theme provider, the switch tint and the OTP
+  focus ring. CI also runs them on an iOS simulator.
 
-```swift
-// Basic Card
-DSCard {
-    VStack(alignment: .leading) {
-        Text("Card Title").dsHeadingStyle(.h3)
-        Text("Card content goes here").dsBodyStyle(.medium)
-    }
-}
+## Roadmap
 
-// Interactive Card
-DSCard(isInteractive: true) {
-    // Content
-} action: {
-    print("Card tapped")
-}
+- Let the components read the active theme, so presets and brand themes restyle them too.
+- Raise the contrast of avatar initials on the lighter palette colors and of the checkbox tick in dark
+  mode to WCAG AA.
 
-// Stat Card
-DSStatCard(
-    title: "Revenue",
-    value: "$12,450",
-    change: "+12.5%",
-    isPositive: true,
-    icon: Image(systemName: "chart.line.uptrend.xyaxis")
-)
+The package was reduced to placeholder files in June 2026; 2.0 restores the earlier tokens, theme engine
+and components, fixes the bugs found on the way and adds the tests. Components from the 1.x API
+(alerts, modals, navigation bar, tab bar, charts) were not brought back. Ideas and bug reports are
+welcome as [issues](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/issues).
 
-// Media Card
-DSMediaCard(image: Image("header")) {
-    Text("Article Title").dsHeadingStyle(.h4)
-    Text("Preview text...").dsBodyStyle(.small)
-}
-```
+## Contributing
 
-### Badges & Avatars
+Contributions are welcome. Read the [contributing guide](https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/blob/main/CONTRIBUTING.md) and the [code of conduct](https://github.com/muhittincamdali/.github/blob/main/CODE_OF_CONDUCT.md) before opening a pull request. Report security issues privately as described in the [security policy](https://github.com/muhittincamdali/.github/blob/main/SECURITY.md).
 
-```swift
-// Badges
-DSBadge("New", variant: .success)
-DSBadge("3", variant: .error)
-DSStatusBadge("Active", variant: .success)
-DSCounterBadge(count: 99, maxCount: 99)
+## License
 
-// Avatars
-DSAvatar(name: "John Doe", size: .lg, status: .online)
-DSAvatarGroup(
-    avatars: [
-        AvatarData(name: "Alice"),
-        AvatarData(name: "Bob"),
-        AvatarData(name: "Charlie")
-    ],
-    maxVisible: 3
-)
-```
-
-### Toasts
-
-```swift
-// Show toasts
-DSToastManager.shared.success("Saved successfully!")
-DSToastManager.shared.error("Failed to save")
-DSToastManager.shared.warning("Check your input")
-DSToastManager.shared.info("New update available")
-
-// With action
-DSToastManager.shared.show(
-    DSToastData(
-        title: "Item deleted",
-        message: "This action can be undone",
-        variant: .warning,
-        action: ToastAction(label: "Undo") {
-            // Undo action
-        }
-    )
-)
-```
-
-### Skeleton Loading
-
-```swift
-// Basic skeleton
-DSSkeleton(width: 200, height: 20)
-
-// Text skeleton
-DSSkeletonText(lines: 3)
-
-// Card skeleton
-DSSkeletonCard(hasImage: true)
-
-// Conditional loading
-content
-    .dsLoadingSkeleton(isLoading: isLoading) {
-        DSSkeletonCard()
-    }
-```
-
-## ♿ Accessibility
-
-DesignSystemPro is built with accessibility in mind:
-
-- **VoiceOver** - Full support with proper labels
-- **Dynamic Type** - Scales with system font size
-- **Reduce Motion** - Respects accessibility settings
-- **High Contrast** - Enhanced contrast support
-- **WCAG Compliance** - Color contrast utilities included
-
-```swift
-// Check accessibility preferences
-if DSAccessibility.prefersReducedMotion {
-    // Use simplified animations
-}
-
-// Color contrast check
-let isAccessible = ColorContrastUtility.meetsWCAG_AA(
-    foregroundColor,
-    backgroundColor
-)
-```
-
-## 📊 Requirements
-
-| Platform | Minimum Version |
-|----------|----------------|
-| iOS | 15.0+ |
-| macOS | 12.0+ |
-| watchOS | 8.0+ |
-| tvOS | 15.0+ |
-| visionOS | 1.0+ |
-
-- **Swift**: 5.9+
-- **Xcode**: 15.0+
-
-## 🏗️ Architecture
-
-```
-SwiftUI-Design-System-Pro/
-├── Sources/
-│   ├── Core/
-│   │   ├── Tokens/
-│   │   │   ├── ColorTokens.swift
-│   │   │   ├── TypographyTokens.swift
-│   │   │   ├── SpacingTokens.swift
-│   │   │   ├── ShadowTokens.swift
-│   │   │   ├── BorderTokens.swift
-│   │   │   └── AnimationTokens.swift
-│   │   └── Utilities/
-│   ├── Components/
-│   │   ├── DSButton.swift
-│   │   ├── DSTextField.swift
-│   │   ├── DSCard.swift
-│   │   ├── DSBadge.swift
-│   │   ├── DSAvatar.swift
-│   │   ├── DSToast.swift
-│   │   ├── DSToggle.swift
-│   │   └── DSSkeleton.swift
-│   ├── Theme/
-│   │   └── ThemeEngine.swift
-│   └── DesignSystemPro/
-│       └── DesignSystemPro.swift
-├── Tests/
-└── Examples/
-```
-
-## 🤝 Contributing
-
-Contributions are welcome! Please read our contributing guidelines before submitting PRs.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-<p align="center">
-  Built with ❤️ for the SwiftUI community
-</p>
+Released under the MIT license. See [LICENSE](LICENSE).

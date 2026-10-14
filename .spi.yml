@@ -1,0 +1,13 @@
+version: 1
+builder:
+  configs:
+    - platform: ios
+      scheme: SwiftUI-Design-System-Pro
+    - platform: macos-spm
+    - platform: tvos
+      scheme: SwiftUI-Design-System-Pro
+    - platform: watchos
+      scheme: SwiftUI-Design-System-Pro
+    - platform: visionos
+      scheme: SwiftUI-Design-System-Pro
+    - documentation_targets: [DesignSystemPro]

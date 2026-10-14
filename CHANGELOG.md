@@ -1,321 +1,99 @@
-# 📋 Changelog
+# Changelog
 
-All notable changes to the SwiftUI Design System Pro project will be documented in this file.
+All notable changes to this project are documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [2.0.0] - 2026-10-14
+
+Between February and June 2026 the repository went through a
+rewrite (the "v2.0" token, theme and component code) and then a clean-up that
+replaced most of the sources with placeholder files. This release restores the
+v2.0 code, fixes it and tests it. The API is not compatible with 1.0.0.
+
 ### Added
-- New component: `DSTextField` - Advanced text input with validation
-- New component: `DSSearchField` - Search input with suggestions
-- New component: `DSModal` - Modal presentations with multiple styles
-- New component: `DSAlert` - Alert dialogs with different types
-- New component: `DSProgressIndicator` - Linear and circular progress
-- New component: `DSBadge` - Notification badges and indicators
-- Enhanced accessibility features for all components
-- New animation presets for micro-interactions
-- Performance optimizations for large lists
-- Comprehensive test coverage for all new components
-- Package.swift with proper SPM configuration
-- GitHub Topics for better discoverability
+
+- Design tokens restored: colors (primitive palette and semantic roles with
+  light, dark and high-contrast values), typography, spacing, borders, shadows
+  with elevation levels, and animation tokens.
+- Theme engine restored: `DSTheme`, light, dark, custom and preset themes,
+  `ThemeManager`, `DSThemeProvider`, brand and white-label theme generation.
+- Components restored: buttons, text field, text area, search and OTP fields,
+  toggle, switch, checkbox and radio controls, cards, badges, avatars, toasts
+  and skeleton loaders.
+- Typography tokens scale with Dynamic Type (`TypographyToken.font(for:)`,
+  `scaledSize(for:)`).
+- `ThemeManager` and `DSToastManager` have public initializers and can be
+  injected into `DSThemeProvider` and `DSToastContainer`.
+- Swift Testing suites for token math, contrast, theming, the toast queue and
+  component helpers, rendering tests that compare every component in light
+  and dark mode with reference fingerprints, tests that compile the README
+  and DocC examples, and macOS tests that host the theme provider, the switch
+  and the OTP field in AppKit to check the rendered result.
+- DocC catalog with a getting-started guide, a "Building a Form" article and
+  articles on tokens and theming, published to GitHub Pages.
+- Example app `Examples/DesignSystemProDemo` for iOS and macOS with the README
+  examples, every component family and a theme switcher.
+- README in ten languages (English, Turkish, Simplified Chinese, Japanese,
+  Korean, Spanish, German, French, Brazilian Portuguese, Russian).
+- Screenshots in `docs/images`, rendered by `scripts/render-screenshots.sh`,
+  and screenshots of the example app.
+- CI through the shared workflows of `muhittincamdali/.github`: tests on
+  macOS and an iOS simulator, builds for iOS, macOS, tvOS, watchOS and
+  visionOS, DocC to GitHub Pages, link, wording and translation checks; a
+  separate workflow builds the example app.
 
 ### Changed
-- Improved button rendering performance by 15%
-- Enhanced dark mode color consistency
-- Updated documentation with new examples
-- Enhanced Package.swift with proper SPM configuration
-- Added GitHub Topics for better discoverability
+
+- Minimum platforms are iOS 17, macOS 14, tvOS 17, watchOS 10 and visionOS 1;
+  the package uses `swift-tools-version: 6.0` and builds in Swift 6 language
+  mode.
+- The package ships a single `DesignSystemPro` library product.
+- `ThemeManager` and `DSToastManager` use the Observation framework
+  (`@Observable`) instead of `ObservableObject`.
+- Text on filled accent, error and success colors meets WCAG AA in both color
+  schemes (`Foreground.onAccent` is dark in dark mode; light-mode success uses
+  green 700).
+- `dsAnimation(_:value:)`, `dsSpring(_:value:)` and `dsTransition(_:animation:)`
+  replace the variants that animated on every render.
 
 ### Fixed
-- Memory leak in image caching system
-- Accessibility voice-over issues in card components
-- Dark mode color inconsistencies in tertiary buttons
-- Missing Package.swift configuration
-- Incomplete test coverage
 
-## [2.1.0] - 2024-12-15
+- `DSThemeProvider` pinned the color scheme to light and never switched to the
+  dark theme when following the system.
+- `DSButton.loading(_:)` ignored changes after the first render.
+- A replaced or dismissed toast's timer could dismiss the toast that replaced it.
+- A toast with an infinite or very large `duration` crashed `DSToastManager.show`.
+- The OTP field lost focus when a digit box was tapped.
+- Dark-mode shadow opacity could exceed 1.
+- Invalid hex strings produced an almost transparent color instead of black.
+- Luminance and `toHex()` now work on every platform, including watchOS.
+- `DSSwitch` used the light-mode accent in dark mode.
 
-### Added
-- **New Component**: `DSProgressIndicator`
-  - Linear and circular progress indicators
-  - Customizable colors and sizes
-  - Accessibility support for screen readers
-  - Animation support for smooth transitions
+### Removed
 
-- **New Component**: `DSBadge`
-  - Notification badges with customizable styles
-  - Number and text badge variants
-  - Automatic sizing and positioning
-  - Accessibility labels for screen readers
+- Placeholder sources from June 2026 (`FigmaBridge`, `AdaptiveTextEngine`,
+  `ShadowCalibrator`, circuit breaker, retry policy, event bus) and files that
+  were not part of any target.
+- 1.x components that did not build against the v2 tokens: `DSAlert`,
+  `DSModal`, `DSNavigationBar`, `DSProgressIndicator`, `DSTabBar`, `DSChart`.
+- The CocoaPods podspec, the `Documentation` and `Examples` folders written for
+  the 1.x API, and benchmark tables that no benchmark produced.
+- Workflows that rewrote the README or release notes, and documentation lint
+  jobs for the removed folders.
+- Local copies of the code of conduct, security policy, support page, issue
+  templates, pull request template and funding file; the shared ones from
+  `muhittincamdali/.github` apply instead.
 
-- **Enhanced Accessibility**
-  - VoiceOver support for all new components
-  - Dynamic Type support for better text scaling
-  - High contrast mode improvements
-  - Reduced motion support for animations
+## [1.0.0] - 2026-02-03
 
-- **Performance Improvements**
-  - 20% faster component rendering
-  - Optimized memory usage for large lists
-  - Improved animation performance
-  - Better caching mechanisms
+First tagged version, with the 1.x component set (`DSButton(title:style:)`,
+`DSAlert`, `DSModal`, `DSNavigationBar`, `DSTabBar`, `DSChart` and others) and
+iOS 15 / macOS 12 deployment targets.
 
-### Changed
-- Updated minimum iOS version to 15.0
-- Improved button touch targets for better accessibility
-- Enhanced color contrast ratios for better visibility
-- Refactored component architecture for better maintainability
-
-### Fixed
-- Button tap area issues on small screens
-- Dark mode color inconsistencies
-- Memory leaks in image loading
-- Accessibility voice-over navigation issues
-
-### Deprecated
-- `DSButton.oldStyle` - Use new style system instead
-- `DSCard.legacyLayout` - Use new layout system instead
-
-## [2.0.0] - 2024-11-20
-
-### Added
-- **Major Release**: Complete redesign system
-- **New Component**: `DSModal`
-  - Full-screen and sheet modal presentations
-  - Customizable animations and transitions
-  - Accessibility support for modal dialogs
-  - Backdrop and blur effects
-
-- **New Component**: `DSNavigationBar`
-  - Customizable navigation bar components
-  - Title, buttons, and search integration
-  - Large title support
-  - Accessibility navigation support
-
-- **New Component**: `DSTabBar`
-  - Custom tab bar with icons and labels
-  - Badge support for notifications
-  - Customizable selection indicators
-  - Accessibility tab navigation
-
-- **Enhanced Theme System**
-  - Dynamic color system with semantic colors
-  - Custom theme creation and management
-  - Brand color integration
-  - Automatic dark/light mode switching
-
-- **Animation System**
-  - Spring, ease, and custom animation curves
-  - Micro-interaction animations
-  - Staggered and coordinated animations
-  - Reduced motion support
-
-### Changed
-- **Breaking Changes**: Updated component APIs for better consistency
-- Improved performance by 30% across all components
-- Enhanced accessibility with VoiceOver and Dynamic Type
-- Updated documentation with comprehensive examples
-
-### Fixed
-- Critical memory leak in image loading system
-- Accessibility navigation issues
-- Dark mode color inconsistencies
-- Performance issues with large component trees
-
-### Migration Guide
-```swift
-// Old API
-DSButton(title: "Old Button") { }
-
-// New API
-DSButton(
-    title: "New Button",
-    style: .primary,
-    size: .medium
-) { }
-```
-
-## [1.5.0] - 2024-10-10
-
-### Added
-- **New Component**: `DSProductCard`
-  - Product display with images, prices, and ratings
-  - Customizable layout and styling
-  - Accessibility support for e-commerce
-  - Touch feedback and animations
-
-- **New Component**: `DSProfileCard`
-  - User profile display with avatars
-  - Name, role, and action integration
-  - Customizable avatar sizes and styles
-  - Accessibility support for user profiles
-
-- **New Component**: `DSStatsCard`
-  - Statistical data display
-  - Trend indicators and change percentages
-  - Color-coded positive/negative changes
-  - Accessibility support for data visualization
-
-- **Enhanced Form Components**
-  - `DSTextField` with validation
-  - `DSSearchField` with suggestions
-  - `DSDatePicker` with custom styles
-  - Form validation and error handling
-
-### Changed
-- Improved button accessibility with better VoiceOver support
-- Enhanced card component performance
-- Updated color system for better contrast
-- Improved documentation with more examples
-
-### Fixed
-- Button tap area issues on different screen sizes
-- Card shadow rendering in dark mode
-- Text field focus management
-- Accessibility navigation flow
-
-## [1.0.0] - 2024-09-01
-
-### Added
-- **Initial Release**: Core design system components
-- **DSButton**: Primary, secondary, tertiary, and destructive styles
-- **DSCard**: Basic card component with title, subtitle, and image
-- **Theme System**: Dark/light mode support with semantic colors
-- **Accessibility**: VoiceOver support and Dynamic Type
-- **Documentation**: Comprehensive guides and examples
-- **Testing**: Unit tests and UI tests for all components
-
-### Features
-- 200+ reusable components
-- Dark/Light mode support
-- Accessibility features (VoiceOver, Dynamic Type)
-- Performance optimizations
-- Comprehensive documentation
-- 100% test coverage
-
-## [0.9.0] - 2024-08-15
-
-### Added
-- Beta release with core components
-- Basic button and card components
-- Initial theme system
-- Basic accessibility support
-
-### Changed
-- Improved component architecture
-- Enhanced performance
-- Better documentation
-
-## [0.8.0] - 2024-08-01
-
-### Added
-- Alpha release
-- Foundation components
-- Basic styling system
-- Initial documentation
-
----
-
-## 🔄 Migration Guides
-
-### Migrating from 1.x to 2.0
-1. Update component imports
-2. Replace deprecated APIs with new ones
-3. Update theme usage
-4. Test accessibility features
-
-### Migrating from 0.x to 1.0
-1. Update minimum iOS version to 15.0
-2. Replace old component APIs
-3. Update theme system usage
-4. Test all components
-
----
-
-## 📊 Release Statistics
-
-- **Total Components**: 200+
-- **Test Coverage**: 100%
-- **Performance**: 30% improvement
-- **Accessibility**: Full VoiceOver support
-- **Documentation**: 50+ guides and examples
-
----
-
-## 🎯 Roadmap
-
-### Upcoming Features
-- **DSCharts**: Data visualization components
-- **DSMaps**: Map integration components
-- **DSVideo**: Video player components
-- **DSAudio**: Audio player components
-- **DSAR**: Augmented reality components
-
-### Planned Improvements
-- Enhanced animation system
-- More accessibility features
-- Performance optimizations
-- Additional component variants
-- Better documentation
-
----
-
-**⭐ Don't forget to star this project if you like it!** # SwiftUI-Design-System-Pro - Update 1
-# SwiftUI-Design-System-Pro - Update 2
-# SwiftUI-Design-System-Pro - Update 3
-# SwiftUI-Design-System-Pro - Update 4
-# SwiftUI-Design-System-Pro - Update 5
-# SwiftUI-Design-System-Pro - Update 6
-# SwiftUI-Design-System-Pro - Update 7
-# SwiftUI-Design-System-Pro - Update 8
-# SwiftUI-Design-System-Pro - Update 9
-# SwiftUI-Design-System-Pro - Update 10
-# SwiftUI-Design-System-Pro - Update 11
-# SwiftUI-Design-System-Pro - Update 12
-# SwiftUI-Design-System-Pro - Update 13
-# SwiftUI-Design-System-Pro - Update 14
-# SwiftUI-Design-System-Pro - Update 15
-# SwiftUI-Design-System-Pro - Update 16
-# SwiftUI-Design-System-Pro - Update 17
-# SwiftUI-Design-System-Pro - Update 18
-# SwiftUI-Design-System-Pro - Update 19
-# SwiftUI-Design-System-Pro - Update 20
-# SwiftUI-Design-System-Pro - Update 21
-# SwiftUI-Design-System-Pro - Update 22
-# SwiftUI-Design-System-Pro - Update 23
-# SwiftUI-Design-System-Pro - Update 24
-# SwiftUI-Design-System-Pro - Update 25
-# SwiftUI-Design-System-Pro - Update 26
-# SwiftUI-Design-System-Pro - Update 27
-# SwiftUI-Design-System-Pro - Update 28
-# SwiftUI-Design-System-Pro - Update 29
-# SwiftUI-Design-System-Pro - Update 30
-# SwiftUI-Design-System-Pro - Update 31
-# SwiftUI-Design-System-Pro - Update 32
-# SwiftUI-Design-System-Pro - Update 33
-# SwiftUI-Design-System-Pro - Update 34
-# SwiftUI-Design-System-Pro - Update 35
-# SwiftUI-Design-System-Pro - Update 36
-# SwiftUI-Design-System-Pro - Update 37
-# SwiftUI-Design-System-Pro - Update 38
-# SwiftUI-Design-System-Pro - Update 39
-# SwiftUI-Design-System-Pro - Update 40
-# SwiftUI-Design-System-Pro - Update 41
-# SwiftUI-Design-System-Pro - Update 42
-# SwiftUI-Design-System-Pro - Update 43
-# SwiftUI-Design-System-Pro - Update 44
-# SwiftUI-Design-System-Pro - Update 45
-# SwiftUI-Design-System-Pro - Update 46
-# SwiftUI-Design-System-Pro - Update 47
-# SwiftUI-Design-System-Pro - Update 48
-# SwiftUI-Design-System-Pro - Update 49
-# SwiftUI-Design-System-Pro - Update 50
-# SwiftUI-Design-System-Pro - Update 51
-# SwiftUI-Design-System-Pro - Update 52
-# SwiftUI-Design-System-Pro - Update 53
-# SwiftUI-Design-System-Pro - Update 54
-# SwiftUI-Design-System-Pro - Update 55
-# SwiftUI-Design-System-Pro - Update 56
-# SwiftUI-Design-System-Pro - Update 57
+[Unreleased]: https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/compare/v1.0.0...v2.0.0
+[1.0.0]: https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/releases/tag/v1.0.0

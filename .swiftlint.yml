@@ -1,3 +1,7 @@
+included:
+  - Sources
+  - Tests
+
 disabled_rules:
   - trailing_whitespace
   - line_length
@@ -18,12 +22,13 @@ opt_in_rules:
   - redundant_nil_coalescing
   - sorted_first_last
 
-excluded:
-  - Pods
-  - .build
-  - Package.swift
-  - */Generated/*
-  - DerivedData
+# Only flag `.count` on collections, not integer properties named `count`.
+empty_count:
+  only_after_dot: true
+
+# One case per Dynamic Type size is a lookup table, not branching logic.
+cyclomatic_complexity:
+  ignores_case_statements: true
 
 identifier_name:
   min_length: 2
@@ -35,6 +40,15 @@ identifier_name:
     - z
     - i
     - j
+    # color components
+    - a
+    - r
+    - g
+    - b
+
+type_name:
+  excluded:
+    - UI
 
 nesting:
   type_level: 3

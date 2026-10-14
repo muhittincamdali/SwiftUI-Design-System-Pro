@@ -1,0 +1,50 @@
+{
+  "name": "SwiftUI Design System Pro",
+  "repository": "muhittincamdali/SwiftUI-Design-System-Pro",
+  "tagline": {
+    "en": "Design tokens, a theme engine and SwiftUI components for iOS, macOS, tvOS, watchOS and visionOS.",
+    "tr": "iOS, macOS, tvOS, watchOS ve visionOS için tasarım token'ları, tema motoru ve SwiftUI bileşenleri.",
+    "zh-CN": "适用于 iOS、macOS、tvOS、watchOS 和 visionOS 的设计令牌、主题引擎和 SwiftUI 组件。",
+    "ja": "iOS、macOS、tvOS、watchOS、visionOS 向けのデザイントークン、テーマエンジン、SwiftUI コンポーネント。",
+    "ko": "iOS, macOS, tvOS, watchOS, visionOS용 디자인 토큰, 테마 엔진, SwiftUI 컴포넌트.",
+    "es": "Tokens de diseño, un motor de temas y componentes SwiftUI para iOS, macOS, tvOS, watchOS y visionOS.",
+    "de": "Design-Tokens, eine Theme-Engine und SwiftUI-Komponenten für iOS, macOS, tvOS, watchOS und visionOS.",
+    "fr": "Design tokens, un moteur de thèmes et des composants SwiftUI pour iOS, macOS, tvOS, watchOS et visionOS.",
+    "pt-BR": "Design tokens, um mecanismo de temas e componentes SwiftUI para iOS, macOS, tvOS, watchOS e visionOS.",
+    "ru": "Дизайн-токены, движок тем и компоненты SwiftUI для iOS, macOS, tvOS, watchOS и visionOS."
+  },
+  "tags": {
+    "en": ["SwiftUI", "Design tokens", "Dark mode", "Dynamic Type"],
+    "tr": ["SwiftUI", "Tasarım token'ları", "Karanlık mod", "Dynamic Type"],
+    "zh-CN": ["SwiftUI", "设计令牌", "深色模式", "Dynamic Type"],
+    "ja": ["SwiftUI", "デザイントークン", "ダークモード", "Dynamic Type"],
+    "ko": ["SwiftUI", "디자인 토큰", "다크 모드", "Dynamic Type"],
+    "es": ["SwiftUI", "Tokens de diseño", "Modo oscuro", "Dynamic Type"],
+    "de": ["SwiftUI", "Design-Tokens", "Dunkelmodus", "Dynamic Type"],
+    "fr": ["SwiftUI", "Design tokens", "Mode sombre", "Dynamic Type"],
+    "pt-BR": ["SwiftUI", "Design tokens", "Modo escuro", "Dynamic Type"],
+    "ru": ["SwiftUI", "Дизайн-токены", "Тёмная тема", "Dynamic Type"]
+  },
+  "motif": "components",
+  "buttons": ["start", "docs", "examples"],
+  "links": {
+    "docs": "https://muhittincamdali.github.io/SwiftUI-Design-System-Pro/documentation/designsystempro/",
+    "examples": "Examples/"
+  },
+  "languages": [
+    "en",
+    "tr",
+    "zh-CN",
+    "ja",
+    "ko",
+    "es",
+    "de",
+    "fr",
+    "pt-BR",
+    "ru"
+  ],
+  "docc": {
+    "targets": ["DesignSystemPro"]
+  },
+  "socialTheme": "dark"
+}
