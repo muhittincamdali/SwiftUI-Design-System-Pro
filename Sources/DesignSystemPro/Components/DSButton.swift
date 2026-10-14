@@ -200,10 +200,10 @@ public struct DSButton: View {
     }
     
     public var body: some View {
-        Button(action: {
+        Button {
             guard isEnabled && !isLoading else { return }
             action()
-        }) {
+        } label: {
             DSButtonContent(
                 label: label,
                 leadingIcon: leadingIcon,

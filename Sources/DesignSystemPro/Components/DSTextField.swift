@@ -131,7 +131,7 @@ public struct DSTextField: View {
                 
                 // Trailing Icon / Secure Toggle / Clear Button
                 if isSecure {
-                    Button(action: { isSecureTextHidden.toggle() }) {
+                    Button { isSecureTextHidden.toggle() } label: {
                         Image(systemName: isSecureTextHidden ? "eye.slash" : "eye")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -140,7 +140,7 @@ public struct DSTextField: View {
                     }
                     .buttonStyle(.plain)
                 } else if !text.isEmpty && isFocused {
-                    Button(action: { text = "" }) {
+                    Button { text = "" } label: {
                         Image(systemName: "xmark.circle.fill")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -379,7 +379,7 @@ public struct DSSearchField: View {
                 .onSubmit { onSubmit?() }
             
             if !text.isEmpty {
-                Button(action: { text = "" }) {
+                Button { text = "" } label: {
                     Image(systemName: "xmark.circle.fill")
                         .foregroundColor(ColorTokens.Foreground.tertiary.resolved(for: colorScheme))
                 }
