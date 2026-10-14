@@ -328,6 +328,13 @@ public final class ThemeManager {
         return systemColorScheme == .dark ? DarkTheme() : LightTheme()
     }
 
+    /// The color scheme ``DSThemeProvider`` forces: none while following the
+    /// system, so later system changes still reach the view, otherwise the
+    /// scheme of the explicit theme.
+    var preferredColorScheme: ColorScheme? {
+        followSystem ? nil : currentTheme.colorScheme
+    }
+
     public func toggleFollowSystem() {
         followSystem.toggle()
     }
@@ -363,12 +370,9 @@ public struct DSThemeProvider<Content: View>: View {
     }
 
     public var body: some View {
-        let theme = themeManager.resolvedTheme(for: systemColorScheme)
-        // Only force a color scheme for an explicit theme; forcing it while
-        // following the system would hide later system changes from this view.
         content
-            .environment(\.dsTheme, theme)
-            .preferredColorScheme(themeManager.followSystem ? nil : theme.colorScheme)
+            .environment(\.dsTheme, themeManager.resolvedTheme(for: systemColorScheme))
+            .preferredColorScheme(themeManager.preferredColorScheme)
     }
 }
 

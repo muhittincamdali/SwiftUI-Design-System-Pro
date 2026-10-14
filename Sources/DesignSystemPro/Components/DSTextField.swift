@@ -428,7 +428,7 @@ public struct DSOTPField: View {
             ForEach(0..<length, id: \.self) { index in
                 OTPDigitBox(
                     digit: Self.digit(in: code, at: index),
-                    isFocused: isInputFocused && index == activeIndex,
+                    isFocused: isInputFocused && index == Self.activeIndex(codeCount: code.count, length: length),
                     colorScheme: colorScheme
                 )
             }
@@ -453,9 +453,9 @@ public struct DSOTPField: View {
         .onAppear { isInputFocused = true }
     }
 
-    /// The box that receives the next digit.
-    private var activeIndex: Int {
-        min(code.count, length - 1)
+    /// The box that receives the next digit; the last box once the code is full.
+    nonisolated static func activeIndex(codeCount: Int, length: Int) -> Int {
+        max(0, min(codeCount, length - 1))
     }
 
     @ViewBuilder

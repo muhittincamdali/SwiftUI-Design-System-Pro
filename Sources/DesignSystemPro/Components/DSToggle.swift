@@ -382,14 +382,19 @@ public struct DSSwitch: View {
     public var body: some View {
         if let label = label {
             Toggle(label, isOn: $isOn)
-                .tint(tint ?? ColorTokens.Accent.primary.resolved(for: colorScheme))
+                .tint(Self.resolvedTint(tint, for: colorScheme))
                 .dsSwitchToggleStyle()
         } else {
             Toggle("", isOn: $isOn)
-                .tint(tint ?? ColorTokens.Accent.primary.resolved(for: colorScheme))
+                .tint(Self.resolvedTint(tint, for: colorScheme))
                 .dsSwitchToggleStyle()
                 .labelsHidden()
         }
+    }
+
+    /// `tint`, or the accent color for `colorScheme` when no tint is set.
+    nonisolated static func resolvedTint(_ tint: Color?, for colorScheme: ColorScheme) -> Color {
+        tint ?? ColorTokens.Accent.primary.resolved(for: colorScheme)
     }
 }
 
