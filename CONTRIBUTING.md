@@ -44,6 +44,9 @@ and commit the updated files in `docs/images`.
 1. Create a branch from `main`.
 2. Add or update tests for behaviour changes (`Tests/DesignSystemProTests`).
 3. Make sure `swift test` passes; CI also builds for iOS, tvOS, watchOS and visionOS.
+   If you have [SwiftLint](https://github.com/realm/SwiftLint) installed, run
+   `swiftlint lint` (configuration in `.swiftlint.yml`); it should report no
+   violations.
 4. Use [Conventional Commits](https://www.conventionalcommits.org/) for commit
    messages (`feat:`, `fix:`, `docs:`, `test:`, `ci:`, `chore:`).
 5. Add a line to the `Unreleased` section of `CHANGELOG.md`.
