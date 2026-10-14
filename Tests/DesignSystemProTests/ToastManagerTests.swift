@@ -43,6 +43,16 @@ struct ToastManagerTests {
         #expect(manager.toasts.isEmpty)
     }
 
+    @Test("Infinite and very large durations keep the toast", arguments: [TimeInterval.infinity, 1e300, .nan])
+    func unboundedDurationKeepsToast(duration: TimeInterval) async throws {
+        let manager = DSToastManager()
+        manager.show(DSToastData(id: "sticky", title: "Offline", duration: duration))
+
+        try await Task.sleep(nanoseconds: 100_000_000)
+        #expect(manager.toasts.map(\.id) == ["sticky"])
+        manager.dismissAll()
+    }
+
     @Test func replacedToastIsNotDismissedByOldTimer() async throws {
         let manager = DSToastManager()
         manager.show(DSToastData(id: "status", title: "Working", duration: 0.05))

@@ -41,6 +41,9 @@ public struct DSToastData: Identifiable, Equatable, Sendable {
     public let title: String
     public let message: String?
     public let variant: DSToastVariant
+    /// Seconds until the toast dismisses itself. Zero, negative and
+    /// non-finite values (such as `.infinity`) keep it until it is
+    /// dismissed; longer values are capped at 24 hours.
     public let duration: TimeInterval
     public let action: ToastAction?
     
@@ -84,6 +87,10 @@ public final class DSToastManager: ObservableObject {
     @Published public private(set) var toasts: [DSToastData] = []
     @Published public var position: DSToastPosition = .top
     
+    /// Upper bound for auto-dismiss delays, so very large durations
+    /// cannot overflow the sleep duration.
+    static let maximumDuration: TimeInterval = 24 * 60 * 60
+
     private var dismissTimers: [String: Task<Void, Never>] = [:]
     
     public init() {}
@@ -98,10 +105,11 @@ public final class DSToastManager: ObservableObject {
             toasts.append(toast)
         }
 
-        guard toast.duration > 0 else { return }
+        guard toast.duration > 0, toast.duration.isFinite else { return }
         let id = toast.id
+        let delay = Duration.seconds(min(toast.duration, Self.maximumDuration))
         dismissTimers[id] = Task { [weak self] in
-            try? await Task.sleep(nanoseconds: UInt64(toast.duration * 1_000_000_000))
+            try? await Task.sleep(for: delay)
             // A cancelled timer belongs to a replaced or dismissed toast.
             guard !Task.isCancelled else { return }
             self?.dismiss(id: id)

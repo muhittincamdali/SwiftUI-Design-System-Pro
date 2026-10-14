@@ -52,6 +52,7 @@ v2.0 code, fixes it and tests it. The API is not compatible with 1.0.0.
   dark theme when following the system.
 - `DSButton.loading(_:)` ignored changes after the first render.
 - A replaced or dismissed toast's timer could dismiss the toast that replaced it.
+- A toast with an infinite or very large `duration` crashed `DSToastManager.show`.
 - The OTP field lost focus when a digit box was tapped.
 - Dark-mode shadow opacity could exceed 1.
 - Invalid hex strings produced an almost transparent color instead of black.
