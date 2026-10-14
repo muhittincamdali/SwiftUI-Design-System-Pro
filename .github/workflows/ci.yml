@@ -5,23 +5,55 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  build:
-    runs-on: macos-14
+  macos:
+    name: swift test (macOS)
+    runs-on: macos-26
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Select Xcode
-        run: sudo xcode-select -s /Applications/Xcode_15.2.app
-      
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Toolchain
+        run: |
+          xcodebuild -version
+          swift --version
       - name: Build
         run: swift build
-      
       - name: Test
         run: swift test
-      
-      - name: SwiftLint
+
+  ios-tests:
+    name: xcodebuild test (iOS Simulator)
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Test on the first available iPhone simulator
         run: |
-          brew install swiftlint
-          swiftlint lint --reporter github-actions-logging || true
+          device_id=$(xcrun simctl list devices available --json \
+            | jq -r '[.devices | to_entries[] | select(.key | contains("iOS")) | .value[] | select(.name | startswith("iPhone"))][0].udid')
+          echo "Using simulator $device_id"
+          xcodebuild test \
+            -scheme SwiftUI-Design-System-Pro \
+            -destination "platform=iOS Simulator,id=$device_id"
+
+  platform-builds:
+    name: xcodebuild build (${{ matrix.platform }})
+    runs-on: macos-26
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [tvOS Simulator, watchOS Simulator, visionOS Simulator]
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Build
+        run: |
+          xcodebuild build \
+            -scheme SwiftUI-Design-System-Pro \
+            -destination "generic/platform=${{ matrix.platform }}"
