@@ -30,7 +30,7 @@ struct GalleryFrame<Content: View>: View {
     var body: some View {
         content
             .padding(SpacingScale.xl.rawValue)
-            .frame(width: 420, alignment: .leading)
+            .frame(width: 480, alignment: .leading)
             .background(ColorTokens.Background.primary.resolved(for: colorScheme))
             .environment(\.colorScheme, colorScheme)
     }
@@ -47,7 +47,6 @@ private struct ButtonsGallery: View {
             HStack(spacing: SpacingScale.sm.rawValue) {
                 DSButton("Delete", variant: .destructive, leadingIcon: Image(systemName: "trash")) {}
                 DSButton("Confirm", variant: .success, isPill: true) {}
-                DSButton("Saving", variant: .primary) {}.loading(true)
             }
             HStack(spacing: SpacingScale.sm.rawValue) {
                 ForEach(DSButtonSize.allCases, id: \.self) { size in
