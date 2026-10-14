@@ -175,7 +175,7 @@ public struct DSButton: View {
     private let action: () -> Void
     
     @State private var isPressed = false
-    @State private var isLoading = false
+    private var isLoading = false
     
     public init(
         _ label: String,
@@ -290,9 +290,10 @@ public struct DSButton: View {
     
     // MARK: - Modifiers
     
-    public func loading(_ isLoading: Bool) -> some View {
+    /// Shows a progress indicator in place of the label and ignores taps.
+    public func loading(_ isLoading: Bool) -> DSButton {
         var copy = self
-        copy._isLoading = State(initialValue: isLoading)
+        copy.isLoading = isLoading
         return copy
     }
 }
