@@ -1,4 +1,4 @@
-<!-- i18n-source: README.md@a23098c97b4f4bb69364e91c9e976f4231d3da06 status=reviewed -->
+<!-- i18n-source: README.md@bf5af63b9eead3ddca7a6d53a5445b2c9061050d status=reviewed -->
 <!-- brand:start -->
 
 <p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/banner-zh-CN-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/banner-zh-CN-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/banner-zh-CN-light.svg" alt="SwiftUI Design System Pro: 适用于 iOS、macOS、tvOS、watchOS 和 visionOS 的设计令牌、主题引擎和 SwiftUI 组件。"></picture></p>
@@ -9,7 +9,7 @@
 
 <p align="center">
 <a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/actions/workflows/ci.yml"><img src="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/actions/workflows/ci.yml/badge.svg" alt="CI 状态"></a>
-<a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/releases"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-version-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-version-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-version-light.svg" alt="最新版本: v1.0.0"></picture></a>
+<a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/releases"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-version-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-version-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-version-light.svg" alt="最新版本: v2.0.0"></picture></a>
 <a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/blob/main/Package.swift"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-platforms-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-platforms-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-platforms-light.svg" alt="支持的平台: iOS 17+ · macOS 14+ · watchOS 10+ · tvOS 17+ · visionOS 1+"></picture></a>
 <a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/blob/main/Package.swift"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-language-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-language-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-language-light.svg" alt="语言版本: Swift 6.0+"></picture></a>
 <a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/blob/main/LICENSE"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-license-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-license-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-license-light.svg" alt="许可证: MIT"></picture></a>
@@ -46,7 +46,7 @@ DesignSystemPro 是一个 Swift 软件包，适合希望界面风格统一、又
 https://github.com/muhittincamdali/SwiftUI-Design-System-Pro.git
 ```
 
-把 **Dependency Rule** 设为 **Branch** 并输入 `main`，然后点击 **Add Package**。在接下来的窗口中，在 **DesignSystemPro** 一行选择你的应用 target，再次点击 **Add Package**。（使用这套 API 的首个版本 2.0.0 尚未打标签；打标签后，请改选 **Up to Next Major Version**。）
+保持 **Dependency Rule** 为 **Up to Next Major Version**（从 2.0.0 开始），然后点击 **Add Package**。在接下来的窗口中，在 **DesignSystemPro** 一行选择你的应用 target，再次点击 **Add Package**。
 
 **2. 导入模块**
 
@@ -102,7 +102,7 @@ https://github.com/muhittincamdali/SwiftUI-Design-System-Pro.git
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/muhittincamdali/SwiftUI-Design-System-Pro.git", branch: "main")
+    .package(url: "https://github.com/muhittincamdali/SwiftUI-Design-System-Pro.git", from: "2.0.0")
 ],
 targets: [
     .target(name: "YourApp", dependencies: [
@@ -111,7 +111,7 @@ targets: [
 ]
 ```
 
-最新的标签 1.0.0 是旧的 1.x API，本 README 并未介绍它。在 2.0.0 打标签之前请使用 `branch: "main"`，之后改用 `from: "2.0.0"`。
+2.0.0 之前的版本是旧的 1.x API，本 README 并未介绍它。
 
 ## 使用方法
 
@@ -260,7 +260,6 @@ Sources/DesignSystemPro
 
 ## 路线图
 
-- 为 2.0.0 打标签，并根据 [CHANGELOG.md](CHANGELOG.md) 发布版本说明。
 - 让组件读取当前主题，使预设主题和品牌主题也能改变组件样式。
 - 将浅色调色板颜色上的头像首字母，以及深色模式下复选框勾号的对比度提高到 WCAG AA。
 

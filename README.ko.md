@@ -1,4 +1,4 @@
-<!-- i18n-source: README.md@a23098c97b4f4bb69364e91c9e976f4231d3da06 status=reviewed -->
+<!-- i18n-source: README.md@bf5af63b9eead3ddca7a6d53a5445b2c9061050d status=reviewed -->
 <!-- brand:start -->
 
 <p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/banner-ko-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/banner-ko-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/banner-ko-light.svg" alt="SwiftUI Design System Pro: iOS, macOS, tvOS, watchOS, visionOS용 디자인 토큰, 테마 엔진, SwiftUI 컴포넌트."></picture></p>
@@ -9,7 +9,7 @@
 
 <p align="center">
 <a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/actions/workflows/ci.yml"><img src="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/actions/workflows/ci.yml/badge.svg" alt="CI 상태"></a>
-<a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/releases"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-version-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-version-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-version-light.svg" alt="최신 버전: v1.0.0"></picture></a>
+<a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/releases"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-version-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-version-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-version-light.svg" alt="최신 버전: v2.0.0"></picture></a>
 <a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/blob/main/Package.swift"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-platforms-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-platforms-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-platforms-light.svg" alt="지원 플랫폼: iOS 17+ · macOS 14+ · watchOS 10+ · tvOS 17+ · visionOS 1+"></picture></a>
 <a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/blob/main/Package.swift"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-language-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-language-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-language-light.svg" alt="언어 버전: Swift 6.0+"></picture></a>
 <a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/blob/main/LICENSE"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-license-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-license-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-license-light.svg" alt="라이선스: MIT"></picture></a>
@@ -46,7 +46,7 @@ Xcode에서 **File › Add Package Dependencies…**를 선택하고 저장소 U
 https://github.com/muhittincamdali/SwiftUI-Design-System-Pro.git
 ```
 
-**Dependency Rule**을 **Branch**로 바꾸고 `main`을 입력한 다음 **Add Package**를 클릭하세요. 다음 창에서 **DesignSystemPro** 줄에 앱 타깃을 선택하고 **Add Package**를 다시 클릭하세요. (이 API를 담은 첫 릴리스인 2.0.0은 아직 태그가 없습니다. 태그가 생기면 대신 **Up to Next Major Version**을 선택하세요.)
+**Dependency Rule**은 **Up to Next Major Version**(2.0.0부터)으로 두고 **Add Package**를 클릭하세요. 다음 창에서 **DesignSystemPro** 줄에 앱 타깃을 선택하고 **Add Package**를 다시 클릭하세요.
 
 **2. 모듈 가져오기**
 
@@ -102,7 +102,7 @@ https://github.com/muhittincamdali/SwiftUI-Design-System-Pro.git
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/muhittincamdali/SwiftUI-Design-System-Pro.git", branch: "main")
+    .package(url: "https://github.com/muhittincamdali/SwiftUI-Design-System-Pro.git", from: "2.0.0")
 ],
 targets: [
     .target(name: "YourApp", dependencies: [
@@ -111,7 +111,7 @@ targets: [
 ]
 ```
 
-최신 태그인 1.0.0은 이 README에서 다루지 않는 예전 1.x API입니다. 2.0.0 태그가 생기기 전까지는 `branch: "main"`을, 그 후에는 `from: "2.0.0"`을 사용하세요.
+2.0.0 이전 버전은 이 README에서 다루지 않는 예전 1.x API입니다.
 
 ## 사용법
 
@@ -260,7 +260,6 @@ Sources/DesignSystemPro
 
 ## 로드맵
 
-- 2.0.0 태그를 만들고 [CHANGELOG.md](CHANGELOG.md)를 바탕으로 릴리스 노트를 게시합니다.
 - 컴포넌트가 현재 테마를 읽도록 해서 프리셋과 브랜드 테마가 컴포넌트 스타일도 바꾸게 합니다.
 - 밝은 팔레트 색상 위의 아바타 이니셜과 다크 모드 체크박스 체크 표시의 명암비를 WCAG AA 수준으로 높입니다.
 

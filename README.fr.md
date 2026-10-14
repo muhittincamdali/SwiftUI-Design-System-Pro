@@ -1,4 +1,4 @@
-<!-- i18n-source: README.md@a23098c97b4f4bb69364e91c9e976f4231d3da06 status=reviewed -->
+<!-- i18n-source: README.md@bf5af63b9eead3ddca7a6d53a5445b2c9061050d status=reviewed -->
 <!-- brand:start -->
 
 <p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/banner-fr-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/banner-fr-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/banner-fr-light.svg" alt="SwiftUI Design System Pro: Design tokens, un moteur de thèmes et des composants SwiftUI pour iOS, macOS, tvOS, watchOS et visionOS."></picture></p>
@@ -9,7 +9,7 @@
 
 <p align="center">
 <a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/actions/workflows/ci.yml"><img src="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/actions/workflows/ci.yml/badge.svg" alt="État de la CI"></a>
-<a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/releases"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-version-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-version-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-version-light.svg" alt="Dernière version: v1.0.0"></picture></a>
+<a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/releases"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-version-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-version-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-version-light.svg" alt="Dernière version: v2.0.0"></picture></a>
 <a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/blob/main/Package.swift"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-platforms-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-platforms-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-platforms-light.svg" alt="Plateformes prises en charge: iOS 17+ · macOS 14+ · watchOS 10+ · tvOS 17+ · visionOS 1+"></picture></a>
 <a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/blob/main/Package.swift"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-language-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-language-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-language-light.svg" alt="Version du langage: Swift 6.0+"></picture></a>
 <a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/blob/main/LICENSE"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-license-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-license-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-license-light.svg" alt="Licence: MIT"></picture></a>
@@ -59,10 +59,9 @@ Dans Xcode, choisissez **File › Add Package Dependencies…** et saisissez l�
 https://github.com/muhittincamdali/SwiftUI-Design-System-Pro.git
 ```
 
-Réglez **Dependency Rule** sur **Branch**, saisissez `main`, puis cliquez sur **Add Package**. Dans la
-fenêtre suivante, choisissez la cible de votre app en face de **DesignSystemPro** et cliquez de nouveau
-sur **Add Package**. (La version 2.0.0, la première avec cette API, n’a pas encore de tag ; une fois
-qu’elle en aura un, choisissez plutôt **Up to Next Major Version**.)
+Laissez **Dependency Rule** sur **Up to Next Major Version**, à partir de 2.0.0, puis cliquez sur
+**Add Package**. Dans la fenêtre suivante, choisissez la cible de votre app en face de
+**DesignSystemPro** et cliquez de nouveau sur **Add Package**.
 
 **2. Importer le module**
 
@@ -120,7 +119,7 @@ Ou ajoutez-le aux `dependencies` de votre `Package.swift` :
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/muhittincamdali/SwiftUI-Design-System-Pro.git", branch: "main")
+    .package(url: "https://github.com/muhittincamdali/SwiftUI-Design-System-Pro.git", from: "2.0.0")
 ],
 targets: [
     .target(name: "YourApp", dependencies: [
@@ -129,8 +128,7 @@ targets: [
 ]
 ```
 
-Le dernier tag, 1.0.0, contient l’ancienne API 1.x, que ce README ne décrit pas. Utilisez
-`branch: "main"` jusqu’au tag 2.0.0, puis `from: "2.0.0"`.
+Les versions antérieures à 2.0.0 contiennent l’ancienne API 1.x, que ce README ne décrit pas.
 
 ## Utilisation
 
@@ -302,7 +300,6 @@ Sources/DesignSystemPro
 
 ## Feuille de route
 
-- Taguer la 2.0.0 et publier les notes de version à partir de [CHANGELOG.md](CHANGELOG.md).
 - Faire lire le thème actif aux composants, pour que les thèmes prédéfinis et de marque modifient aussi
   leur style.
 - Porter au niveau WCAG AA le contraste des initiales des avatars sur les couleurs claires de la palette

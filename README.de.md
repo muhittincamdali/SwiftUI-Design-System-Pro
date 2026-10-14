@@ -1,4 +1,4 @@
-<!-- i18n-source: README.md@a23098c97b4f4bb69364e91c9e976f4231d3da06 status=reviewed -->
+<!-- i18n-source: README.md@bf5af63b9eead3ddca7a6d53a5445b2c9061050d status=reviewed -->
 <!-- brand:start -->
 
 <p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/banner-de-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/banner-de-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/banner-de-light.svg" alt="SwiftUI Design System Pro: Design-Tokens, eine Theme-Engine und SwiftUI-Komponenten für iOS, macOS, tvOS, watchOS und visionOS."></picture></p>
@@ -9,7 +9,7 @@
 
 <p align="center">
 <a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/actions/workflows/ci.yml"><img src="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/actions/workflows/ci.yml/badge.svg" alt="CI-Status"></a>
-<a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/releases"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-version-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-version-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-version-light.svg" alt="Aktuelle Version: v1.0.0"></picture></a>
+<a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/releases"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-version-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-version-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-version-light.svg" alt="Aktuelle Version: v2.0.0"></picture></a>
 <a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/blob/main/Package.swift"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-platforms-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-platforms-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-platforms-light.svg" alt="Unterstützte Plattformen: iOS 17+ · macOS 14+ · watchOS 10+ · tvOS 17+ · visionOS 1+"></picture></a>
 <a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/blob/main/Package.swift"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-language-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-language-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-language-light.svg" alt="Sprachversion: Swift 6.0+"></picture></a>
 <a href="https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/blob/main/LICENSE"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-license-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-license-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Design-System-Pro/main/.github/brand/badge-license-light.svg" alt="Lizenz: MIT"></picture></a>
@@ -58,10 +58,8 @@ Wähle in Xcode **File › Add Package Dependencies…** und gib die Repository-
 https://github.com/muhittincamdali/SwiftUI-Design-System-Pro.git
 ```
 
-Stelle **Dependency Rule** auf **Branch**, gib `main` ein und klicke auf **Add Package**. Wähle im
+Lass **Dependency Rule** auf **Up to Next Major Version** ab 2.0.0 und klicke auf **Add Package**. Wähle im
 nächsten Fenster neben **DesignSystemPro** dein App-Target aus und klicke noch einmal auf **Add Package**.
-(2.0.0, das erste Release mit dieser API, ist noch nicht getaggt; sobald es das ist, wähle stattdessen
-**Up to Next Major Version**.)
 
 **2. Modul importieren**
 
@@ -119,7 +117,7 @@ Oder füge es zu den `dependencies` in deiner `Package.swift` hinzu:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/muhittincamdali/SwiftUI-Design-System-Pro.git", branch: "main")
+    .package(url: "https://github.com/muhittincamdali/SwiftUI-Design-System-Pro.git", from: "2.0.0")
 ],
 targets: [
     .target(name: "YourApp", dependencies: [
@@ -128,8 +126,7 @@ targets: [
 ]
 ```
 
-Das neueste Tag, 1.0.0, enthält die ältere 1.x-API, die diese README nicht beschreibt. Verwende
-`branch: "main"`, bis 2.0.0 getaggt ist, danach `from: "2.0.0"`.
+Versionen vor 2.0.0 enthalten die ältere 1.x-API, die diese README nicht beschreibt.
 
 ## Verwendung
 
@@ -302,7 +299,6 @@ Sources/DesignSystemPro
 
 ## Roadmap
 
-- 2.0.0 taggen und die Release Notes aus [CHANGELOG.md](CHANGELOG.md) veröffentlichen.
 - Die Komponenten das aktive Theme lesen lassen, damit vordefinierte und Marken-Themes auch sie
   umgestalten.
 - Den Kontrast der Avatar-Initialen auf den helleren Palettenfarben und des Häkchens der Checkbox im

@@ -19,9 +19,8 @@ targets: [
 ]
 ```
 
-> Note: 2.0.0 is the first release with this API and is not tagged yet. Until
-> it is, use `branch: "main"` in `Package.swift`, or the **Branch** rule with
-> `main` in Xcode.
+> Note: 2.0.0 is the first release with this API. Versions before it have the
+> older 1.x API that this documentation does not describe.
 
 ## Wrap the root view
 
