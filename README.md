@@ -176,7 +176,7 @@ Sources/DesignSystemPro
 ```
 
 Components are built from the tokens and do not read the theme. Tokens are plain value types (`Sendable`), and
-the shared `ThemeManager` and `DSToastManager` are `@MainActor`. Both managers
+the shared `ThemeManager` and `DSToastManager` are `@MainActor` `@Observable` classes. Both managers
 have public initializers so they can be injected (`DSThemeProvider(themeManager:)`,
 `DSToastContainer(manager:)`) and tested.
 

@@ -1,3 +1,4 @@
+import Observation
 import SwiftUI
 import Testing
 @testable import DesignSystemPro
@@ -55,10 +56,28 @@ struct ThemeTests {
         #expect(config.darkTheme.name == "Acme Dark")
     }
 
+    @Test func setThemeNotifiesObservers() {
+        let manager = ThemeManager()
+        let observed = ChangeFlag()
+        withObservationTracking {
+            _ = manager.currentTheme
+        } onChange: {
+            observed.fired = true
+        }
+        manager.setTheme(PresetThemes.ocean)
+        #expect(observed.fired)
+    }
+
     @Test func configureAppliesExplicitTheme() {
         DesignSystemPro.configure(theme: DarkTheme(), followSystemColorScheme: false)
         #expect(ThemeManager.shared.resolvedTheme(for: .light).id == "dark")
         DesignSystemPro.configure()
         #expect(ThemeManager.shared.resolvedTheme(for: .light).id == "light")
     }
+}
+
+/// Records an Observation change callback, which runs synchronously on the
+/// mutating thread.
+final class ChangeFlag: @unchecked Sendable {
+    var fired = false
 }

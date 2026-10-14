@@ -40,6 +40,8 @@ v2.0 code, fixes it and tests it. The API is not compatible with 1.0.0.
   the package uses `swift-tools-version: 6.0` and builds in Swift 6 language
   mode.
 - The package ships a single `DesignSystemPro` library product.
+- `ThemeManager` and `DSToastManager` use the Observation framework
+  (`@Observable`) instead of `ObservableObject`.
 - Text on filled accent, error and success colors meets WCAG AA in both color
   schemes (`Foreground.onAccent` is dark in dark mode; light-mode success uses
   green 700).

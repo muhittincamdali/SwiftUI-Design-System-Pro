@@ -1,4 +1,5 @@
 import Foundation
+import Observation
 import Testing
 @testable import DesignSystemPro
 
@@ -24,6 +25,18 @@ struct ToastManagerTests {
         manager.show(DSToastData(id: "upload", title: "Uploaded", variant: .success, duration: 0))
         #expect(manager.toasts.count == 1)
         #expect(manager.toasts.first?.title == "Uploaded")
+    }
+
+    @Test func showNotifiesObservers() {
+        let manager = DSToastManager()
+        let observed = ChangeFlag()
+        withObservationTracking {
+            _ = manager.toasts
+        } onChange: {
+            observed.fired = true
+        }
+        manager.info("Copied")
+        #expect(observed.fired)
     }
 
     @Test func convenienceMethodsSetVariant() {

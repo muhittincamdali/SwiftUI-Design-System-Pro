@@ -5,7 +5,7 @@
 // variants, auto-dismiss, and queue management.
 
 import SwiftUI
-import Combine
+import Observation
 
 // MARK: - Toast Variant
 
@@ -81,17 +81,18 @@ public struct ToastAction: Sendable {
 // MARK: - Toast Manager
 
 @MainActor
-public final class DSToastManager: ObservableObject {
+@Observable
+public final class DSToastManager {
     public static let shared = DSToastManager()
     
-    @Published public private(set) var toasts: [DSToastData] = []
-    @Published public var position: DSToastPosition = .top
+    public private(set) var toasts: [DSToastData] = []
+    public var position: DSToastPosition = .top
     
     /// Upper bound for auto-dismiss delays, so very large durations
     /// cannot overflow the sleep duration.
     static let maximumDuration: TimeInterval = 24 * 60 * 60
 
-    private var dismissTimers: [String: Task<Void, Never>] = [:]
+    @ObservationIgnored private var dismissTimers: [String: Task<Void, Never>] = [:]
     
     public init() {}
     
@@ -278,7 +279,7 @@ private struct SwipeToDismissModifier: ViewModifier {
 // MARK: - Toast Container
 
 public struct DSToastContainer<Content: View>: View {
-    @ObservedObject private var toastManager: DSToastManager
+    private let toastManager: DSToastManager
 
     let content: Content
 

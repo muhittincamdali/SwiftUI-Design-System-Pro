@@ -5,7 +5,7 @@
 // brand customization, and white-label support.
 
 import SwiftUI
-import Combine
+import Observation
 
 // MARK: - Theme Protocol
 
@@ -306,11 +306,12 @@ public struct CustomTheme: DSTheme {
 // MARK: - Theme Manager
 
 @MainActor
-public final class ThemeManager: ObservableObject {
+@Observable
+public final class ThemeManager {
     public static let shared = ThemeManager()
 
-    @Published public private(set) var currentTheme: any DSTheme = LightTheme()
-    @Published public var followSystem: Bool = true
+    public private(set) var currentTheme: any DSTheme = LightTheme()
+    public var followSystem: Bool = true
 
     public init() {}
 
@@ -348,7 +349,7 @@ extension EnvironmentValues {
 // MARK: - Theme Provider View
 
 public struct DSThemeProvider<Content: View>: View {
-    @ObservedObject private var themeManager: ThemeManager
+    private let themeManager: ThemeManager
     @Environment(\.colorScheme) private var systemColorScheme
 
     let content: Content
