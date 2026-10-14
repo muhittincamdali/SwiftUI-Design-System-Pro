@@ -16,8 +16,8 @@ struct ComponentLogicTests {
 
     @Test func otpDigitLookupIsBoundsSafe() {
         #expect(DSOTPField.digit(in: "42", at: 1) == "2")
-        #expect(DSOTPField.digit(in: "42", at: 2) == "")
-        #expect(DSOTPField.digit(in: "42", at: -1) == "")
+        #expect(DSOTPField.digit(in: "42", at: 2).isEmpty)
+        #expect(DSOTPField.digit(in: "42", at: -1).isEmpty)
     }
 
     @Test("Avatar initials use the first two words", arguments: [
