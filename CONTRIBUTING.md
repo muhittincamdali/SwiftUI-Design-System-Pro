@@ -5,8 +5,9 @@ Bug reports and pull requests are welcome.
 ## Development setup
 
 Requirements: an Xcode version with a Swift 6 toolchain (the package uses
-swift-tools-version 6.0). Local development uses Xcode 27; CI uses the
-default Xcode of the GitHub `macos-26` runner.
+swift-tools-version 6.0). Local development uses Xcode 27; CI uses Xcode 26.6
+on the GitHub `macos-26` runner (set through `DEVELOPER_DIR` in
+`.github/workflows/ci.yml`).
 
 ```bash
 git clone https://github.com/muhittincamdali/SwiftUI-Design-System-Pro.git

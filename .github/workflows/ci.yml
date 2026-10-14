@@ -14,6 +14,11 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
+# Pin the Xcode version instead of relying on the runner image default, which
+# changes over time. Xcode 26.6 is the newest Xcode on the macos-26 image.
+env:
+  DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
+
 jobs:
   macos:
     name: swift test (macOS)
