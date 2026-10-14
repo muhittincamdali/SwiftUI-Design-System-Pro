@@ -17,6 +17,11 @@ let package = Package(
         .target(
             name: "DesignSystemPro",
             path: "Sources/DesignSystemPro"
+        ),
+        .testTarget(
+            name: "DesignSystemProTests",
+            dependencies: ["DesignSystemPro"],
+            path: "Tests/DesignSystemProTests"
         )
     ]
 )
