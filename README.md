@@ -190,7 +190,9 @@ The Swift Testing suites cover hex parsing, contrast math (including AA checks
 for body text and filled-button labels in both color schemes), Dynamic Type
 scaling, theme resolution, brand theme generation, the toast queue and timers,
 OTP input sanitising, avatar initials and badge counts. A rendering test draws
-every gallery section in light and dark mode. CI runs the suites on macOS and
+every gallery section in light and dark mode and compares it with a coarse
+reference fingerprint (size and an 8x8 grid of average colors) in
+`Tests/RenderingReferences`, so color and layout changes fail the test. CI runs the suites on macOS and
 an iOS simulator and builds the package for tvOS, watchOS and visionOS.
 
 ## Project history

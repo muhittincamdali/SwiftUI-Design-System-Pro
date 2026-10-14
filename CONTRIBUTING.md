@@ -22,8 +22,21 @@ xcodebuild test -scheme SwiftUI-Design-System-Pro \
   -destination 'platform=iOS Simulator,name=<simulator name>'
 ```
 
-If you change how a component looks, regenerate the README screenshots with
-`scripts/render-screenshots.sh` and commit the updated files in `docs/images`.
+The rendering tests compare every gallery section against a coarse
+fingerprint (size and an 8x8 grid of average colors) in
+`Tests/RenderingReferences/<platform>`. If you change how a component looks,
+record new references on macOS and iOS and commit them together with the
+change:
+
+```bash
+DSP_RECORD_FINGERPRINTS=1 swift test --filter RenderingTests
+TEST_RUNNER_DSP_RECORD_FINGERPRINTS=1 xcodebuild test -scheme SwiftUI-Design-System-Pro \
+  -destination 'platform=iOS Simulator,name=<simulator name>' \
+  -only-testing:DesignSystemProTests/RenderingTests
+```
+
+Then regenerate the README screenshots with `scripts/render-screenshots.sh`
+and commit the updated files in `docs/images`.
 
 ## Pull requests
 
