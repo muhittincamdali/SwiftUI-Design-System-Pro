@@ -1,0 +1,44 @@
+# Builds the example app. The shared Swift CI builds only the package, not projects in Examples/.
+name: Examples
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: examples-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  demo:
+    name: DesignSystemProDemo (${{ matrix.platform }})
+    runs-on: macos-26
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: iOS
+            destination: generic/platform=iOS Simulator
+          - platform: macOS
+            destination: platform=macOS
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Build
+        env:
+          DESTINATION: ${{ matrix.destination }}
+        run: |
+          set -o pipefail
+          xcodebuild -version
+          xcodebuild build -project Examples/DesignSystemProDemo/DesignSystemProDemo.xcodeproj \
+            -scheme DesignSystemProDemo -destination "$DESTINATION" \
+            -skipPackagePluginValidation CODE_SIGNING_ALLOWED=NO -quiet
