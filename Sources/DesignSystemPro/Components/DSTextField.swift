@@ -470,11 +470,11 @@ public struct DSOTPField: View {
     }
 
     /// Keeps only decimal digits and truncates the result to `length` characters.
-    public static func sanitize(_ input: String, length: Int) -> String {
+    public nonisolated static func sanitize(_ input: String, length: Int) -> String {
         String(input.filter(\.isASCIIDigit).prefix(max(0, length)))
     }
 
-    static func digit(in code: String, at index: Int) -> String {
+    nonisolated static func digit(in code: String, at index: Int) -> String {
         guard index >= 0, index < code.count else { return "" }
         return String(code[code.index(code.startIndex, offsetBy: index)])
     }

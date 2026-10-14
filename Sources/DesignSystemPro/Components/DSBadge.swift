@@ -277,7 +277,7 @@ public struct DSCounterBadge: View {
     }
 
     /// `count`, or `"<maxCount>+"` once the count exceeds `maxCount`.
-    static func displayText(count: Int, maxCount: Int) -> String {
+    nonisolated static func displayText(count: Int, maxCount: Int) -> String {
         count > maxCount ? "\(maxCount)+" : "\(count)"
     }
 }

@@ -177,7 +177,7 @@ public struct DSAvatar: View {
     ]
 
     /// Up to two uppercase initials from the first two words of `name`.
-    static func initials(from name: String) -> String {
+    nonisolated static func initials(from name: String) -> String {
         name
             .split(whereSeparator: \.isWhitespace)
             .prefix(2)
@@ -187,7 +187,7 @@ public struct DSAvatar: View {
     }
 
     /// Stable palette index for `name`, so a person keeps the same color.
-    static func paletteIndex(for name: String, paletteSize: Int) -> Int {
+    nonisolated static func paletteIndex(for name: String, paletteSize: Int) -> Int {
         let hash = name.unicodeScalars.reduce(UInt(0)) { $0 &+ UInt($1.value) }
         return Int(hash % UInt(max(1, paletteSize)))
     }
