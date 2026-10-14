@@ -51,6 +51,9 @@ and commit the updated files in `docs/images`.
    messages (`feat:`, `fix:`, `docs:`, `test:`, `ci:`, `chore:`).
 5. Add a line to the `Unreleased` section of `CHANGELOG.md`.
 
-## Code of conduct
+## Code of conduct and security
 
-This project follows the [Code of Conduct](CODE_OF_CONDUCT.md).
+This project follows the shared
+[code of conduct](https://github.com/muhittincamdali/.github/blob/main/CODE_OF_CONDUCT.md).
+Report security issues privately as described in the
+[security policy](https://github.com/muhittincamdali/.github/blob/main/SECURITY.md).
