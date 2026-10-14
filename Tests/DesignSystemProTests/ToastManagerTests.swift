@@ -47,17 +47,16 @@ struct ToastManagerTests {
         #expect(manager.toasts.last?.message == "Try again")
     }
 
-    @Test func autoDismissesAfterDuration() async throws {
+    @Test(.timeLimit(.minutes(1)))
+    func autoDismissesAfterDuration() async throws {
         let manager = DSToastManager()
         manager.show(DSToastData(id: "short", title: "Bye", duration: 0.05))
         #expect(manager.toasts.count == 1)
 
-        // Poll with a generous deadline: on a busy machine the timer task can
-        // run well after 50 ms.
-        let deadline = ContinuousClock.now + .seconds(5)
-        while !manager.toasts.isEmpty, ContinuousClock.now < deadline {
-            try await Task.sleep(for: .milliseconds(20))
-        }
+        // Await the timer itself, not a wall-clock deadline: while other tests
+        // keep the main actor busy, the timer can run seconds after 50 ms.
+        let timer = try #require(manager.dismissTimers["short"])
+        await timer.value
         #expect(manager.toasts.isEmpty)
     }
 

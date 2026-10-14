@@ -92,7 +92,8 @@ public final class DSToastManager {
     /// cannot overflow the sleep duration.
     static let maximumDuration: TimeInterval = 24 * 60 * 60
 
-    @ObservationIgnored private var dismissTimers: [String: Task<Void, Never>] = [:]
+    // Readable inside the module so tests can await a timer instead of polling the clock.
+    @ObservationIgnored private(set) var dismissTimers: [String: Task<Void, Never>] = [:]
     
     public init() {}
     
