@@ -19,6 +19,10 @@ targets: [
 ]
 ```
 
+> Note: 2.0.0 is the first release with this API and is not tagged yet. Until
+> it is, use `branch: "main"` in `Package.swift`, or the **Branch** rule with
+> `main` in Xcode.
+
 ## Wrap the root view
 
 ``DSApp`` installs ``DSThemeProvider`` and the toast overlay used by
@@ -64,5 +68,6 @@ struct SignInView: View {
 
 ## Next steps
 
+- <doc:BuildingAForm> combines these components into a validated form.
 - <doc:UsingDesignTokens> explains the token families.
 - <doc:Theming> covers presets, brand themes and the theme manager.

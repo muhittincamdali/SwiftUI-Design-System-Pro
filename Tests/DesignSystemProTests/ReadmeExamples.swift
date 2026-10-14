@@ -57,6 +57,12 @@ private struct SavedLabel: View {
     }
 }
 
+private struct SettingsTitle: View {
+    var body: some View {
+        Text("Settings").dsTypography(TypographyTokens.Heading.h2)
+    }
+}
+
 private struct PulsingDot: View {
     let isActive: Bool
 
@@ -78,6 +84,36 @@ private struct ProfileHeader: View {
     }
 }
 
+// MARK: - DocC: Building a Form
+
+private struct NewsletterSignUp: View {
+    @State private var email = ""
+    @State private var isSubmitting = false
+
+    private var emailState: DSInputState {
+        if email.isEmpty { return .default }
+        return email.contains("@") ? .valid : .error("Enter an email address")
+    }
+
+    var body: some View {
+        DSCard(variant: .outlined) {
+            VStack(alignment: .leading, spacing: SpacingTokens.Content.comfortable) {
+                DSCardHeader(title: "Newsletter", subtitle: "One email a month")
+
+                DSTextField("Email", text: $email, placeholder: "you@example.com", state: emailState)
+
+                DSButton("Subscribe", isFullWidth: true) {
+                    isSubmitting = true
+                    DSToastManager.shared.success("Subscribed", message: email)
+                }
+                .loading(isSubmitting)
+                .disabled(!email.contains("@"))
+            }
+        }
+        .padding(SpacingTokens.Layout.screenEdge)
+    }
+}
+
 @Suite("Documentation examples")
 @MainActor
 struct ReadmeExamplesTests {
@@ -86,6 +122,8 @@ struct ReadmeExamplesTests {
         #expect(ImageRenderer(content: SavedLabel()).cgImage != nil)
         #expect(ImageRenderer(content: PulsingDot(isActive: true).frame(width: 20, height: 20)).cgImage != nil)
         #expect(ImageRenderer(content: DSThemeProvider { ProfileHeader() }).cgImage != nil)
+        #expect(ImageRenderer(content: SettingsTitle()).cgImage != nil)
+        #expect(ImageRenderer(content: NewsletterSignUp().frame(width: 360)).cgImage != nil)
         _ = MyApp()
     }
 
@@ -99,6 +137,18 @@ struct ReadmeExamplesTests {
         let brand = BrandConfiguration(primaryColor: .purple, secondaryColor: .pink, borderRadius: 12)
         ThemeManager.shared.setTheme(WhiteLabelConfiguration(brand: brand, appName: "Acme").darkTheme)
 
+        #expect(ThemeManager.shared.resolvedTheme(for: .light).id == "acme-dark")
+        DesignSystemPro.configure()
+    }
+
+    @Test func doccThemingSnippets() {
+        ThemeManager.shared.setTheme(PresetThemes.ocean)
+        ThemeManager.shared.toggleFollowSystem() // back to light/dark from the system
+        #expect(ThemeManager.shared.followSystem)
+
+        let brand = BrandConfiguration(primaryColor: .purple, secondaryColor: .pink, borderRadius: 12)
+        let whiteLabel = WhiteLabelConfiguration(brand: brand, appName: "Acme")
+        ThemeManager.shared.setTheme(whiteLabel.darkTheme) // id "acme-dark"
         #expect(ThemeManager.shared.resolvedTheme(for: .light).id == "acme-dark")
         DesignSystemPro.configure()
     }

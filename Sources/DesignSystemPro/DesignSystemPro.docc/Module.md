@@ -23,6 +23,7 @@ the theme (`@Environment(\.dsTheme)`) for your own views.
 ### Essentials
 
 - <doc:GettingStarted>
+- <doc:BuildingAForm>
 - <doc:UsingDesignTokens>
 - <doc:Theming>
 
