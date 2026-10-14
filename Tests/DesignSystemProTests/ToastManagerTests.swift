@@ -52,7 +52,12 @@ struct ToastManagerTests {
         manager.show(DSToastData(id: "short", title: "Bye", duration: 0.05))
         #expect(manager.toasts.count == 1)
 
-        try await Task.sleep(nanoseconds: 400_000_000)
+        // Poll with a generous deadline: on a busy machine the timer task can
+        // run well after 50 ms.
+        let deadline = ContinuousClock.now + .seconds(5)
+        while !manager.toasts.isEmpty, ContinuousClock.now < deadline {
+            try await Task.sleep(for: .milliseconds(20))
+        }
         #expect(manager.toasts.isEmpty)
     }
 
