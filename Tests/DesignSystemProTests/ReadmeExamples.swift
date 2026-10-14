@@ -5,11 +5,29 @@ import DesignSystemPro
 import SwiftUI
 import Testing
 
-// MARK: - README: Usage
+// MARK: - README: Quick start
 
 private struct ContentView: View {
-    var body: some View { SignInView() }
+    @State private var notificationsOn = true
+
+    var body: some View {
+        VStack(spacing: SpacingTokens.Content.comfortable) {
+            Text("Hello, DesignSystemPro")
+                .dsTypography(TypographyTokens.Heading.h2)
+
+            DSStatusBadge("Ready", variant: .success)
+
+            DSToggle(isOn: $notificationsOn, label: "Notifications")
+
+            DSButton("Continue", isFullWidth: true) {
+                notificationsOn.toggle()
+            }
+        }
+        .padding(SpacingTokens.Layout.screenEdge)
+    }
 }
+
+// MARK: - README: Usage
 
 // `@main` is omitted because a test bundle cannot declare an entry point.
 private struct MyApp: App {
@@ -42,6 +60,7 @@ private struct SignInView: View {
             }
         }
         .padding(SpacingTokens.Layout.screenEdge)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .dsBackgroundColor(ColorTokens.Background.primary)
     }
 }
@@ -119,6 +138,7 @@ private struct NewsletterSignUp: View {
 struct ReadmeExamplesTests {
     @Test func usageViewsRender() {
         #expect(ImageRenderer(content: DSApp { ContentView() }).cgImage != nil)
+        #expect(ImageRenderer(content: SignInView()).cgImage != nil)
         #expect(ImageRenderer(content: SavedLabel()).cgImage != nil)
         #expect(ImageRenderer(content: PulsingDot(isActive: true).frame(width: 20, height: 20)).cgImage != nil)
         #expect(ImageRenderer(content: DSThemeProvider { ProfileHeader() }).cgImage != nil)
