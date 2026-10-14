@@ -364,6 +364,7 @@ public struct DSCheckboxGroup: View {
 // MARK: - DSSwitch (iOS Native Style)
 
 public struct DSSwitch: View {
+    @Environment(\.colorScheme) private var colorScheme
     @Binding private var isOn: Bool
     private let label: String?
     private let tint: Color?
@@ -381,11 +382,11 @@ public struct DSSwitch: View {
     public var body: some View {
         if let label = label {
             Toggle(label, isOn: $isOn)
-                .tint(tint ?? ColorTokens.Accent.primary.light)
+                .tint(tint ?? ColorTokens.Accent.primary.resolved(for: colorScheme))
                 .dsSwitchToggleStyle()
         } else {
             Toggle("", isOn: $isOn)
-                .tint(tint ?? ColorTokens.Accent.primary.light)
+                .tint(tint ?? ColorTokens.Accent.primary.resolved(for: colorScheme))
                 .dsSwitchToggleStyle()
                 .labelsHidden()
         }
