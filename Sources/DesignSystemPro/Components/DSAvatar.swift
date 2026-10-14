@@ -129,17 +129,10 @@ public struct DSAvatar: View {
     }
     
     private func initialsView(for name: String) -> some View {
-        let initials = name
-            .split(separator: " ")
-            .prefix(2)
-            .compactMap { $0.first }
-            .map { String($0).uppercased() }
-            .joined()
-        
-        return ZStack {
+        ZStack {
             (backgroundColor ?? generateColor(from: name))
             
-            Text(initials)
+            Text(Self.initials(from: name))
                 .font(.system(size: size.fontSize, weight: .semibold))
                 .foregroundColor(.white)
         }
@@ -169,19 +162,34 @@ public struct DSAvatar: View {
     }
     
     private func generateColor(from string: String) -> Color {
-        let colors: [Color] = [
-            PrimitiveColors.Blue.blue500,
-            PrimitiveColors.Purple.purple500,
-            PrimitiveColors.Teal.teal500,
-            PrimitiveColors.Pink.pink500,
-            PrimitiveColors.Orange.orange500,
-            PrimitiveColors.Green.green500,
-            PrimitiveColors.Red.red500,
-            PrimitiveColors.Amber.amber500
-        ]
-        
-        let hash = string.unicodeScalars.reduce(0) { $0 + Int($1.value) }
-        return colors[hash % colors.count]
+        Self.placeholderPalette[Self.paletteIndex(for: string, paletteSize: Self.placeholderPalette.count)]
+    }
+
+    private static let placeholderPalette: [Color] = [
+        PrimitiveColors.Blue.blue500,
+        PrimitiveColors.Purple.purple500,
+        PrimitiveColors.Teal.teal500,
+        PrimitiveColors.Pink.pink500,
+        PrimitiveColors.Orange.orange500,
+        PrimitiveColors.Green.green500,
+        PrimitiveColors.Red.red500,
+        PrimitiveColors.Amber.amber500
+    ]
+
+    /// Up to two uppercase initials from the first two words of `name`.
+    static func initials(from name: String) -> String {
+        name
+            .split(whereSeparator: \.isWhitespace)
+            .prefix(2)
+            .compactMap(\.first)
+            .map { String($0).uppercased() }
+            .joined()
+    }
+
+    /// Stable palette index for `name`, so a person keeps the same color.
+    static func paletteIndex(for name: String, paletteSize: Int) -> Int {
+        let hash = name.unicodeScalars.reduce(UInt(0)) { $0 &+ UInt($1.value) }
+        return Int(hash % UInt(max(1, paletteSize)))
     }
 }
 
