@@ -184,12 +184,44 @@ public struct TypographyToken: Sendable {
         self.isUppercased = isUppercased
     }
     
+    /// The font at the token's base size (the `.large` Dynamic Type size).
     public var font: Font {
+        font(for: .large)
+    }
+
+    /// The font scaled for `dynamicTypeSize`.
+    public func font(for dynamicTypeSize: DynamicTypeSize) -> Font {
         Font.system(
-            size: scale.size,
+            size: scaledSize(for: dynamicTypeSize),
             weight: weight.swiftUIWeight,
             design: design.swiftUIDesign
         )
+    }
+
+    /// The point size for `dynamicTypeSize`, using the same ratios as the
+    /// system body text style (17 pt at `.large`).
+    public func scaledSize(for dynamicTypeSize: DynamicTypeSize) -> CGFloat {
+        (scale.size * Self.scaleFactor(for: dynamicTypeSize)).rounded()
+    }
+
+    static func scaleFactor(for dynamicTypeSize: DynamicTypeSize) -> CGFloat {
+        let bodySize: CGFloat
+        switch dynamicTypeSize {
+        case .xSmall: bodySize = 14
+        case .small: bodySize = 15
+        case .medium: bodySize = 16
+        case .large: bodySize = 17
+        case .xLarge: bodySize = 19
+        case .xxLarge: bodySize = 21
+        case .xxxLarge: bodySize = 23
+        case .accessibility1: bodySize = 28
+        case .accessibility2: bodySize = 33
+        case .accessibility3: bodySize = 40
+        case .accessibility4: bodySize = 47
+        case .accessibility5: bodySize = 53
+        @unknown default: bodySize = 17
+        }
+        return bodySize / 17
     }
     
     public var size: CGFloat { scale.size }
@@ -253,11 +285,11 @@ public enum TypographyTokens {
 
 public struct DSTypographyModifier: ViewModifier {
     let token: TypographyToken
-    @Environment(\.sizeCategory) private var sizeCategory
-    
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
     public func body(content: Content) -> some View {
         content
-            .font(token.font)
+            .font(token.font(for: dynamicTypeSize))
             .lineSpacing(lineSpacing)
             .tracking(token.letterSpacing)
             .textCase(token.isUppercased ? .uppercase : nil)
@@ -267,7 +299,8 @@ public struct DSTypographyModifier: ViewModifier {
         // Calculate line spacing from line height
         // lineHeight - fontSize = total extra space
         // Divide by 2 because lineSpacing adds space both above and below
-        max(0, (token.lineHeight - token.size) / 2)
+        let factor = TypographyToken.scaleFactor(for: dynamicTypeSize)
+        return max(0, (token.lineHeight - token.size) / 2) * factor
     }
 }
 
