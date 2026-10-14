@@ -254,7 +254,7 @@ extension ShadowTokens {
                     radius: layer.radius * 1.2,
                     x: layer.x,
                     y: layer.y * 1.2,
-                    opacity: layer.opacity * 1.5
+                    opacity: min(1, layer.opacity * 1.5)
                 )
             }
         )
