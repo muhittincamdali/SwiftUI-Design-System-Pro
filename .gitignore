@@ -164,3 +164,6 @@ coverage.xml
 
 # Library package: dependency versions are resolved by the consuming app
 /Package.resolved
+
+# Link checker cache (lychee, see .lychee.toml)
+.lycheecache
