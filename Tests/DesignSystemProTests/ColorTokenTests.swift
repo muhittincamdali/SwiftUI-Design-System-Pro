@@ -70,4 +70,13 @@ struct ContrastTests {
             #expect(ColorContrastUtility.meetsWCAG_AA(foreground, background), "\(token.accessibilityLabel) in \(scheme)")
         }
     }
+
+    @Test("Filled button labels reach AA on their fill", arguments: [ColorScheme.light, .dark])
+    func onAccentTextMeetsAA(scheme: ColorScheme) {
+        let label = ColorTokens.Foreground.onAccent.resolved(for: scheme)
+        for fill in [ColorTokens.Accent.primary, ColorTokens.Status.error, ColorTokens.Status.success] {
+            let ratio = ColorContrastUtility.contrastRatio(label, fill.resolved(for: scheme))
+            #expect(ratio >= 4.5, "\(fill.accessibilityLabel) in \(scheme): \(ratio)")
+        }
+    }
 }

@@ -268,7 +268,7 @@ public enum ColorTokens {
         
         public static let onAccent = SemanticColorToken(
             light: .white,
-            dark: .white,
+            dark: PrimitiveColors.Gray.gray900,
             accessibilityLabel: "Text on accent color"
         )
     }
@@ -298,7 +298,7 @@ public enum ColorTokens {
     // MARK: - Status Colors
     public enum Status {
         public static let success = SemanticColorToken(
-            light: PrimitiveColors.Green.green600,
+            light: PrimitiveColors.Green.green700,
             dark: PrimitiveColors.Green.green400,
             highContrast: PrimitiveColors.Green.green700,
             accessibilityLabel: "Success"
