@@ -7,7 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-Planned as 2.0.0. Between February and June 2026 the repository went through a
+## [2.0.0] - 2026-10-14
+
+Between February and June 2026 the repository went through a
 rewrite (the "v2.0" token, theme and component code) and then a clean-up that
 replaced most of the sources with placeholder files. This release restores the
 v2.0 code, fixes it and tests it. The API is not compatible with 1.0.0.
@@ -92,5 +94,6 @@ First tagged version, with the 1.x component set (`DSButton(title:style:)`,
 `DSAlert`, `DSModal`, `DSNavigationBar`, `DSTabBar`, `DSChart` and others) and
 iOS 15 / macOS 12 deployment targets.
 
-[Unreleased]: https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/compare/v1.0.0...v2.0.0
 [1.0.0]: https://github.com/muhittincamdali/SwiftUI-Design-System-Pro/releases/tag/v1.0.0
