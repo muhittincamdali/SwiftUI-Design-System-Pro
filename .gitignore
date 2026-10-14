@@ -161,3 +161,6 @@ coverage.xml
 # Package.resolved
 # Podfile.lock
 # Cartfile.resolved
+
+# Library package: dependency versions are resolved by the consuming app
+/Package.resolved

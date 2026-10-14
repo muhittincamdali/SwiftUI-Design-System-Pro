@@ -13,6 +13,10 @@ let package = Package(
     products: [
         .library(name: "DesignSystemPro", targets: ["DesignSystemPro"])
     ],
+    dependencies: [
+        // Only used by `swift package generate-documentation`; not linked into the library.
+        .package(url: "https://github.com/swiftlang/swift-docc-plugin", from: "1.4.0")
+    ],
     targets: [
         .target(
             name: "DesignSystemPro",
